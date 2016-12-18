@@ -8,5 +8,6 @@
 *.swp
 *.pyc
 *.sqlite3
+*.mo
 
 local_settings.py
