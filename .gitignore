@@ -1,0 +1,12 @@
+/bin
+/include
+/lib
+/local
+/share
+/pip-selfcheck.json
+
+*.swp
+*.pyc
+*.sqlite3
+
+local_settings.py
