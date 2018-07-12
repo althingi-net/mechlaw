@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<law nr="77" year="2000" date="2000-05-23" name="Lög um persónuvernd og meðferð persónuupplýsinga" parliament="148b">
+  <chapter nr="1" nr-title="I. kafli" name="Markmið, skilgreiningar og gildissvið">
+    <art nr="1" nr-title="1. gr." name="Markmið">
+      <subart nr="1" nr-title="1. mgr.">
+        <sen>Markmið laga þessara er að stuðla að því að með persónuupplýsingar sé farið í samræmi við grundvallarsjónarmið og reglur um persónuvernd og friðhelgi einkalífs og að tryggja áreiðanleika og gæði slíkra upplýsinga og frjálst flæði þeirra á innri markaði Evrópska efnahagssvæðisins.</sen>
+      </subart>
+      <subart nr="2" nr-title="2. mgr.">
+        <sen>Sérstök stofnun, Persónuvernd, annast eftirlit með framkvæmd laga þessara og reglna sem settar verða samkvæmt þeim, sbr. nánar ákvæði <link art-nr="36" art-nr-title="36. gr.">36. gr.</link></sen>
+      </subart>
+    </art>
+    <art nr="2" nr-title="2. gr." name="Skilgreiningar">
+      <subart nr="1" nr-title="1. mgr.">
+        <sen>Merking orða og hugtaka í lögum þessum er sem hér segir:</sen>
+        <numart nr="1" name="Persónuupplýsingar">
+          <sen>Sérhverjar persónugreindar eða persónugreinanlegar upplýsingar um hinn skráða, þ.e. upplýsingar sem beint eða óbeint má rekja til tiltekins einstaklings, látins eða lifandi.</sen>
+        </numart>
+        <numart nr="2" name="Vinnsla">
+          <sen>Sérhver aðgerð eða röð aðgerða þar sem unnið er með persónuupplýsingar, hvort heldur sem vinnslan er handvirk eða rafræn.</sen>
+        </numart>
+        <numart nr="3" name="Skrá">
+          <sen>Sérhvert skipulagsbundið safn persónuupplýsinga þar sem finna má upplýsingar um einstaka menn.</sen>
+        </numart>
+        <numart nr="4" name="Ábyrgðaraðili">
+          <sen>Sá aðili sem ákveður tilgang vinnslu persónuupplýsinga, þann búnað sem notaður er, aðferð við vinnsluna og aðra ráðstöfun upplýsinganna.</sen>
+        </numart>
+        <numart nr="5" name="Vinnsluaðili">
+          <sen>Sá sem vinnur persónuupplýsingar á vegum ábyrgðaraðila.</sen>
+        </numart>
+        <numart nr="6" name="Rafræn vöktun">
+          <sen>Vöktun sem er viðvarandi eða endurtekin reglulega og felur í sér eftirlit með einstaklingum með fjarstýrðum eða sjálfvirkum búnaði, og fer fram á almannafæri eða á svæði sem takmarkaður hópur fólks fer um að jafnaði.</sen>
+          <sen>Hugtakið tekur til:</sen>
+          <letart nr="a">
+            <sen>vöktunar sem leiðir, á að leiða eða getur leitt til vinnslu persónuupplýsinga, og</sen>
+          </letart>
+          <letart nr="b">
+            <sen>sjónvarpsvöktunar sem fer fram með notkun sjónvarpsmyndavéla, vefmyndavéla eða annars samsvarandi búnaðar, án þess að fram fari söfnun myndefnis eða aðrar aðgerðir sem jafngilda vinnslu persónuupplýsinga.</sen>
+          </letart>
+        </numart>
+        <numart nr="7" name="Samþykki">
+          <sen>Sérstök, ótvíræð yfirlýsing sem einstaklingur gefur af fúsum og frjálsum vilja um að hann sé samþykkur vinnslu tiltekinna upplýsinga um sig og að honum sé kunnugt um tilgang hennar, hvernig hún fari fram, hvernig persónuvernd verði tryggð, um að honum sé heimilt að afturkalla samþykki sitt o.s.frv.</sen>
+        </numart>
+        <numart nr="8" name="Viðkvæmar persónuupplýsingar:">
+          <letart nr="a">
+            <sen>Upplýsingar um uppruna, litarhátt, kynþátt, stjórnmálaskoðanir, svo og trúar- eða aðrar lífsskoðanir.</sen>
+          </letart>
+          <letart nr="b">
+            <sen>Upplýsingar um hvort maður hafi verið grunaður, kærður, ákærður eða dæmdur fyrir refsiverðan verknað.</sen>
+          </letart>
+          <letart nr="c">
+            <sen>Upplýsingar um heilsuhagi, þar á meðal um erfðaeiginleika, lyfja-, áfengis- og vímuefnanotkun.</sen>
+          </letart>
+          <letart nr="d">
+            <sen>Upplýsingar um kynlíf manna og kynhegðan.</sen>
+          </letart>
+          <letart nr="e">
+            <sen>Upplýsingar um stéttarfélagsaðild.</sen>
+          </letart>
+        </numart>
+        <numart nr="9" name="Sértæk ákvörðun">
+          <sen>Ákvörðun sem afmarkar rétt og/eða skyldur eins eða fleiri tilgreindra einstaklinga.</sen>
+        </numart>
+      </subart>
+    </art>
+  </chapter>
+</law>
