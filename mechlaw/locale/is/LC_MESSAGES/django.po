@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-18 23:22+0000\n"
+"POT-Creation-Date: 2018-07-12 21:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);\n"
+
+#: core/docmanager.py:13
+#, python-format
+msgid "Law %(nr)s/%(year)s, parliament version %(parliament)s"
+msgstr "Lög nr. %(nr)s/%(year)s, þingútgáfa %(parliament)s"
 
 #: mechlaw/constants.py:3
 msgid "MechLaw"

@@ -26,6 +26,9 @@ DEBUG = True
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
+# Options are: ['is']
+LEGAL_FRAMEWORK = 'is'
+
 LANGUAGE_CODE = 'is'
 
 TIME_ZONE = 'UTC'

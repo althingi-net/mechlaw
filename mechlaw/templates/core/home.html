@@ -1,8 +1,9 @@
 {% extends "base.html" %}
-{% load i18n %}
 
 {% block content %}
 
-Here shall reside some content.
+{% for law in laws %}
+    <a href="{% url 'show_doc' 'law' law.url_identifier %}">{{ law }}</a>
+{% endfor %}
 
 {% endblock %}
