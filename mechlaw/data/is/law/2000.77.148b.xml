@@ -6,17 +6,17 @@
     <art nr="1">
       <nr-title>1. gr.</nr-title>
       <name>Markmið.</name>
-      <subart nr="1" nr-title="1. mgr.">
+      <subart nr="1">
         <sen>Markmið laga þessara er að stuðla að því að með persónuupplýsingar sé farið í samræmi við grundvallarsjónarmið og reglur um persónuvernd og friðhelgi einkalífs og að tryggja áreiðanleika og gæði slíkra upplýsinga og frjálst flæði þeirra á innri markaði Evrópska efnahagssvæðisins.</sen>
       </subart>
-      <subart nr="2" nr-title="2. mgr.">
-        <sen>Sérstök stofnun, Persónuvernd, annast eftirlit með framkvæmd laga þessara og reglna sem settar verða samkvæmt þeim, sbr. nánar ákvæði <reference art-nr="36" art-nr-title="36. gr.">36. gr.</reference></sen>
+      <subart nr="2">
+        <sen>Sérstök stofnun, Persónuvernd, annast eftirlit með framkvæmd laga þessara og reglna sem settar verða samkvæmt þeim, sbr. nánar ákvæði <refer art="36">36. gr.</refer></sen>
       </subart>
     </art>
     <art nr="2">
       <nr-title>2. gr.</nr-title>
       <name>Skilgreiningar.</name>
-      <subart nr="1" nr-title="1. mgr.">
+      <subart nr="1">
         <sen>Merking orða og hugtaka í lögum þessum er sem hér segir:</sen>
         <numart nr="1">
           <nr-title>1.</nr-title>
@@ -100,7 +100,7 @@
             <subart>1</subart>
             <numart>6</numart>
           </changed-portion>
-          <sen>L. 46/2003, 1. gr.</sen>
+          <change-sen>L. 46/2003, 1. gr.</change-sen>
         </changing-law>
       </changed-by>
 
@@ -109,6 +109,35 @@
     <art nr="3">
       <nr-title>3. gr.</nr-title>
       <name>Efnislegt gildissvið.</name>
+      <subart nr="1">
+        <sen>Lögin gilda um sérhverja rafræna vinnslu persónuupplýsinga.</sen>
+        <sen>Lögin gilda einnig um handvirka vinnslu persónuupplýsinga sem eru eða eiga að verða hluti af skrá.</sen>
+        <sen>Ákvæði <refer art="16">16.</refer>, <refer art="18-21">18.–21.</refer>, <refer art="24">24.</refer>, <refer art="26">26.</refer>, <refer art="31">31.</refer> og <refer art="32">32. gr.</refer> laganna gilda ekki um vinnslu persónuupplýsinga sem varða almannaöryggi, landvarnir, öryggi ríkisins og starfsemi ríkisins á sviði refsivörslu.</sen>
+        <sen>Lögin gilda ekki um meðferð einstaklings á persónuupplýsingum sem eingöngu varða einkahagi hans eða eru einvörðungu ætlaðar til persónulegra nota.</sen>
+      </subart>
+    </art>
+
+    <art nr="4">
+      <nr-title>4. gr.</nr-title>
+      <name>Rafræn vöktun.</name>
+      <subart nr="1">
+        <sen>Rafræn vöktun er ávallt háð því skilyrði að hún fari fram í málefnalegum tilgangi.</sen>
+        <sen>Rafræn vöktun svæðis þar sem takmarkaður hópur fólks fer um að jafnaði er jafnframt háð því skilyrði að hennar sé sérstök þörf vegna eðlis þeirrar starfsemi sem þar fer fram.</sen>
+      </subart>
+      <subart art="2">
+        <sen>Vinnsla persónuupplýsinga sem á sér stað í tengslum við rafræna vöktun skal uppfylla ákvæði laga þessara.</sen>
+        <sen>Um sjónvarpsvöktun fer, auk ákvæðis <refer art="4" subart="1">1. mgr.</refer>, samkvæmt ákvæðum <refer art="7">7.</refer>, <refer art="24">24.</refer>, <refer art="40">40.</refer> og <refer art="41">41. gr.</refer> laganna, svo og eftir því sem við á ákvæðum <refer art="31">31.</refer>, <refer art="32">32.</refer> og <refer art="38">38. gr.</refer> laganna.</sen>
+      </subart>
+
+      <changed-by>
+        <changing-law nr="46" year="2003" art="2" href="https://www.althingi.is/altext/stjt/2003.046.html">
+          <changed-portion>
+            <art>4</art>
+          </changed-portion>
+          <change-sen>L. 46/2003, 2. gr.</change-sen>
+        </changing-law>
+      </changed-by>
+
     </art>
 
     <unfinished />

@@ -32,20 +32,24 @@ $(document).ready(function() {
             // Add the markers for changed text and enumerate the changes according to order.
             var tag_name = $mark.prop('tagName').toLowerCase();
             if (tag_name == 'numart') {
-                $mark.find('nr-title').first().append(' [ ');
-                $mark.children().last().append(' ]<sup>' + change_number + '</sup> ');
+                $mark.find('nr-title').next().first().prepend(' [');
+                $mark.find('sen').last().append(' ]<sup>' + change_number + '</sup> ');
+            }
+            else if (tag_name == 'art') {
+                $mark.find('nr-title').next().first().prepend(' [');
+                $mark.find('sen').last().append(' ]<sup>' + change_number + '</sup> ');
             }
 
         });
 
         // Add the superscripted iterator to the displayed label.
-        $changing_law.find('sen').before('<sup>' + change_number + ')</sup>');
+        $changing_law.find('change-sen').before('<sup>' + change_number + ')</sup>');
 
         // Turn the displayed label into a link.
         var href = $changing_law.attr('href');
         if (href) {
-            var current_html = $changing_law.find('sen').html();
-            $changing_law.find('sen').html('<a href="' + href + '">' + current_html + '</a>');
+            var current_html = $changing_law.find('change-sen').html();
+            $changing_law.find('change-sen').html('<a href="' + href + '" target="_blank">' + current_html + '</a>');
         }
 
     });
