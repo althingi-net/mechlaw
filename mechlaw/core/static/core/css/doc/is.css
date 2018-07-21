@@ -1,0 +1,41 @@
+/*** Basics ***/
+.legal-document {
+    font-family: "Droid Serif", serif;
+    line-height: 1.5em;
+    font-size: 16px;
+}
+.legal-document sup { font-size: x-small; }
+
+/*** Common classes ***/
+
+/* reference */
+reference { text-decoration: underline; color: #1c79c2; } /* Doesn't seem to work. */
+
+/* changed */
+changed-by sup { display: inline; }
+changed-by sen { display: inline; text-decoration: underline; color: #1c79c2; font-style: italic; font-size: small; text-indent: 1em; }
+changed-portion { display: none; }
+
+/*** Section classes ***/
+
+/* chapter */
+chapter { display: block; }
+chapter > nr-title { font-weight: bold; }
+chapter > name { font-weight: bold; }
+
+/* article */
+art { display: block; }
+art > nr-title { display: inline; font-weight: bold; }
+art > name { font-style: italic; }
+
+/* subarticle */
+subart { display: block; }
+
+/* numerical article */
+numart { display: block; text-indent: 1em; }
+numart > name { font-style: italic; }
+
+/* letter article */
+letart { display: block; text-indent: 1em; }
+
+
