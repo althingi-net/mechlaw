@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<law nr="77" year="2000" date="2000-05-23" name="Lög um persónuvernd og meðferð persónuupplýsinga" parliament="148b">
+<law nr="77" year="2000" date="2000-05-23" parliament="148b">
+  <name>Lög um persónuvernd og meðferð persónuupplýsinga</name>
+  <num-and-date>2000 nr. 77 23. maí</num-and-date>
   <chapter nr="1">
     <nr-title>I. kafli.</nr-title>
     <name>Markmið, skilgreiningar og gildissvið.</name>

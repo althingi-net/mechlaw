@@ -18,6 +18,12 @@ changed-portion { display: none; }
 
 /*** Section classes ***/
 
+/* law name */
+law > name { display: block; font-size: 1.875em; line-height: 1.25em; color: #2d5382; border-top: 1px solid #dddddd; padding-top: 30px; padding-bottom: 6px; }
+
+/* law num-and-date */
+law num-and-date { display: block; font-weight: bold; font-size: 16px; line-height: 1.6; text-align: center; border-bottom: 1px solid #dddddd; padding-bottom: 22px; margin-bottom: 40px; }
+
 /* chapter */
 chapter { display: block; }
 chapter > nr-title { font-weight: bold; }
