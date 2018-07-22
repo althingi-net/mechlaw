@@ -90,7 +90,7 @@ var process_footnote = function() {
                     replace_text = '[' + words + '] <sup>' + footnote_num + ')</sup> '
                 }
                 else if (location_type == 'mark') {
-                    replace_text = words + '<sup>' + footnote_num + ')</sup>'
+                    replace_text = words + ' <sup>' + footnote_num + ')</sup>'
                 }
 
                 // If specific words are to be highlighted, we'll just replace
@@ -127,7 +127,7 @@ var process_footnote = function() {
                     append_closing_text = '] <sup>' + footnote_num + ')</sup> ';
                 }
                 else if (location_type == 'mark') {
-                    append_closing_text = '<sup>' + footnote_num + ')</sup>'
+                    append_closing_text = ' <sup>' + footnote_num + ')</sup>'
                 }
 
                 // Like with the opening node, we'll need to check if the
