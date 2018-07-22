@@ -11,7 +11,7 @@
 /*** Common classes ***/
 
 /* refer */
-refer { text-decoration: underline; color: #1c79c2; } /* Doesn't seem to work. */
+refer { color: #1c79c2; }
 
 /* footnotes */
 footnotes { display: none; }
