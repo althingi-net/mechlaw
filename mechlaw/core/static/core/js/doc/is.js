@@ -1,4 +1,7 @@
 
+var IMG_BOX_WHITE = '/static/core/img/box-white.png';
+var IMG_BOX_BLACK = '/static/core/img/box-black.png';
+
 var footnote_num = 0;
 
 var process_footnote = function() {
@@ -111,14 +114,22 @@ var process_footnote = function() {
 
 }
 
+var process_art = function() {
+    $(this).find('nr-title').first().prepend($('<img class="box" src="' + IMG_BOX_BLACK + '" />'));
+}
 
+var process_subart = function() {
+    $(this).children().first().prepend($('<img class="box" src="' + IMG_BOX_WHITE + '" />'));
+}
 
 $(document).ready(function() {
 
     $('footnotes').each(function() {
         footnote_num = 0;
         $(this).find('footnote').each(process_footnote);
-
     });
+
+    $('law > chapter > art').each(process_art);
+    $('law > chapter > art > subart').each(process_subart);
 
 });
