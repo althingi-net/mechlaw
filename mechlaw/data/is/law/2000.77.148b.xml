@@ -237,6 +237,10 @@
             <art>7</art>
             <name />
           </location>
+          <location type="range">
+            <art>7</art>
+            <subart>2</subart>
+          </location>
           <footnote-sen>L. 90/2001, 2. gr.</footnote-sen>
         </footnote>
       </footnotes>
