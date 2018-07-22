@@ -13,7 +13,7 @@ refer { text-decoration: underline; color: #1c79c2; } /* Doesn't seem to work. *
 
 /* changed */
 footnote sup { display: inline; }
-footnote-sen { display: inline; text-decoration: underline; color: #1c79c2; font-style: italic; font-size: small; text-indent: 1em; }
+footnote-sen { display: inline; font-style: italic; font-size: small; text-indent: 1em; }
 location { display: none; }
 
 /*** Section classes ***/

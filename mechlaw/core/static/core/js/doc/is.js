@@ -17,16 +17,22 @@ var process_footnote = function() {
         // $start_mark and $end_mark denote the highlight's start point and
         // end point, respectively. In the beginning, they are both set to the
         // entire legal document's XML, but then narrowed down afterwards.
-        // This means that each node in <location> narrows it down by
-        // one step, until eventually we have the final node, which is the one
-        // where the highlighting should take place. Usually, the $start_mark
-        // and $end_mark end up being the same thing. They are only different
-        // when the highlight covers a range of entities.
+        // This means that each node in <location> narrows it down by one
+        // step, until eventually we have the final node, which is the one
+        // where the highlighting (or marking) should take place.
+        //
+        // Usually, the $start_mark and $end_mark end up being the same thing.
+        // They are only different when the highlight covers a range of
+        // entities.
+        //
+        // Marks are the same thing except they're not a range, but a single
+        // point in the text. In those cases, the $end_mark is used, because
+        // the mark should come after the located text.
         var $start_mark = $location.parent().parent().closest('law');
         var $end_mark = $location.parent().parent().closest('law');
 
-        // Iterate through the <location> section to locate the text
-        // that we want to show as changed.
+        // Iterate through the <location> section to locate the text that we
+        // want to show as changed.
         $location.children().each(function() {
             var $location_step = $(this);
 
@@ -58,28 +64,37 @@ var process_footnote = function() {
         // Add markers to denote the highlighted area.
         var tag_name = $start_mark.prop('tagName').toLowerCase(); // $start_mark arbitrarily chosen.
         if (tag_name == 'art' || tag_name == 'subart' || tag_name == 'numart') {
+            var location_type = $location.attr('type');
             var words = $start_mark.location_node.attr('words');
 
-            if (words) {
-                // If specific words are to be highlighted, we'll just
-                // replace them with themselves, highlighted.
-                $start_mark.html($start_mark.html().replace(
-                    words,
-                    '[' + words + ']<sup>' + footnote_num + '</sup> '
-                ));
-            }
-            else {
-                // Otherwise, we'll highlight the last mark. If there is a
-                // <nr-title> tag, we'll want to skip that, so that the
-                // opening bracket is placed right after it.
-                var $nr_title = $start_mark.find('nr-title');
-                if ($nr_title.length > 0) {
-                    $start_mark.find('nr-title').next().first().prepend('[');
+            if (location_type == 'range') {
+                if (words) {
+                    // If specific words are to be highlighted, we'll just
+                    // replace them with themselves, highlighted.
+                    $start_mark.html($start_mark.html().replace(
+                        words,
+                        '[' + words + ']<sup>' + footnote_num + '</sup> '
+                    ));
                 }
                 else {
-                    $start_mark.children().first().prepend('[');
+                    // Otherwise, we'll highlight the last mark. If there is a
+                    // <nr-title> tag, we'll want to skip that, so that the
+                    // opening bracket is placed right after it.
+                    var $nr_title = $start_mark.find('nr-title');
+                    if ($nr_title.length > 0) {
+                        $start_mark.find('nr-title').next().first().prepend('[');
+                    }
+                    else {
+                        $start_mark.children().first().prepend('[');
+                    }
+                    $end_mark.find('sen').last().append(' ]<sup>' + footnote_num + '</sup> ');
                 }
-                $end_mark.find('sen').last().append(' ]<sup>' + footnote_num + '</sup> ');
+            }
+            else if (location_type == 'mark') {
+                $end_mark.html($end_mark.html().replace(
+                    words,
+                    words + '<sup>' + footnote_num + ')</sup>'
+                ));
             }
         }
     });
