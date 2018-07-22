@@ -116,7 +116,10 @@ var process_footnote = function() {
                         $opening_node.prepend('[');
                     }
 
-                    // Like with the opening node, we'll need to check if the $end_mark has children to which the closing bracket should be appended. If not, we'll append the closing bracket to $end_node itself.
+                    // Like with the opening node, we'll need to check if the
+                    // $end_mark has children to which the closing bracket
+                    // should be appended. If not, we'll append the closing
+                    // bracket to $end_node itself.
                     var $closing_node = $end_mark.find('sen').last();
                     if (!$closing_node.prop('tagName')) {
                         $closing_node = $end_mark;
