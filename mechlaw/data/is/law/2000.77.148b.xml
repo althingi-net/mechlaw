@@ -228,7 +228,7 @@
         </numart>
       </subart>
       <subart nr="2">
-        <sen>Ábyrgðaraðili ber ábyrgð á því að vinnsla persónuupplýsinga uppfylli ávallt ákvæði 1. mgr.</sen>
+        <sen>Ábyrgðaraðili ber ábyrgð á því að vinnsla persónuupplýsinga uppfylli ávallt ákvæði <refer art="7" subart="1">1. mgr.</refer></sen>
       </subart>
 
       <footnotes>
