@@ -23,26 +23,25 @@ $(document).ready(function() {
 
                 var tag_name = $child.prop('tagName').toLowerCase();
                 var value = $child.text();
-                var words = $child.attr('words');
 
                 // For every tag we find, we look deeper into the XML.
                 $mark = $mark.find(tag_name + '[nr="' + value + '"]');
-                $mark.words = words;
+                $mark.tag = $child;
 
             });
 
             // Add the markers for changed text and enumerate the changes according to order.
             var tag_name = $mark.prop('tagName').toLowerCase();
             if (tag_name == 'art' || tag_name == 'subart' || tag_name == 'numart') {
-                if ($mark.words) {
+                var words = $mark.tag.attr('words');
+
+                if (words) {
                     // If specific words are to be highlighted, we'll just
                     // replace them with themselves, highlighted.
-                    $mark.html(
-                        $mark.html().replace(
-                            $mark.words,
-                            '[' + $mark.words + ']<sup>' + change_number + '</sup> '
-                        )
-                    );
+                    $mark.html($mark.html().replace(
+                        words,
+                        '[' + words + ']<sup>' + change_number + '</sup> '
+                    ));
                 }
                 else {
                     // Otherwise, we'll highlight the last mark. If there is a
