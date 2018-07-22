@@ -96,14 +96,14 @@
       </subart>
 
       <footnotes>
-        <changing-law nr="46" year="2003" art="1" href="http://www.althingi.is/altext/stjt/2003.046.html">
-          <changed-portion>
+        <footnote type="legal-change" nr="46" year="2003" art="1" href="http://www.althingi.is/altext/stjt/2003.046.html">
+          <location type="range">
             <art>2</art>
             <subart>1</subart>
             <numart>6</numart>
-          </changed-portion>
-          <change-sen>L. 46/2003, 1. gr.</change-sen>
-        </changing-law>
+          </location>
+          <footnote-sen>L. 46/2003, 1. gr.</footnote-sen>
+        </footnote>
       </footnotes>
 
     </art>
@@ -132,12 +132,12 @@
       </subart>
 
       <footnotes>
-        <changing-law nr="46" year="2003" art="2" href="https://www.althingi.is/altext/stjt/2003.046.html">
-          <changed-portion>
+        <footnote type="legal-change" nr="46" year="2003" art="2" href="https://www.althingi.is/altext/stjt/2003.046.html">
+          <location type="range">
             <art>4</art>
-          </changed-portion>
-          <change-sen>L. 46/2003, 2. gr.</change-sen>
-        </changing-law>
+          </location>
+          <footnote-sen>L. 46/2003, 2. gr.</footnote-sen>
+        </footnote>
       </footnotes>
 
     </art>
@@ -171,20 +171,20 @@
       </subart>
 
       <footnotes>
-        <changing-law nr="72" year="2003" art="5" href="https://www.althingi.is/altext/stjt/2003.072.html">
-          <changed-portion>
+        <footnote type="legal-change" nr="72" year="2003" art="5" href="https://www.althingi.is/altext/stjt/2003.072.html">
+          <location type="range">
             <art>6</art>
             <subart words="í aðildarríki stofnsamnings Fríverslunarsamtaka Evrópu">1</subart>
-          </changed-portion>
-          <change-sen>L. 72/2003, 5. gr.</change-sen>
-        </changing-law>
-        <changing-law nr="90" year="2001" art="1" href="https://www.althingi.is/altext/stjt/2001.090.html">
-          <changed-portion>
+          </location>
+          <footnote-sen>L. 72/2003, 5. gr.</footnote-sen>
+        </footnote>
+        <footnote type="legal-change" nr="90" year="2001" art="1" href="https://www.althingi.is/altext/stjt/2001.090.html">
+          <location type="range">
             <art>6</art>
             <subart>1-5</subart>
-          </changed-portion>
-          <change-sen>L. 90/2001, 1. gr.</change-sen>
-        </changing-law>
+          </location>
+          <footnote-sen>L. 90/2001, 1. gr.</footnote-sen>
+        </footnote>
       </footnotes>
 
     </art>

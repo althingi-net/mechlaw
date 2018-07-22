@@ -12,9 +12,9 @@
 refer { text-decoration: underline; color: #1c79c2; } /* Doesn't seem to work. */
 
 /* changed */
-changed-by sup { display: inline; }
-changed-by change-sen { display: inline; text-decoration: underline; color: #1c79c2; font-style: italic; font-size: small; text-indent: 1em; }
-changed-portion { display: none; }
+footnote sup { display: inline; }
+footnote-sen { display: inline; text-decoration: underline; color: #1c79c2; font-style: italic; font-size: small; text-indent: 1em; }
+location { display: none; }
 
 /*** Section classes ***/
 
