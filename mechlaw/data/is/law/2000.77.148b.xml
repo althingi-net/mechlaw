@@ -196,6 +196,46 @@
 
     </art>
 
-    <unfinished />
   </chapter>
+
+  <chapter nr="2">
+    <nr-title>II. kafli.</nr-title>
+    <name>Almennar reglur um vinnslu persónuupplýsinga.</name>
+    <art nr="7">
+      <nr-title>7. gr.</nr-title>
+      <name>Meginreglur um gæði gagna og vinnslu.</name>
+      <subart nr="1">
+        <sen>Við meðferð persónuupplýsinga skal allra eftirfarandi þátta gætt:</sen>
+        <numart nr="1">
+          <nr-title>1.</nr-title>
+          <sen>að þær séu unnar með sanngjörnum, málefnalegum og lögmætum hætti og að öll meðferð þeirra sé í samræmi við vandaða vinnsluhætti persónuupplýsinga;</sen>
+        </numart>
+        <numart nr="2">
+          <nr-title>2.</nr-title>
+          <sen>að þær séu fengnar í yfirlýstum, skýrum, málefnalegum tilgangi og ekki unnar frekar í öðrum og ósamrýmanlegum tilgangi, en frekari vinnsla í sagnfræðilegum, tölfræðilegum eða vísindalegum tilgangi telst ekki ósamrýmanleg að því tilskildu að viðeigandi öryggis sé gætt;</sen>
+        </numart>
+        <numart nr="3">
+          <nr-title>3.</nr-title>
+          <sen>að þær séu nægilegar, viðeigandi og ekki umfram það sem nauðsynlegt er miðað við tilgang vinnslunnar;</sen>
+        </numart>
+        <numart nr="4">
+          <nr-title>4.</nr-title>
+          <sen>að þær séu áreiðanlegar og uppfærðar eftir þörfum, persónuupplýsingar sem eru óáreiðanlegar eða ófullkomnar, miðað við tilgang vinnslu þeirra, skal afmá eða leiðrétta;</sen>
+        </numart>
+        <numart nr="5">
+          <nr-title>5.</nr-title>
+          <sen>að þær séu varðveittar í því formi að ekki sé unnt að bera kennsl á skráða aðila lengur en þörf krefur miðað við tilgang vinnslu.</sen>
+        </numart>
+      </subart>
+      <subart nr="2">
+        <sen>Ábyrgðaraðili ber ábyrgð á því að vinnsla persónuupplýsinga uppfylli ávallt ákvæði 1. mgr.</sen>
+      </subart>
+    </art>
+
+    <unfinished />
+
+  </chapter>
+
+  <unfinished />
+
 </law>

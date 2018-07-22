@@ -28,7 +28,7 @@ law > name { display: block; font-size: 1.875em; line-height: 1.25em; color: #2d
 law num-and-date { display: block; font-weight: bold; font-size: 16px; line-height: 1.6; text-align: center; border-bottom: 1px solid #dddddd; padding-bottom: 22px; margin-bottom: 40px; }
 
 /* chapter */
-chapter { display: block; }
+chapter { display: block; margin-top: 16px; }
 chapter > nr-title { font-weight: bold; }
 chapter > name { font-weight: bold; }
 
