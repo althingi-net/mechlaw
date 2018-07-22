@@ -36,7 +36,7 @@ $(document).ready(function() {
             if (tag_name == 'art' || tag_name == 'subart' || tag_name == 'numart') {
                 if ($mark.words) {
                     // If specific words are to be highlighted, we'll just
-                    // replaced them with themselves, highlighted.
+                    // replace them with themselves, highlighted.
                     $mark.html(
                         $mark.html().replace(
                             $mark.words,
