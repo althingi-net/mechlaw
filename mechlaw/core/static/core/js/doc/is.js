@@ -84,16 +84,24 @@ var process_footnote = function() {
             var location_type = $location.attr('type');
             var words = $start_mark.location_node.attr('words');
 
-            if (location_type == 'range') {
-                if (words) {
-                    // If specific words are to be highlighted, we'll just
-                    // replace them with themselves, highlighted.
-                    $start_mark.html($start_mark.html().replace(
-                        words,
-                        '[' + words + '] <sup>' + footnote_num + ')</sup> '
-                    ));
+            if (words) {
+
+                if (location_type == 'range') {
+                    replace_text = '[' + words + '] <sup>' + footnote_num + ')</sup> '
                 }
-                else {
+                else if (location_type == 'mark') {
+                    replace_text = words + '<sup>' + footnote_num + ')</sup>'
+                }
+
+                // If specific words are to be highlighted, we'll just replace
+                // them with themselves, highlighted.
+                $start_mark.html($start_mark.html().replace(
+                    words,
+                    replace_text
+                ));
+            }
+            else {
+                if (location_type == 'range') {
                     // If there is a <nr-title> tag, we'll want to skip that,
                     // so that the opening bracket is placed right after it.
                     var $nr_title = $start_mark.find('nr-title');
@@ -116,22 +124,21 @@ var process_footnote = function() {
                         $opening_node.prepend('[');
                     }
 
-                    // Like with the opening node, we'll need to check if the
-                    // $end_mark has children to which the closing bracket
-                    // should be appended. If not, we'll append the closing
-                    // bracket to $end_node itself.
-                    var $closing_node = $end_mark.find('sen').last();
-                    if (!$closing_node.prop('tagName')) {
-                        $closing_node = $end_mark;
-                    }
-                    $closing_node.append('] <sup>' + footnote_num + ')</sup> ');
+                    append_closing_text = '] <sup>' + footnote_num + ')</sup> ';
                 }
-            }
-            else if (location_type == 'mark') {
-                $end_mark.html($end_mark.html().replace(
-                    words,
-                    words + '<sup>' + footnote_num + ')</sup>'
-                ));
+                else if (location_type == 'mark') {
+                    append_closing_text = '<sup>' + footnote_num + ')</sup>'
+                }
+
+                // Like with the opening node, we'll need to check if the
+                // $end_mark has children to which the closing bracket should
+                // be appended. If not, we'll append the closing bracket to
+                // $end_node itself.
+                var $closing_node = $end_mark.find('sen').last();
+                if (!$closing_node.prop('tagName')) {
+                    $closing_node = $end_mark;
+                }
+                $closing_node.append(append_closing_text);
             }
         }
     });
