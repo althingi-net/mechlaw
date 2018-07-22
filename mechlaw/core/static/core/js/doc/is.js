@@ -64,6 +64,12 @@ var process_footnote = function() {
 
         });
 
+        if (!$start_mark.prop('tagName')) {
+            var art_num = $location.closest('art').attr('nr');
+            console.error('Invalid location in footnote nr. ' + footnote_num + ' in article nr. ' + art_num);
+            return;
+        }
+
         // Add markers to denote the highlighted area.
         var tag_name = $start_mark.prop('tagName').toLowerCase(); // $start_mark arbitrarily chosen.
         if (tag_name == 'art' || tag_name == 'subart' || tag_name == 'numart') {
