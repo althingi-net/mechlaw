@@ -1,11 +1,11 @@
 
-var change_number = 0;
+var footnote_num = 0;
 
 var process_changed_by = function() {
 
-    // Increase the number of the change associated with the current article.
-    // First change is 1, second is 2 and so forth.
-    change_number++;
+    // Increase the number of the footnote associated with the current
+    // article. First footnote is number 1, second is number 2 and so forth.
+    footnote_num++;
 
     var $changing_law = $(this);
 
@@ -65,7 +65,7 @@ var process_changed_by = function() {
                 // replace them with themselves, highlighted.
                 $start_mark.html($start_mark.html().replace(
                     words,
-                    '[' + words + ']<sup>' + change_number + '</sup> '
+                    '[' + words + ']<sup>' + footnote_num + '</sup> '
                 ));
             }
             else {
@@ -79,13 +79,13 @@ var process_changed_by = function() {
                 else {
                     $start_mark.children().first().prepend('[');
                 }
-                $end_mark.find('sen').last().append(' ]<sup>' + change_number + '</sup> ');
+                $end_mark.find('sen').last().append(' ]<sup>' + footnote_num + '</sup> ');
             }
         }
     });
 
     // Add the superscripted iterator to the displayed label.
-    $changing_law.find('change-sen').before('<sup>' + change_number + ')</sup>');
+    $changing_law.find('change-sen').before('<sup>' + footnote_num + ')</sup>');
 
     // Turn the displayed label into a link.
     var href = $changing_law.attr('href');
@@ -100,8 +100,8 @@ var process_changed_by = function() {
 
 $(document).ready(function() {
 
-    $('changed-by').each(function() {
-        change_number = 0;
+    $('footnotes').each(function() {
+        footnote_num = 0;
         $(this).find('changing-law').each(process_changed_by);
 
     });
