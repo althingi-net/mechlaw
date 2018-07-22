@@ -104,7 +104,7 @@ var process_footnote = function() {
                 if (location_type == 'range') {
                     // If there is a <nr-title> tag, we'll want to skip that,
                     // so that the opening bracket is placed right after it.
-                    var $nr_title = $start_mark.find('nr-title');
+                    var $nr_title = $start_mark.find('> nr-title');
                     if ($nr_title.length > 0) {
                         $start_mark.find('nr-title').next().first().prepend('[');
                     }
