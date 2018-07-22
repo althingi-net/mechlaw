@@ -251,6 +251,72 @@
 
     </art>
 
+    <art nr="8">
+      <nr-title>8. gr.</nr-title>
+      <name>Almennar reglur um heimildir fyrir vinnslu persónuupplýsinga.</name>
+      <subart nr="1">
+        <sen>Vinnsla persónuupplýsinga er því aðeins heimil að einhverjir eftirfarandi þátta séu fyrir hendi:</sen>
+        <numart nr="1">
+          <nr-title>1.</nr-title>
+          <sen>hinn skráði hafi ótvírætt samþykkt vinnsluna eða veitt samþykki skv. <refer art="2" numart="7">7. tölul. 2. gr.</refer></sen>
+        </numart>
+        <numart nr="2">
+          <nr-title>2.</nr-title>
+          <sen>vinnslan sé nauðsynleg til að efna samning sem hinn skráði er aðili að eða til að gera ráðstafanir að beiðni hins skráða áður en samningur er gerður;</sen>
+        </numart>
+        <numart nr="3">
+          <nr-title>3.</nr-title>
+          <sen>vinnslan sé nauðsynleg til að fullnægja lagaskyldu sem hvílir á ábyrgðaraðila;</sen>
+        </numart>
+        <numart nr="4">
+          <nr-title>4.</nr-title>
+          <sen>vinnslan sé nauðsynleg til að vernda brýna hagsmuni hins skráða;</sen>
+        </numart>
+        <numart nr="5">
+          <nr-title>5.</nr-title>
+          <sen>vinnslan sé nauðsynleg vegna verks sem unnið er í þágu almannahagsmuna;</sen>
+        </numart>
+        <numart nr="6">
+          <nr-title>6.</nr-title>
+          <sen>vinnslan sé nauðsynleg við beitingu opinbers valds sem ábyrgðaraðili, eða þriðji maður sem upplýsingum er miðlað til, fer með;</sen>
+        </numart>
+        <numart nr="7">
+          <nr-title>7.</nr-title>
+          <sen>vinnslan sé nauðsynleg til að ábyrgðaraðili, eða þriðji maður eða aðilar sem upplýsingum er miðlað til, geti gætt lögmætra hagsmuna nema grundvallarréttindi og frelsi hins skráða sem vernda ber samkvæmt lögum vegi þyngra.</sen>
+        </numart>
+      </subart>
+      <subart nr="2">
+        <sen>…</sen>
+      </subart>
+      <subart nr="3">
+        <sen>Persónuvernd getur heimilað vinnslu persónuupplýsinga í öðrum tilvikum en greinir í <refer art="8" subart="1">1.</refer> og <refer art="8" numart="2">2. mgr.</refer> ef sýnt þykir að brýnir almannahagsmunir eða hagsmunir einstaklinga, þar með taldir hagsmunir hins skráða, krefjist þess.</sen>
+        <sen>Skal þá ótvírætt að þörfin fyrir vinnsluna vegi þyngra en tillitið til þess að hún fari ekki fram.</sen>
+        <sen>Getur Persónuvernd bundið slík leyfi þeim skilyrðum sem hún metur nauðsynleg hverju sinni til að tryggja hagsmuni hins skráða.</sen>
+      </subart>
+
+      <footnotes>
+        <footnote type="legal-change" nr="90" year="2001" art="3" href="https://www.althingi.is/altext/stjt/2001.090.html">
+          <location type="range">
+            <art>8</art>
+            <name />
+          </location>
+          <location type="range">
+            <art>8</art>
+            <subart>3</subart>
+          </location>
+          <footnote-sen>L. 90/2001, 3. gr.</footnote-sen>
+        </footnote>
+        <footnote type="legal-change" nr="46" year="2003" art="3" href="https://www.althingi.is/altext/stjt/2003.046.html">
+          <location type="point">
+            <art>8</art>
+            <subart>2</subart>
+          </location>
+          <footnote-sen>L. 46/2003, 3. gr.</footnote-sen>
+        </footnote>
+      </footnotes>
+
+    </art>
+
     <unfinished />
 
   </chapter>
