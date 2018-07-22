@@ -13,7 +13,7 @@
 /* refer */
 refer { text-decoration: underline; color: #1c79c2; } /* Doesn't seem to work. */
 
-/* changed */
+/* footnotes */
 footnote sup { display: inline; }
 footnote-sen { display: inline; font-style: italic; font-size: small; text-indent: 1em; }
 location { display: none; }
