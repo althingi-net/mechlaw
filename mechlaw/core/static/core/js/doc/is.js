@@ -89,7 +89,7 @@ var process_footnote = function() {
                 if (location_type == 'range') {
                     replace_text = '[' + words + '] <sup>' + footnote_num + ')</sup> '
                 }
-                else if (location_type == 'mark') {
+                else if (location_type == 'point') {
                     replace_text = words + ' <sup>' + footnote_num + ')</sup>'
                 }
 
@@ -126,7 +126,7 @@ var process_footnote = function() {
 
                     append_closing_text = '] <sup>' + footnote_num + ')</sup> ';
                 }
-                else if (location_type == 'mark') {
+                else if (location_type == 'point') {
                     append_closing_text = ' <sup>' + footnote_num + ')</sup>'
                 }
 
