@@ -40,25 +40,33 @@ var process_footnote = function() {
             var $location_step = $(this);
 
             var tag_name = $location_step.prop('tagName').toLowerCase();
-            var value = $location_step.text();
+            var nr = $location_step.text().trim();
 
-            // Check if the value is a range, for example "1-4", which would
-            // mean that the highlighting should start at entity nr. 1 (for
-            // example, article 1) and end at entity nr. 4 (for example,
-            // article 4).
-            var minus_index = value.indexOf('-');
-            if (minus_index > -1) {
-                var start_i = value.substring(0, minus_index);
-                var end_i = value.substring(minus_index + 1);
+            if (nr.length) {
+                // Check if the number is a range, for example "1-4", which
+                // would mean that the highlighting should start at entity nr.
+                // 1 (for example, article 1) and end at entity nr. 4 (for
+                // example, article 4).
+                var minus_index = nr.indexOf('-');
+                if (minus_index > -1) {
+                    var start_i = nr.substring(0, minus_index);
+                    var end_i = nr.substring(minus_index + 1);
+                }
+                else {
+                    var start_i = nr;
+                    var end_i = nr;
+                }
+
+                $start_mark = $start_mark.find(tag_name + '[nr="' + start_i + '"]');
+                $end_mark = $end_mark.find(tag_name + '[nr="' + end_i + '"]');
             }
             else {
-                var start_i = value;
-                var end_i = value;
+                // If no number is specified (f.e. article 3 or subarticle 5),
+                // we will assume the first node with the given tag name.
+                $start_mark = $start_mark.find(tag_name).first();
+                $end_mark = $end_mark.find(tag_name).first();
             }
 
-            // For every tag we find, we look deeper into the XML.
-            $start_mark = $start_mark.find(tag_name + '[nr="' + start_i + '"]');
-            $end_mark = $end_mark.find(tag_name + '[nr="' + end_i + '"]');
             $start_mark.location_node = $location_step;
             $end_mark.location_node = $location_step;
 
@@ -72,7 +80,7 @@ var process_footnote = function() {
 
         // Add markers to denote the highlighted area.
         var tag_name = $start_mark.prop('tagName').toLowerCase(); // $start_mark arbitrarily chosen.
-        if (tag_name == 'art' || tag_name == 'subart' || tag_name == 'numart') {
+        if (tag_name == 'art' || tag_name == 'subart' || tag_name == 'numart' || tag_name == 'name') {
             var location_type = $location.attr('type');
             var words = $start_mark.location_node.attr('words');
 
@@ -86,17 +94,34 @@ var process_footnote = function() {
                     ));
                 }
                 else {
-                    // Otherwise, we'll highlight the last mark. If there is a
-                    // <nr-title> tag, we'll want to skip that, so that the
-                    // opening bracket is placed right after it.
+                    // If there is a <nr-title> tag, we'll want to skip that,
+                    // so that the opening bracket is placed right after it.
                     var $nr_title = $start_mark.find('nr-title');
                     if ($nr_title.length > 0) {
                         $start_mark.find('nr-title').next().first().prepend('[');
                     }
                     else {
-                        $start_mark.children().first().prepend('[');
+                        // Most entities, like articles, subarticles, numeric
+                        // articles and such have children nodes which contain
+                        // content. An occasional node does not, for example
+                        // <name>. We therefore check if the node has children
+                        // nodes, and if so, we will call the first one an
+                        // opening node and append the opening bracket, but
+                        // otherwise we'll use the $start_mark itself as the
+                        // opening node.
+                        var $opening_node = $start_mark.children().first();
+                        if (!$opening_node.prop('tagName')) {
+                            $opening_node = $start_mark;
+                        }
+                        $opening_node.prepend('[');
                     }
-                    $end_mark.find('sen').last().append('] <sup>' + footnote_num + ')</sup> ');
+
+                    // Like with the opening node, we'll need to check if the $end_mark has children to which the closing bracket should be appended. If not, we'll append the closing bracket to $end_node itself.
+                    var $closing_node = $end_mark.find('sen').last();
+                    if (!$closing_node.prop('tagName')) {
+                        $closing_node = $end_mark;
+                    }
+                    $closing_node.append('] <sup>' + footnote_num + ')</sup> ');
                 }
             }
             else if (location_type == 'mark') {
