@@ -73,7 +73,7 @@ var process_footnote = function() {
                     // replace them with themselves, highlighted.
                     $start_mark.html($start_mark.html().replace(
                         words,
-                        '[' + words + ']<sup>' + footnote_num + '</sup> '
+                        '[' + words + '] <sup>' + footnote_num + ')</sup> '
                     ));
                 }
                 else {
@@ -87,7 +87,7 @@ var process_footnote = function() {
                     else {
                         $start_mark.children().first().prepend('[');
                     }
-                    $end_mark.find('sen').last().append(' ]<sup>' + footnote_num + '</sup> ');
+                    $end_mark.find('sen').last().append('] <sup>' + footnote_num + ')</sup> ');
                 }
             }
             else if (location_type == 'mark') {
