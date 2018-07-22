@@ -124,6 +124,8 @@ var process_subart = function() {
 
 $(document).ready(function() {
 
+    $('footnotes').show();
+
     $('footnotes').each(function() {
         footnote_num = 0;
         $(this).find('footnote').each(process_footnote);
