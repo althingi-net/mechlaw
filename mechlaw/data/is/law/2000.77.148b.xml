@@ -151,6 +151,43 @@
       </subart>
     </art>
 
+    <art nr="6">
+      <nr-title>6. gr.</nr-title>
+      <name>Landfræðilegt gildissvið.</name>
+      <subart nr="1">
+        <sen>Lögin gilda um vinnslu persónuupplýsinga á vegum ábyrgðaraðila sem hefur staðfestu hér á landi, enda fari vinnsla persónuupplýsinganna fram á Evrópska efnahagssvæðinu, í aðildarríki stofnsamnings Fríverslunarsamtaka Evrópu eða í landi eða á stöðum sem Persónuvernd auglýsir í Stjórnartíðindum.</sen>
+      </subart>
+      <subart nr="2">
+        <sen>Lögin gilda einnig um vinnslu persónuupplýsinga þótt ábyrgðaraðili hafi hvorki staðfestu í ríki á Evrópska efnahagssvæðinu né í aðildarríki stofnsamnings Fríverslunarsamtaka Evrópu ef hann notar tæki og búnað sem er hér á landi.</sen>
+      </subart>
+      <subart nr="3">
+        <sen>Lögin gilda einnig um vinnslu upplýsinga um fjárhagsmálefni og lánstraust lögaðila, sbr. <refer art="45">45. gr.</refer> laganna, enda þótt ábyrgðaraðili hafi ekki staðfestu hér á landi, ef hann notar tæki og búnað sem er hér á landi.</sen>
+      </subart>
+      <subart nr="4">
+        <sen>Ákvæði <refer art="6" subart="2">2.</refer> og <refer art="6" subart="3">3. mgr.</refer> gilda ekki ef umræddur tækjabúnaður er einungis notaður til að flytja persónuupplýsingar um Ísland.</sen>
+      </subart>
+      <subart nr="5">
+        <sen>Þegar svo hagar til sem greinir í <refer art="6" subart="2">2.</refer> og <refer art="6" subart="3">3. mgr.</refer> skal ábyrgðaraðili tilnefna fulltrúa sinn sem hefur staðfestu hér á landi og gilda þá ákvæði laganna varðandi ábyrgðaraðila um þann fulltrúa eftir því sem við á.</sen>
+      </subart>
+
+      <changed-by>
+        <changing-law nr="72" year="2003" art="5" href="https://www.althingi.is/altext/stjt/2003.072.html">
+          <changed-portion>
+            <art>6</art>
+            <subart words="í aðildarríki stofnsamnings Fríverslunarsamtaka Evrópu">1</subart>
+          </changed-portion>
+          <change-sen>L. 72/2003, 5. gr.</change-sen>
+        </changing-law>
+        <changing-law nr="90" year="2001" art="1" href="https://www.althingi.is/altext/stjt/2001.090.html">
+          <changed-portion>
+            <art>6</art>
+          </changed-portion>
+          <change-sen>L. 90/2001, 1. gr.</change-sen>
+        </changing-law>
+      </changed-by>
+
+    </art>
+
     <unfinished />
   </chapter>
 </law>

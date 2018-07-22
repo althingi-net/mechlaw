@@ -23,23 +23,41 @@ $(document).ready(function() {
 
                 var tag_name = $child.prop('tagName').toLowerCase();
                 var value = $child.text();
+                var words = $child.attr('words');
 
                 // For every tag we find, we look deeper into the XML.
                 $mark = $mark.find(tag_name + '[nr="' + value + '"]');
+                $mark.words = words;
 
             });
 
             // Add the markers for changed text and enumerate the changes according to order.
             var tag_name = $mark.prop('tagName').toLowerCase();
-            if (tag_name == 'numart') {
-                $mark.find('nr-title').next().first().prepend(' [');
-                $mark.find('sen').last().append(' ]<sup>' + change_number + '</sup> ');
+            if (tag_name == 'art' || tag_name == 'subart' || tag_name == 'numart') {
+                if ($mark.words) {
+                    // If specific words are to be highlighted, we'll just
+                    // replaced them with themselves, highlighted.
+                    $mark.html(
+                        $mark.html().replace(
+                            $mark.words,
+                            '[' + $mark.words + ']<sup>' + change_number + '</sup> '
+                        )
+                    );
+                }
+                else {
+                    // Otherwise, we'll highlight the last mark. If there is a
+                    // <nr-title> tag, we'll want to skip that, so that the
+                    // opening bracket is placed right after it.
+                    var $nr_title = $mark.find('nr-title');
+                    if ($nr_title.length > 0) {
+                        $mark.find('nr-title').next().first().prepend('[');
+                    }
+                    else {
+                        $mark.children().first().prepend('[');
+                    }
+                    $mark.find('sen').last().append(' ]<sup>' + change_number + '</sup> ');
+                }
             }
-            else if (tag_name == 'art') {
-                $mark.find('nr-title').next().first().prepend(' [');
-                $mark.find('sen').last().append(' ]<sup>' + change_number + '</sup> ');
-            }
-
         });
 
         // Add the superscripted iterator to the displayed label.
