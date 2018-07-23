@@ -114,6 +114,8 @@
       <subart nr="1">
         <sen>Lögin gilda um sérhverja rafræna vinnslu persónuupplýsinga.</sen>
         <sen>Lögin gilda einnig um handvirka vinnslu persónuupplýsinga sem eru eða eiga að verða hluti af skrá.</sen>
+      </subart>
+      <subart nr="2">
         <sen>Ákvæði <refer art="16">16.</refer>, <refer art="18-21">18.–21.</refer>, <refer art="24">24.</refer>, <refer art="26">26.</refer>, <refer art="31">31.</refer> og <refer art="32">32. gr.</refer> laganna gilda ekki um vinnslu persónuupplýsinga sem varða almannaöryggi, landvarnir, öryggi ríkisins og starfsemi ríkisins á sviði refsivörslu.</sen>
         <sen>Lögin gilda ekki um meðferð einstaklings á persónuupplýsingum sem eingöngu varða einkahagi hans eða eru einvörðungu ætlaðar til persónulegra nota.</sen>
       </subart>
@@ -126,8 +128,10 @@
         <sen>Rafræn vöktun er ávallt háð því skilyrði að hún fari fram í málefnalegum tilgangi.</sen>
         <sen>Rafræn vöktun svæðis þar sem takmarkaður hópur fólks fer um að jafnaði er jafnframt háð því skilyrði að hennar sé sérstök þörf vegna eðlis þeirrar starfsemi sem þar fer fram.</sen>
       </subart>
-      <subart art="2">
+      <subart nr="2">
         <sen>Vinnsla persónuupplýsinga sem á sér stað í tengslum við rafræna vöktun skal uppfylla ákvæði laga þessara.</sen>
+      </subart>
+      <subart nr="3">
         <sen>Um sjónvarpsvöktun fer, auk ákvæðis <refer art="4" subart="1">1. mgr.</refer>, samkvæmt ákvæðum <refer art="7">7.</refer>, <refer art="24">24.</refer>, <refer art="40">40.</refer> og <refer art="41">41. gr.</refer> laganna, svo og eftir því sem við á ákvæðum <refer art="31">31.</refer>, <refer art="32">32.</refer> og <refer art="38">38. gr.</refer> laganna.</sen>
       </subart>
 
