@@ -71,7 +71,7 @@ var process_footnote = function() {
                     $start_mark = $start_mark_attempt;
                 }
                 else {
-                    $start_mark = $start_mark.find(tag_name + ':nth-child(' + start_i + ')');
+                    $start_mark = $start_mark.find(tag_name + ':eq(' + String(parseInt(start_i) - 1) + ')');
                 }
 
                 // Same story as with $start_mark above.
@@ -79,7 +79,7 @@ var process_footnote = function() {
                     $end_mark = $end_mark_attempt;
                 }
                 else {
-                    $end_mark = $end_mark.find(tag_name + ':nth-child(' + end_i + ')');
+                    $end_mark = $end_mark.find(tag_name + ':eq(' + String(parseInt(end_i) - 1) + ')');
                 }
             }
             else {
