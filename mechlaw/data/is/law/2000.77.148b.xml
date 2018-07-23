@@ -518,6 +518,61 @@
 
     </art>
 
+    <art nr="13">
+      <nr-title>13. gr.</nr-title>
+      <name>Trúnaðarskylda vinnsluaðila við meðferð persónuupplýsinga.</name>
+      <subart nr="1">
+        <sen>Ábyrgðaraðila er heimilt að semja við tiltekinn aðila um að annast, í heild eða að hluta, þá vinnslu persónuupplýsinga sem hann ber ábyrgð á samkvæmt ákvæðum laga þessara.</sen>
+        <sen>Slíkt er þó háð því skilyrði að ábyrgðaraðili hafi áður sannreynt að umræddur vinnsluaðili geti framkvæmt viðeigandi öryggisráðstafanir og viðhaft innra eftirlit skv. <refer art="12">12. gr.</refer> laga þessara.</sen>
+      </subart>
+      <subart nr="2">
+        <sen>Samningur skv. <refer art="13" subart="1">1. mgr.</refer> skal vera skriflegur og a.m.k. í tveimur eintökum.</sen>
+        <sen>Þar skal m.a. koma fram að vinnsluaðila sé einungis heimilt að starfa í samræmi við fyrirmæli ábyrgðaraðila og að ákvæði laga þessara um skyldur ábyrgðaraðila gildi einnig um þá vinnslu sem vinnsluaðili annast.</sen>
+        <sen>Ábyrgðaraðili og vinnsluaðili skulu hvor varðveita sitt eintak af samningnum.</sen>
+      </subart>
+      <subart nr="3">
+        <sen>Hverjum þeim er starfar í umboði ábyrgðaraðila eða vinnsluaðila, að vinnsluaðila sjálfum meðtöldum, og hefur aðgang að persónuupplýsingum, er aðeins heimilt að vinna með persónuupplýsingar í samræmi við fyrirmæli ábyrgðaraðila nema lög mæli fyrir á annan veg.</sen>
+      </subart>
+      <subart nr="4">
+        <sen>Hafi vinnsluaðili staðfestu í öðru ríki á Evrópska efnahagssvæðinu en ábyrgðaraðili, sbr. <refer art="6" subart="1">1. mgr. 6. gr.</refer>, skal jafnframt mælt svo fyrir í samningi að lög og reglur þess ríkis þar sem vinnsluaðili hefur staðfestu gildi um öryggisráðstafanir við vinnslu persónuupplýsinga.</sen>
+        <sen>Getur Persónuvernd t.d. í auglýsingu í Stjórnartíðindum áskilið að slíkur samningur innihaldi stöðluð ákvæði sem séu í samræmi við ákvörðun framkvæmdastjórnar Evrópubandalagsins.</sen>
+        <sen>Sama á við þegar ábyrgðaraðili hefur staðfestu í ríki á Evrópska efnahagssvæðinu en vinnsluaðili ekki fari vinnslan fram í landi eða á stöðum sem upp eru taldir í auglýsingu sem Persónuvernd gefur út.</sen>
+      </subart>
+      <subart nr="5">
+        <sen>Ákvæði <refer art="13" subart="4">4. mgr.</refer> gilda einnig þegar vinnsluaðili á staðfestu í öðru aðildarríki stofnsamnings Fríverslunarsamtaka Evrópu en ábyrgðaraðili, sbr. <refer art="6" subart="1">1. mgr. 6. gr.</refer>, og þegar ábyrgðaraðili hefur staðfestu í aðildarríki stofnsamnings Fríverslunarsamtaka Evrópu en vinnsluaðili ekki.</sen>
+      </subart>
+
+      <footnotes>
+        <footnote>
+          <location type="point">
+            <art>13</art>
+            <subart words="Getur Persónuvernd t.d. í auglýsingu">4</subart>
+          </location>
+          <footnote-sen>Augl. 228/2010.</footnote-sen>
+        </footnote>
+        <footnote type="legal-change" nr="90" year="2001" art="7" href="https://www.althingi.is/altext/stjt/2001.090.html">
+          <location type="range">
+            <start>
+              <art>13</art>
+            </start>
+            <end>
+              <art>13</art>
+              <subart>1-4</subart>
+            </end>
+          </location>
+          <footnote-sen>L. 90/2001, 7. gr.</footnote-sen>
+        </footnote>
+        <footnote type="legal-change" nr="72" year="2003" art="6" href="https://www.althingi.is/altext/stjt/2003.072.html">
+          <location type="range">
+            <art>13</art>
+            <subart>5</subart>
+          </location>
+          <footnote-sen>L. 72/2003, 6. gr.</footnote-sen>
+        </footnote>
+      </footnotes>
+
+    </art>
+
     <unfinished />
 
   </chapter>
