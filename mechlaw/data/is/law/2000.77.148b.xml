@@ -285,7 +285,7 @@
           <sen>vinnslan sé nauðsynleg til að ábyrgðaraðili, eða þriðji maður eða aðilar sem upplýsingum er miðlað til, geti gætt lögmætra hagsmuna nema grundvallarréttindi og frelsi hins skráða sem vernda ber samkvæmt lögum vegi þyngra.</sen>
         </numart>
       </subart>
-      <subart nr="2">
+      <subart nr="2" special-status="removed">
         <sen>…</sen>
       </subart>
       <subart nr="3">
