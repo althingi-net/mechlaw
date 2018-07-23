@@ -11,12 +11,6 @@
 /* refer */
 refer { color: #1c79c2; }
 
-/* footnotes */
-footnotes { display: none; margin-left: 16px; }
-footnote sup { display: inline; font-size: 45% !important; font-style: italic; !important; vertical-align: top; top: 10px; }
-footnote-sen { display: inline; font-style: italic; font-size: small; text-indent: 1em; }
-location { display: none; }
-
 /*** Section classes ***/
 
 /* law name */
@@ -26,12 +20,12 @@ law > name { display: block; font-size: 1.875em; line-height: 1.25em; color: #2d
 law num-and-date { display: block; font-weight: bold; font-size: 16px; line-height: 1.6; text-align: center; border-bottom: 1px solid #dddddd; padding-bottom: 22px; margin-bottom: 40px; }
 
 /* chapter */
-chapter { display: block; margin-top: 16px; }
+chapter { display: block; margin-top: 25px; }
 chapter > nr-title { font-weight: bold; }
 chapter > name { font-weight: bold; }
 
 /* article */
-art { display: block; margin-top: 1px; }
+art { display: block; margin-top: 0px; }
 art > nr-title { display: inline; font-weight: bold; }
 art > name { font-style: italic; }
 
@@ -45,4 +39,12 @@ numart > name { font-style: italic; }
 /* letter article */
 letart { display: block; text-indent: 1em; }
 
+/* sentence (almost all actual content) */
+sen sup { font-size: 60% !important; vertical-align: top; top: 0.885em !important; }
+
+/* footnotes */
+footnotes { display: none; margin-left: 16px; margin-bottom: 0.03em; }
+footnote sup { display: inline; font-size: 45% !important; font-style: italic; vertical-align: top; top: 10px; }
+footnote-sen { display: inline; font-style: italic; font-size: small; text-indent: 1em; }
+location { display: none; }
 
