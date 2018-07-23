@@ -322,6 +322,111 @@
 
     </art>
 
+    <art nr="9">
+      <nr-title>9. gr.</nr-title>
+      <name>Sérstök skilyrði fyrir vinnslu viðkvæmra persónuupplýsinga.</name>
+      <subart nr="1">
+        <sen>Vinnsla viðkvæmra persónuupplýsinga er óheimil nema uppfyllt sé eitthvert af skilyrðum <refer art="8" subart="1">1. mgr. 8. gr.</refer> og enn fremur eitthvert af eftirfarandi skilyrðum:</sen>
+        <numart nr="1">
+          <nr-title>1.</nr-title>
+          <sen>hinn skráði samþykki vinnsluna;</sen>
+        </numart>
+        <numart nr="2">
+          <nr-title>2.</nr-title>
+          <sen>sérstök heimild standi til vinnslunnar samkvæmt öðrum lögum;</sen>
+        </numart>
+        <numart nr="3">
+          <nr-title>3.</nr-title>
+          <sen>ábyrgðaraðila beri skylda til vinnslunnar samkvæmt samningi aðila vinnumarkaðarins;</sen>
+        </numart>
+        <numart nr="4">
+          <nr-title>4.</nr-title>
+          <sen>vinnslan sé nauðsynleg til að verja verulega hagsmuni hins skráða eða annars aðila sem ekki er sjálfur fær um að gefa samþykki sitt skv. <refer art="9" subart="1" numart="1">1. tölul.</refer>;</sen>
+        </numart>
+        <numart nr="5">
+          <nr-title>5.</nr-title>
+          <sen>vinnslan sé framkvæmd af samtökum sem hafa stéttarfélagsleg markmið eða af öðrum samtökum sem ekki starfa í hagnaðarskyni, svo sem menningar-, líknar-, félagsmála- eða hugsjónasamtökum, enda sé vinnslan liður í lögmætri starfsemi samtakanna og taki aðeins til félagsmanna þeirra eða einstaklinga sem samkvæmt markmiðum samtakanna eru, eða hafa verið, í reglubundnum tengslum við þau;</sen>
+          <sen>slíkum persónuupplýsingum má þó ekki miðla áfram án samþykkis hins skráða;</sen>
+        </numart>
+        <numart nr="6">
+          <nr-title>6.</nr-title>
+          <sen>vinnslan taki einungis til upplýsinga sem hinn skráði hefur sjálfur gert opinberar;</sen>
+        </numart>
+        <numart nr="7">
+          <nr-title>7.</nr-title>
+          <sen>vinnslan sé nauðsynleg til að krafa verði afmörkuð, sett fram eða varin vegna dómsmáls eða annarra slíkra laganauðsynja;</sen>
+        </numart>
+        <numart nr="8">
+          <nr-title>8.</nr-title>
+          <sen>vinnslan sé nauðsynleg vegna læknismeðferðar eða vegna venjubundinnar stjórnsýslu á sviði heilbrigðisþjónustu, enda sé hún framkvæmd af starfsmanni heilbrigðisþjónustunnar sem bundinn er þagnarskyldu;</sen>
+        </numart>
+        <numart nr="9">
+          <nr-title>9.</nr-title>
+          <sen>vinnslan sé nauðsynleg vegna tölfræði- eða vísindarannsókna, enda sé persónuvernd tryggð með tilteknum ráðstöfunum eftir því sem við á.</sen>
+        </numart>
+      </subart>
+      <subart nr="2">
+        <sen>Þrátt fyrir að skilyrði <refer art="9" subart="1">1. mgr.</refer> séu ekki uppfyllt er heimilt, í tengslum við framkvæmd rafrænnar vöktunar, að safna efni sem verður til við vöktunina, svo sem hljóð- og myndefni, með viðkvæmum persónuupplýsingum ef eftirfarandi skilyrði eru uppfyllt:</sen>
+        <numart nr="1">
+          <nr-title>1.</nr-title>
+          <sen>að vöktunin sé nauðsynleg og fari fram í öryggis- og eignavörsluskyni;</sen>
+        </numart>
+        <numart nr="2">
+          <nr-title>2.</nr-title>
+          <sen>að það efni sem til verður við vöktunina verði ekki afhent öðrum eða unnið frekar nema með samþykki þess sem upptaka er af eða samkvæmt ákvörðun Persónuverndar;</sen>
+          <sen>heimilt er þó að afhenda lögreglu efni með upplýsingum um slys eða refsiverðan verknað en þá skal þess gætt að eyða öllum öðrum eintökum af efninu;</sen>
+        </numart>
+        <numart nr="3">
+          <nr-title>3.</nr-title>
+          <sen>að því efni sem safnast við vöktunina verði eytt þegar ekki er lengur málefnaleg ástæða til að varðveita það, nema sérstök heimild Persónuverndar skv. <refer art="9" subart="3">3. mgr.</refer> standi til frekari varðveislu.</sen>
+        </numart>
+      </subart>
+      <subart nr="3">
+        <sen>Persónuvernd getur heimilað vinnslu viðkvæmra persónuupplýsinga í öðrum tilvikum en greinir í <refer art="9" subart="1">1.</refer> og <refer art="9" subart="2">2. mgr.</refer> telji hún brýna almannahagsmuni mæla með því.</sen>
+        <sen>Persónuvernd bindur slíka heimild þeim skilyrðum sem hún telur nauðsynleg hverju sinni til að tryggja hagsmuni hinna skráðu.</sen>
+      </subart>
+      <subart nr="4" special-status="removed">
+        <sen>…</sen>
+      </subart>
+      <subart nr="5">
+        <sen>Persónuvernd leysir úr ágreiningi um hvort persónuupplýsingar skuli teljast viðkvæmar eða ekki.</sen>
+      </subart>
+
+      <footnotes>
+        <footnote type="legal-change" nr="90" year="2001" art="4" href="https://www.althingi.is/altext/stjt/2001.090.html">
+          <location type="range">
+            <art>9</art>
+            <name />
+          </location>
+          <location type="range">
+            <art>9</art>
+            <subart>1</subart>
+            <sen>1</sen>
+          </location>
+          <footnote-sen>L. 90/2001, 4. gr.</footnote-sen>
+        </footnote>
+        <footnote type="legal-change" nr="81" year="2002" art="1" href="https://www.althingi.is/altext/stjt/2002.081.html">
+          <location type="range">
+            <art>9</art>
+            <subart>2</subart>
+          </location>
+          <location type="range">
+            <art>9</art>
+            <subart words="<refer art=&quot;9&quot; subart=&quot;1&quot;>1.</refer> og <refer art=&quot;9&quot; subart=&quot;2&quot;>2. mgr.</refer>">3</subart>
+          </location>
+          <footnote-sen>L. 81/2002, 1. gr.</footnote-sen>
+        </footnote>
+        <footnote type="legal-change" nr="44" year="2014" art="36" href="https://www.althingi.is/altext/stjt/2014.044.html#G36">
+          <location type="point">
+            <art>9</art>
+            <subart>4</subart>
+          </location>
+          <footnote-sen>L. 44/2014, 36. gr.</footnote-sen>
+        </footnote>
+      </footnotes>
+
+    </art>
+
     <unfinished />
 
   </chapter>
