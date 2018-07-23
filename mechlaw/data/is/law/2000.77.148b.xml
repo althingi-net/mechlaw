@@ -427,6 +427,52 @@
 
     </art>
 
+    <art nr="10">
+      <nr-title>10. gr.</nr-title>
+      <name>Notkun kennitölu.</name>
+      <subart nr="1">
+        <sen>Notkun kennitölu er heimil eigi hún sér málefnalegan tilgang og sé nauðsynleg til að tryggja örugga persónugreiningu.</sen>
+        <sen>Persónuvernd getur bannað eða fyrirskipað notkun kennitölu.</sen>
+      </subart>
+    </art>
+
+    <art nr="11">
+      <nr-title>11. gr.</nr-title>
+      <name>Áhættumat, öryggi og gæði persónuupplýsinga.</name>
+      <subart nr="1">
+        <sen>Ábyrgðaraðili skal gera viðeigandi tæknilegar og skipulagslegar öryggisráðstafanir til að vernda persónuupplýsingar gegn ólöglegri eyðileggingu, gegn því að þær glatist eða breytist fyrir slysni og gegn óleyfilegum aðgangi.</sen>
+      </subart>
+      <subart nr="2">
+        <sen>Beita skal ráðstöfunum sem tryggja nægilegt öryggi miðað við áhættu af vinnslunni og eðli þeirra gagna sem verja á, með hliðsjón af nýjustu tækni og kostnaði við framkvæmd þeirra.</sen>
+      </subart>
+      <subart nr="3">
+        <sen>Ábyrgðaraðili ber ábyrgð á því að áhættumat og öryggisráðstafanir við vinnslu persónuupplýsinga séu í samræmi við lög, reglur og fyrirmæli Persónuverndar um hvernig tryggja skuli öryggi upplýsinga, þ.m.t. þá staðla sem hún ákveður að skuli fylgt.</sen>
+      </subart>
+      <subart nr="4">
+        <sen>Ábyrgðaraðili ber ábyrgð á því að áhættumat sé endurskoðað reglulega og öryggisráðstafanir endurbættar að því marki sem þörf krefur til að uppfylla ákvæði þessarar greinar.</sen>
+      </subart>
+      <subart nr="5">
+        <sen>Ábyrgðaraðili skal skrá með hvaða hætti hann mótar öryggisstefnu, gerir áhættumat og ákveður öryggisráðstafanir.</sen>
+        <sen>Skal Persónuvernd hafa aðgang að upplýsingum um framangreind atriði hvenær sem hún óskar.</sen>
+      </subart>
+
+      <footnotes>
+        <footnote>
+          <location type="point">
+            <art>11</art>
+            <subart words="séu í samræmi við lög, reglur">3</subart>
+          </location>
+          <footnote-sen>Rgl. 299/2001, sbr. &lt;a href="https://www.reglugerd.is/reglugerdir/allar/nr/551-2013" target="_blank"&gt;551/2013&lt;/a&gt;.</footnote-sen>
+        </footnote>
+        <footnote type="legal-change" nr="90" year="2001" art="5" href="https://www.althingi.is/altext/stjt/2001.090.html">
+          <location type="range">
+            <art>11</art>
+          </location>
+        </footnote>
+      </footnotes>
+
+    </art>
+
     <unfinished />
 
   </chapter>
