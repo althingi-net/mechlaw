@@ -412,7 +412,7 @@
           </location>
           <location type="range">
             <art>9</art>
-            <subart words="<refer art=&quot;9&quot; subart=&quot;1&quot;>1.</refer> og <refer art=&quot;9&quot; subart=&quot;2&quot;>2. mgr.</refer>">3</subart>
+            <subart words="&lt;refer art=&quot;9&quot; subart=&quot;1&quot;&gt;1.&lt;/refer&gt; og &lt;refer art=&quot;9&quot; subart=&quot;2&quot;&gt;2. mgr.&lt;/refer&gt;">3</subart>
           </location>
           <footnote-sen>L. 81/2002, 1. gr.</footnote-sen>
         </footnote>
