@@ -302,6 +302,11 @@
           </location>
           <location type="range">
             <art>8</art>
+            <subart>1</subart>
+            <numart>1</numart>
+          </location>
+          <location type="range">
+            <art>8</art>
             <subart>3</subart>
           </location>
           <footnote-sen>L. 90/2001, 3. gr.</footnote-sen>
