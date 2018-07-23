@@ -1,14 +1,10 @@
 @import url(//fonts.googleapis.com/css?family=Droid+Serif:400,700,700italic,400italic&.css);
 
 /*** Basics ***/
-.legal-document {
-    font-family: "Droid Serif", serif;
-    line-height: 1.5em;
-    font-size: 16px;
-}
+.legal-document { font-family: "Droid Serif", serif; line-height: 1.5em; font-size: 16px; margin: 0px 20px; 0px 20px;}
 .legal-document sup { font-size: x-small; }
 
-.box { padding: 0px; margin: 0px 5px 2px 0px; }
+.box { padding: 0px; margin: 0px 5px 0px 1px; height: 9px; width: 9px; }
 
 /*** Common classes ***/
 
@@ -16,8 +12,8 @@
 refer { color: #1c79c2; }
 
 /* footnotes */
-footnotes { display: none; }
-footnote sup { display: inline; }
+footnotes { display: none; margin-left: 16px; }
+footnote sup { display: inline; font-size: 45% !important; font-style: italic; !important; vertical-align: top; top: 10px; }
 footnote-sen { display: inline; font-style: italic; font-size: small; text-indent: 1em; }
 location { display: none; }
 
@@ -35,7 +31,7 @@ chapter > nr-title { font-weight: bold; }
 chapter > name { font-weight: bold; }
 
 /* article */
-art { display: block; }
+art { display: block; margin-top: 1px; }
 art > nr-title { display: inline; font-weight: bold; }
 art > name { font-style: italic; }
 
