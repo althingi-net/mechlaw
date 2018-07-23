@@ -37,8 +37,37 @@ var process_footnote = function() {
 
         // Iterate through the <location> section to locate the text that we
         // want to show as changed.
-        $location.children().each(function() {
+        $location.find('art,subart,numart,name,sen').each(function() {
             var $location_step = $(this);
+
+            // Sometimes unusual placements of markers are required. An
+            // example is a marker that starts at the beginning of an
+            // article's name, and then highlights maybe 4 subarticles in a
+            // 5-subarticle article, but doesn't cover the article in its
+            // entirety. In these cases, it is necessary to specifify the
+            // $start_mark and $end_mark more precisely through the XML, by
+            // using <start> and <end> clauses in the <location> clause. They
+            // work exactly like the <location> clause, except that <start>
+            // only affects $start_mark and <end> only affects $end_mark.
+            //
+            // For this, we need to keep track of whether we're in a
+            // <location>, <start> or <end> clause when deciding whether to
+            // follow the next entity ("art", "subart", "numart" etc.). We do
+            // this by iterating with temporary $start_mark and $end_mark
+            // variables called $current_start_mark and $current_end_mark
+            // respectively. Only afterwards do we decide whether we want to
+            // actually use them or not, depending on which clause we happen
+            // to be processing. If we're in a <location> cluse, we'll always
+            // apply them both, but if we're in a <start> clause, we'll only
+            // want to apply $current_start_mark to $start_mark, and if we're
+            // in an <end> clause, we'll only want to apply $current_end_mark
+            // to $end_mark.
+            var location_clause = $location_step.parent().prop('tagName').toLowerCase();
+
+            // Temporary variables to be applied later according to which
+            // location clause we're in.
+            var $current_start_mark = $start_mark;
+            var $current_end_mark = $end_mark;
 
             var tag_name = $location_step.prop('tagName').toLowerCase();
             var nr = $location_step.text().trim();
@@ -63,35 +92,52 @@ var process_footnote = function() {
                 //
                 // Note that our iterators, start_i and end_i, actually start
                 // at 1 instead of 0.
-                $start_mark_attempt = $start_mark.find(tag_name + '[nr="' + start_i + '"]');
-                $end_mark_attempt = $end_mark.find(tag_name + '[nr="' + end_i + '"]');
+                $start_check = $current_start_mark.find(tag_name + '[nr="' + start_i + '"]');
+                $end_check = $current_end_mark.find(tag_name + '[nr="' + end_i + '"]');
 
                 // If the attempt did not result in a valid node, it means
                 // that there is none explicitly ordered as the one requested.
-                if ($start_mark_attempt.prop('tagName')) {
-                    $start_mark = $start_mark_attempt;
+                if ($start_check.prop('tagName')) {
+                    $current_start_mark = $start_check;
                 }
                 else {
-                    $start_mark = $start_mark.find(tag_name + ':eq(' + String(parseInt(start_i) - 1) + ')');
+                    $current_start_mark = $current_start_mark.find(tag_name + ':eq(' + String(parseInt(start_i) - 1) + ')');
                 }
 
-                // Same story as with $start_mark above.
-                if ($end_mark_attempt.prop('tagName')) {
-                    $end_mark = $end_mark_attempt;
+                // Same story as with $current_start_mark above.
+                if ($end_check.prop('tagName')) {
+                    $current_end_mark = $end_check;
                 }
                 else {
-                    $end_mark = $end_mark.find(tag_name + ':eq(' + String(parseInt(end_i) - 1) + ')');
+                    $current_end_mark = $current_end_mark.find(tag_name + ':eq(' + String(parseInt(end_i) - 1) + ')');
                 }
             }
             else {
                 // If no number is requested (f.e. article 3 or subarticle 5),
                 // we will assume the first node with the given tag name.
-                $start_mark = $start_mark.find(tag_name).first();
-                $end_mark = $end_mark.find(tag_name).first();
+                $current_start_mark = $current_start_mark.find(tag_name).first();
+                $current_end_mark = $current_end_mark.find(tag_name).first();
             }
 
-            $start_mark.location_node = $location_step;
-            $end_mark.location_node = $location_step;
+            // We may need to access the $location_step node from $start_mark
+            // or $end_mark when adding markers later on, for example to get
+            // the "words" attribute.
+            $current_start_mark.location_node = $location_step;
+            $current_end_mark.location_node = $location_step;
+
+            // We don't necessarily want to apply our conclusion unless we're
+            // in the proper location clause. See comment above describing
+            // $current_start_mark, $current_end_mark and location_clause.
+            if (location_clause == 'location') {
+                $start_mark = $current_start_mark;
+                $end_mark = $current_end_mark;
+            }
+            else if (location_clause == 'start') {
+                $start_mark = $current_start_mark;
+            }
+            else if (location_clause == 'end') {
+                $end_mark = $current_end_mark;
+            }
 
         });
 
