@@ -11,6 +11,7 @@ var process_footnote = function() {
     footnote_num++;
 
     var $footnote = $(this);
+    var $footnote_sen = $footnote.find('footnote-sen');
 
     // Show which portion of the law being displayed was changed.
     $footnote.find('location').each(function() {
@@ -171,13 +172,19 @@ var process_footnote = function() {
     });
 
     // Add the superscripted iterator to the displayed label.
-    $footnote.find('footnote-sen').before('<sup>' + footnote_num + ')</sup>');
+    $footnote_sen.before('<sup>' + footnote_num + ')</sup>');
+
+    // Activate internal HTML inside the footnote, which is escaped for XML
+    // compatibility reasons. It's not possible to use <![CDATA[]]> in HTML,
+    // and we don't want HTML inside XML elements, because then validators
+    // would understand it as a part of the XML's structure, when in fact it's
+    // just content intended for a browser.
+    $footnote_sen.html($footnote_sen.html().replace(/\&lt\;/g, '<').replace(/\&gt\;/g, '>'));
 
     // Turn the displayed label into a link.
     var href = $footnote.attr('href');
     if (href) {
-        var current_html = $footnote.find('footnote-sen').html();
-        $footnote.find('footnote-sen').html('<a href="' + href + '" target="_blank">' + current_html + '</a>');
+        $footnote_sen.html('<a href="' + href + '" target="_blank">' + $footnote_sen.html() + '</a>');
     }
 
 }
