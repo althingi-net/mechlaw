@@ -4,6 +4,36 @@ var IMG_BOX_BLACK = '/static/core/img/box-black.png';
 
 var footnote_num = 0;
 
+var follow_refer = function() {
+    var $refer = $(this);
+
+    $law = $refer.closest('law');
+
+    var art = $refer.attr('art');
+    var subart = $refer.attr('subart');
+    var numart = $refer.attr('numart');
+
+    var search_string = ''
+    if (art) {
+        search_string += ' art[nr="' + art + '"]';
+    }
+    if (subart) {
+        search_string += ' subart[nr="' + subart + '"]';
+    }
+    if (numart) {
+        search_string += ' numart[nr="' + numart + '"]';
+    }
+    search_string = search_string.trim();
+
+    var target = $law.find(search_string);
+    if (!target.prop('tagName')) {
+        quick_see(ERROR + ': ' + ERROR_CLAUSE_NOT_FOUND + ': ' + $refer.html(), $refer);
+        return;
+    }
+
+    quick_see(target.html(), $refer);
+}
+
 var process_footnote = function() {
 
     // Increase the number of the footnote associated with the current
@@ -254,5 +284,8 @@ $(document).ready(function() {
 
     $('law > chapter > art').each(process_art);
     $('law > chapter > art > subart').each(process_subart);
+
+    // Make references show what they're referring to on moues-over.
+    $('refer').on('mouseenter', follow_refer);
 
 });

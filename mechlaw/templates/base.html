@@ -22,6 +22,12 @@
         <!-- Custom styles for this template -->
         <link href="{% static 'core/css/mechlaw.css' %}" rel="stylesheet">
 
+        <script language="javascript" type="text/javascript">
+            // JavaScript strings that need to be translated.
+            var ERROR = "{% trans 'Error' %}";
+            var ERROR_CLAUSE_NOT_FOUND = "{% trans 'Clause not found' %}";
+        </script>
+
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -56,6 +62,9 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="{% static 'core/js/jquery-3.1.1/jquery-3.1.1.min.js' %}"></script>
         <script src="{% static 'core/js/bootstrap-3.3.7/js/bootstrap.min.js' %}"></script>
+
+        <!-- General MechLaw JavaScript -->
+        <script src="{% static 'core/js/mechlaw.js' %}"></script>
 
         <!-- Legal document JavaScript -->
         <script src="/static/core/js/doc/{{ LEGAL_FRAMEWORK }}.js"></script>
