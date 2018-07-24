@@ -9,29 +9,70 @@ var follow_refer = function() {
 
     $law = $refer.closest('law');
 
-    var art = $refer.attr('art');
-    var subart = $refer.attr('subart');
-    var numart = $refer.attr('numart');
+    var supported_tags = ['art', 'subart', 'numart'];
 
-    var search_string = ''
-    if (art) {
-        search_string += ' art[nr="' + art + '"]';
-    }
-    if (subart) {
-        search_string += ' subart[nr="' + subart + '"]';
-    }
-    if (numart) {
-        search_string += ' numart[nr="' + numart + '"]';
+    var search_string = '';
+    for (i in supported_tags) {
+        var tag = supported_tags[i]
+        var value = $refer.attr(tag);
+
+        if (value) {
+            // If the value contains "-", then we're looking for a range, like
+            // "1-4". For example, if we're looking for subarticles 1-3 in
+            // article 7, we need to expand the search string such that it
+            // becomes:
+            //     art[nr="7"] subart[nr="1"],art[nr="7"] subart[nr="2"]
+            //
+            // It is assumed that this only occurs at the deepest level of the
+            // search. We cannot find subarticle 5 in articles 1-3, but we can
+            // find subarticle 1-3 within article 5. It is currently assumed
+            // that all legal text is compatible with this restriction.
+            var minus_index = value.indexOf('-');
+            if (minus_index > -1) {
+                var first_value = parseInt(value.substring(0, minus_index));
+                var last_value = parseInt(value.substring(minus_index + 1));
+
+                // Keep a base of the search string compiled so far.
+                var current_search_string = search_string;
+
+                // Start with a clean slate for the total search string. What
+                // has already been gathered is kept in current_search_string.
+                // This variable can be thought of as the "result" variable,
+                // eventually containing a comma-separated list of search
+                // strings that will be used to find the content we need.
+                search_string = '';
+
+                // Compile a new search string for every value that we want to
+                // find, and add to the total search string.
+                for (var value = first_value; value <= last_value; value++) {
+                    search_string += ',' + current_search_string + ' ' + tag + '[nr="' + value + '"]';
+                }
+
+                // Trim the comma from the first iteration, since commas
+                // should only be between the things we want to find.
+                search_string = search_string.replace(/^,/, '');
+            }
+            else {
+                search_string += ' ' + tag + '[nr="' + value + '"]';
+            }
+        }
     }
     search_string = search_string.trim();
 
-    var target = $law.find(search_string);
-    if (!target.prop('tagName')) {
+    var targets = $law.find(search_string);
+    if (!targets.prop('tagName')) {
         quick_see(ERROR + ': ' + ERROR_CLAUSE_NOT_FOUND + ': ' + $refer.html(), $refer);
         return;
     }
 
-    quick_see(target.html(), $refer);
+    var content = '';
+    for (var i = 0; i < targets.length; i++) {
+        var target = targets[i];
+        console.log('!' + i);
+        content += target.innerHTML + '<br />';
+    }
+
+    quick_see(content, $refer);
 }
 
 var process_footnote = function() {
