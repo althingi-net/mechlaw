@@ -4,8 +4,38 @@ var IMG_BOX_BLACK = '/static/core/img/box-black.png';
 
 var footnote_num = 0;
 
+// Entry function for references, merely for code organizational reasons.
 var follow_refer = function() {
     var $refer = $(this);
+
+    var refer_type = $refer.attr('type');
+    if (!refer_type) {
+        refer_type = 'legal-clause';
+    }
+
+    if (refer_type == 'legal-clause') {
+        process_refer_legal_clause($refer);
+    }
+    else if (refer_type == 'law') {
+        // Temporarily using process_refer_external, as opposed to its own
+        // process_refer_law function. Processing will almost certainly been
+        // done differently between these types, but for the timebeing they
+        // are identical. It makes sense to make a semantic distinction
+        // between them, though.
+        process_refer_external($refer);
+    }
+    else if (refer_type == 'external') {
+        process_refer_external($refer);
+    }
+}
+
+// Process a reference that refers to a legal clause in Icelandic law.
+var process_refer_legal_clause = function($refer) {
+
+    if ($refer.attr('law-nr')) {
+        quick_see(ERROR + ': ' + ERROR_NOT_IMPLEMENTED_YET, $refer);
+        return;
+    }
 
     $law = $refer.closest('law');
 
@@ -73,6 +103,18 @@ var follow_refer = function() {
 
     quick_see(content, $refer);
 }
+
+
+// Process a reference to an external location of some sort.
+var process_refer_external = function($refer) {
+    var href = $refer.attr('href');
+    var name = $refer.attr('name');
+    if (!name) {
+        name = href;
+    }
+    quick_see('<a target="_blank" href="' + href + '">' + name + '</a>', $refer);
+}
+
 
 var process_footnote = function() {
 

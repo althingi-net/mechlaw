@@ -10,6 +10,7 @@
 
 /* refer */
 refer { color: #1c79c2; }
+refer[type="missing"] { color: #606060; }
 
 /*** Section classes ***/
 
