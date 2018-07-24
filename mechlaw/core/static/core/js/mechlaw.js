@@ -11,7 +11,7 @@ var quick_see = function(content, $anchor) {
     var max_left = $container.width() + min_left - $dialog.width();
     var max_top = document.documentElement.scrollHeight - $dialog.height();
 
-    var dialog_left = $anchor.offset().left - ($dialog.width() / 2);
+    var dialog_left = $anchor.offset().left + ($anchor.width() / 2) - ($dialog.width() / 2);
     var dialog_top = $anchor.offset().top;
 
     if (dialog_left < min_left) {
