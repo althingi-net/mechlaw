@@ -68,7 +68,6 @@ var follow_refer = function() {
     var content = '';
     for (var i = 0; i < targets.length; i++) {
         var target = targets[i];
-        console.log('!' + i);
         content += target.innerHTML + '<br />';
     }
 
