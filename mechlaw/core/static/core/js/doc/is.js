@@ -305,6 +305,21 @@ var process_footnote = function() {
 
 }
 
+
+var process_law = function() {
+    var $law = $(this);
+
+    // Check if a URL to the official location of the law has been provided.
+    // If so, we'll display a little Althingi icon with a link to it.
+    var href = $law.attr('href');
+    if (href) {
+        var $name = $law.find('> name');
+        var img = ' <a target="_blank" href="' + href + '"><img src="/static/core/img/parliament-tiny.png" /></a>';
+        $name.append(img);
+    }
+}
+
+
 var process_art = function() {
     $(this).find('nr-title').first().prepend($('<img class="box" src="' + IMG_BOX_BLACK + '" />'));
 }
@@ -322,6 +337,7 @@ $(document).ready(function() {
         $(this).find('footnote').each(process_footnote);
     });
 
+    $('law').each(process_law);
     $('law > chapter > art').each(process_art);
     $('law > chapter > art > subart').each(process_subart);
 
