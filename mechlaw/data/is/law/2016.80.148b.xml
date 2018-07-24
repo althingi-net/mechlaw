@@ -1,0 +1,219 @@
+<?xml version="1.0"?>
+<law nr="80" year="2016" parliament="148b" href="https://www.althingi.is/lagas/148b/2016080.html">
+    <name>Lög um útlendinga</name>
+    <num-and-date>2016 nr. 80 16. júní</num-and-date>
+    <chapter nr="1">
+        <nr-title>I. kafli. </nr-title>
+        <name>Almenn ákvæði.</name>
+        <art nr="1">
+            <nr-title>1. gr.</nr-title>
+            <name>Gildissvið.</name>
+            <subart nr="1">
+                <sen>Ákvæði laga þessara gilda um heimild útlendinga til að koma til landsins, dvöl þeirra hér og rétt til alþjóðlegrar verndar.</sen>
+            </subart>
+            <subart nr="2">
+                <sen> Um útlendinga sem falla undir samninginn um Evrópska efnahagssvæðið og stofnsamning Fríverslunarsamtaka Evrópu gilda sérreglur, sbr. ákvæði XI. kafla. Íslenskir ríkisborgarar geta einnig borið skyldur samkvæmt lögum þessum.</sen>
+            </subart>
+            <subart nr="3">
+                <sen>Íslensk skip í siglingum erlendis og íslensk loftför í flugferðum erlendis falla ekki undir gildissvið laga þessara.</sen>
+            </subart>
+        </art>
+        <art nr="2">
+            <nr-title>2. gr.</nr-title>
+            <name>Tilgangur og markmið.</name>
+            <subart nr="1">
+                <sen>Tilgangur laga þessara er að kveða á um réttarstöðu og tryggja réttaröryggi útlendinga sem koma til landsins eða fara frá því, sækja um dvalarleyfi eða dveljast hér á landi samkvæmt lögunum.</sen>
+            </subart>
+            <subart nr="2">
+                <sen>Enn fremur er það tilgangur laga þessara að veita heimild til eftirlits með komu útlendinga til landsins, dvöl útlendinga hér og för þeirra úr landi.</sen>
+            </subart>
+            <subart nr="3">
+                <sen>Lög þessi veita grundvöll fyrir alþjóðlegri vernd erlendra ríkisborgara og ríkisfangslausra einstaklinga sem eiga þann rétt samkvæmt alþjóðlegum skuldbindingum íslenskra stjórnvalda.</sen>
+            </subart>
+            <subart nr="4">
+                <sen>Markmið laga þessara er að tryggja mannúðlega og skilvirka meðferð stjórnvalda í málefnum útlendinga hér á landi.</sen>
+            </subart>
+        </art>
+        <art nr="3">
+            <nr-title>3. gr.</nr-title>
+            <name>Orðskýringar.</name>
+            <numart nr="1">
+                <nr-title>1.</nr-title>
+                <name>Alþjóðleg vernd:</name>
+                <sen>Vernd sem stjórnvöld veita einstaklingi sem hingað leitar og fullnægir þeim skilyrðum sem sett eru í <refer type="external" art="1" letart="A" href="http://www.humanrights.is/is/mannrettindi-og-island/helstu-samningar-og-yfirlysingar/sameinudu-thjodirnar/samningur-um-rettarstodu-flottamanna" name="Alþjóðasamningur um stöðu flóttamanna">A-lið 1. gr. alþjóðasamnings um stöðu flóttamanna</refer>, vernd sem veitt er á grundvelli reglna um viðbótarvernd og vernd veitt ríkisfangslausum einstaklingum samkvæmt <refer type="missing">samningi um réttarstöðu ríkisfangslausra einstaklinga frá 1954</refer>.</sen>
+            </numart>
+            <numart nr="2">
+                <nr-title>2.</nr-title>
+                <name>Brottvísun:</name>
+                <sen>Ákvörðun stjórnvalds um að útlendingi sem dvelst hérlendis skuli vísað úr landi til heimalands eða annars ríkis þar sem hann getur sýnt fram á löglega heimild til dvalar og honum bönnuð endurkoma í tiltekinn tíma eða að fullu og öllu.</sen>
+            </numart>
+            <numart nr="3">
+                <nr-title>3.</nr-title>
+                <name>Dyflinnarsamstarfið:</name>
+                <sen>Samstarf byggt á <refer type="missing">reglugerð Evrópuþingsins og ráðsins (ESB) nr. 604/2013 frá 26. júní 2013</refer> um að koma á viðmiðunum og fyrirkomulagi við að ákvarða hvaða aðildarríki beri ábyrgð á meðferð umsóknar um alþjóðlega vernd sem ríkisborgari þriðja lands eða ríkisfangslaus einstaklingur leggur fram í einu aðildarríkjanna.</sen>
+            </numart>
+            <numart nr="4">
+                <nr-title>4.</nr-title>
+                <name>EES-borgari:</name>
+                <sen>Útlendingur sem er ríkisborgari ríkis sem fellur undir <refer type="missing">samninginn um Evrópska efnahagssvæðið (EES)</refer>.</sen>
+            </numart>
+            <numart nr="5">
+                <nr-title>5.</nr-title>
+                <name>EFTA-borgari:</name>
+                <sen>Útlendingur sem er ríkisborgari ríkis sem fellur undir <refer type="missing">stofnsamning Fríverslunarsamtaka Evrópu (EFTA)</refer>.</sen>
+            </numart>
+            <numart nr="6">
+                <nr-title>6.</nr-title>
+                <name>Einstaklingar í sérstaklega viðkvæmri stöðu:</name>
+                <sen>Einstaklingar sem vegna tiltekinna persónulegra eiginleika eða aðstæðna hafa sérþarfir sem taka þarf tillit til við meðferð máls eða geta ekki að fullu eða með engu móti nýtt sér rétt eða uppfyllt skyldur sem kveðið er á um í lögum þessum án aðstoðar eða sérstaks tillits, t.d. fylgdarlaus börn, fatlað fólk, fólk með geðraskanir eða geðfötlun, aldrað fólk, þungaðar konur, einstæðir foreldrar með ung börn, fórnarlömb mansals, alvarlega veikir einstaklingar og einstaklingar sem hafa orðið fyrir pyndingum, kynfæralimlestingum, nauðgun eða öðru alvarlegu andlegu, líkamlegu eða kynferðislegu ofbeldi.</sen>
+            </numart>
+            <numart nr="7">
+                <nr-title>7.</nr-title>
+                <name>Fjöldaflótti:</name>
+                <sen>Þegar fjöldi flóttamanna flýr tiltekið eða tiltekin landsvæði.</sen>
+            </numart>
+            <numart nr="8">
+                <nr-title>8.</nr-title>
+                <name>Flóttamaður:</name>
+                <sen>Útlendingur sem er utan heimalands síns eða ríkisfangslaus einstaklingur sem er utan þess lands þar sem hann hafði reglulegt aðsetur vegna þess að hann hefur ástæðuríkan ótta um að verða ofsóttur vegna kynþáttar, trúarbragða, þjóðernis, aðildar að tilteknum þjóðfélagshópi eða vegna stjórnmálaskoðana og getur ekki eða vill ekki vegna slíks ótta færa sér í nyt vernd þess lands.</sen>
+                <sen>Þeir einstaklingar sem falla undir viðbótarvernd teljast einnig flóttamenn samkvæmt lögum þessum.</sen>
+            </numart>
+            <numart nr="9">
+                <nr-title>9.</nr-title>
+                <name>Flóttamannasamningurinn:</name>
+                <sen><refer type="external" art="1" letart="A" href="http://www.humanrights.is/is/mannrettindi-og-island/helstu-samningar-og-yfirlysingar/sameinudu-thjodirnar/samningur-um-rettarstodu-flottamanna" name="Alþjóðasamningur um stöðu flóttamanna">Alþjóðasamningur um stöðu flóttamanna frá 28. júlí 1951</refer>, sbr. <refer type="missing">bókun við samninginn frá 31. janúar 1967</refer>.</sen>
+            </numart>
+            <numart nr="10">
+                <nr-title>10.</nr-title>
+                <name>Frávísun:</name>
+                <sen>Ákvörðun stjórnvalds um að vísa útlendingi frá landinu til heimalands eða annars ríkis þar sem hann getur sýnt fram á löglega heimild til dvalar.</sen>
+            </numart>
+            <numart nr="11">
+                <nr-title>11.</nr-title>
+                <name>Fylgdarlaust barn:</name>
+                <sen>Barn sem kemur fylgdarlaust inn á yfirráðasvæði ríkis, svo lengi sem það hefur ekki í reynd verið tekið í umsjá foreldra eða fullorðins einstaklings sem ber ábyrgð á því samkvæmt <refer type="law" nr="71" year="1997" href="https://www.althingi.is/lagas/148b/1997071.html" name="Lögræðislög nr. 71/1997">lögræðislögum</refer>.</sen>
+                <sen>Þetta á einnig við ef barnið er skilið eftir án fylgdar eftir að það kemur á yfirráðasvæði ríkis.</sen>
+            </numart>
+            <numart nr="12">
+                <nr-title>12.</nr-title>
+                <name>Föst búseta:</name>
+                <sen>Sá staður þar sem lögheimili manns er, sbr. <refer law-nr="21" law-year="1990" art="1">1. gr.</refer> laga um lögheimili.</sen>
+            </numart>
+            <numart nr="13">
+                <nr-title>13.</nr-title>
+                <name>Hagsmunagæsla barns:</name>
+                <sen>Það að gæta hagsmuna barns og sjá til þess að barn fái þá aðstoð sem nauðsynleg er á meðan málsmeðferð stendur, þ.m.t. stuðning á grundvelli barnaverndarlaga og annarra laga, svo sem varðandi félagslega aðstoð, skólaþjónustu og heilbrigðisþjónustu.</sen>
+            </numart>
+            <numart nr="14">
+                <nr-title>14.</nr-title>
+                <name>Mansal:</name>
+                <sen>Mansal samkvæmt skilgreiningu í <refer law-nr="19" law-year="1940" art="227a">227. gr. a</refer> almennra hegningarlaga sem byggist á <refer type="missing">Palermó-samningi Sameinuðu þjóðanna gegn fjölþjóðlegri skipulagðri glæpastarfsemi</refer> og <refer type="missing">mansalsbókun við samninginn</refer>.</sen>
+            </numart>
+            <numart nr="15">
+                <nr-title>15.</nr-title>
+                <sen>…</sen>
+            </numart>
+            <numart nr="16">
+                <nr-title>16.</nr-title>
+                <name>Nánustu aðstandendur:</name>
+                <sen>Maki, sambúðarmaki, börn viðkomandi yngri en 18 ára í forsjá hans og á framfæri og foreldrar 67 ára eða eldri.</sen>
+            </numart>
+            <numart nr="17">
+                <nr-title>17.</nr-title>
+                <name>Norrænn ríkisborgari:</name>
+                <sen>Ríkisborgarar Danmerkur, Finnlands, Íslands, Noregs og Svíþjóðar, þ.m.t. Álandseyja, Færeyja og Grænlands.</sen>
+            </numart>
+            <numart nr="18">
+                <nr-title>18.</nr-title>
+                <name>Ofsóknir:</name>
+                <sen>Athafnir sem í eðli sínu eða vegna þess að þær eru endurteknar fela í sér alvarleg brot á grundvallarmannréttindum, einkum ófrávíkjanlegum grundvallarmannréttindum á borð við réttinn til lífs og bann við pyndingum eða ómannúðlegri eða vanvirðandi meðferð eða refsingu, bann við þrældómi og þrælkun og bann við refsingum án laga.</sen>
+                <sen>Sama á við um samsafn athafna, þ.m.t. ólögmæta mismunun, sem hafa eða geta haft sömu eða sambærileg áhrif á einstakling.</sen>
+            </numart>
+            <numart nr="19">
+                <nr-title>19.</nr-title>
+                <name>Ólögmæt dvöl:</name>
+                <sen>Þegar útlendingur dvelst hér á landi án tilskilinna heimilda eða getur ekki sýnt fram á heimild sína til dvalar.</sen>
+            </numart>
+            <numart nr="20">
+                <nr-title>20.</nr-title>
+                <name>Ríkisfangslaus einstaklingur:</name>
+                <sen>Einstaklingur sem ekkert ríki telur til ríkisborgara sinna samkvæmt landslögum, sbr. <refer type="missing">samning um réttarstöðu ríkisfangslausra einstaklinga frá árinu 1954</refer>.</sen>
+            </numart>
+            <numart nr="21">
+                <nr-title>21.</nr-title>
+                <name>Samningar um ríkisfangsleysi:</name>
+                <sen><refer type="missing">Alþjóðasamningur um réttarstöðu ríkisfangslausra einstaklinga frá 1954</refer> og <refer type="missing">alþjóðasamningur um að draga úr ríkisfangsleysi frá 1961</refer>.</sen>
+            </numart>
+            <numart nr="22">
+                <nr-title>22.</nr-title>
+                <name>Schengen-ríki:</name>
+                <sen>Ríki sem eru þátttakendur í Schengen-samstarfinu.</sen>
+            </numart>
+            <numart nr="23">
+                <nr-title>23.</nr-title>
+                <name>Schengen-samstarfið:</name>
+                <sen>Samstarf Evrópuríkja á sviði lögreglusamstarfs og landamæraeftirlits sem byggist á <refer type="missing">Schengen-samningnum</refer>.</sen>
+            </numart>
+            <numart nr="24">
+                <nr-title>24.</nr-title>
+                <name>Talsmaður:</name>
+                <sen>Sá sem talar máli útlendings eða þess sem sækir um alþjóðlega vernd hér á landi og gætir hagsmuna hans við meðferð máls gagnvart íslenskum stjórnvöldum á meðan mál hans er til meðferðar.</sen>
+                <sen>Talsmaðurinn skal vera lögfræðingur og þegar um er að ræða fylgdarlaust barn skal talsmaðurinn enn fremur hafa sérþekkingu á málefnum barna.</sen>
+            </numart>
+            <numart nr="25">
+                <nr-title>25.</nr-title>
+                <name>Umsækjandi um alþjóðlega vernd:</name>
+                <sen>Útlendingur sem óskar eftir viðurkenningu á stöðu sinni sem flóttamaður eða ríkisfangslaus einstaklingur hér á landi.</sen>
+            </numart>
+            <numart nr="26">
+                <nr-title>26.</nr-title>
+                <name>Útlendingur:</name>
+                <sen>Einstaklingur sem hefur ekki íslenskan ríkisborgararétt.</sen>
+            </numart>
+            <numart nr="27">
+                <nr-title>27.</nr-title>
+                <name>Viðbótarvernd:</name>
+                <sen>Útlendingur sem telst ekki flóttamaður samkvæmt ákvæði <refer type="external" art="1" letart="A" href="http://www.humanrights.is/is/mannrettindi-og-island/helstu-samningar-og-yfirlysingar/sameinudu-thjodirnar/samningur-um-rettarstodu-flottamanna" name="Alþjóðasamningur um stöðu flóttamanna">A-liðar 1. gr. alþjóðasamnings um stöðu flóttamanna</refer> ef raunhæf ástæða er til að ætla að hann eigi á hættu að sæta dauðarefsingu, pyndingum eða annarri ómannúðlegri eða vanvirðandi meðferð eða refsingu eða að hann verði fyrir alvarlegum skaða af völdum handahófskennds ofbeldis vegna vopnaðra átaka verði hann sendur aftur til heimalands síns.</sen>
+                <sen>Sama gildir þegar um er að ræða ríkisfangslausan einstakling.</sen>
+            </numart>
+
+            <footnotes>
+                <footnote type="legal-change" nr="89" year="2017" art="1" href="https://www.althingi.is/altext/stjt/2017.089.html">
+                    <location type="point">
+                        <art>3</art>
+                        <numart>15</numart>
+                    </location>
+                    <footnote-sen>L. 89/2017, 1. gr.</footnote-sen>
+                </footnote>
+            </footnotes>
+
+        </art>
+
+        <unfinished />
+
+    </chapter>
+
+    <unfinished />
+
+</law>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
