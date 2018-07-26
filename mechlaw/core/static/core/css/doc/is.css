@@ -40,9 +40,6 @@ subart { display: block; }
 numart { display: block; text-indent: 1em; }
 numart > name { font-style: italic; }
 
-/* letter article */
-letart { display: block; text-indent: 1em; }
-
 /* sentence (almost all actual content) */
 sen sup { font-size: 60% !important; vertical-align: top; top: 0.885em !important; }
 

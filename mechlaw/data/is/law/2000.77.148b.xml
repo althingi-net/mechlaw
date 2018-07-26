@@ -50,14 +50,14 @@
           <name>Rafræn vöktun:</name>
           <sen>Vöktun sem er viðvarandi eða endurtekin reglulega og felur í sér eftirlit með einstaklingum með fjarstýrðum eða sjálfvirkum búnaði, og fer fram á almannafæri eða á svæði sem takmarkaður hópur fólks fer um að jafnaði.</sen>
           <sen>Hugtakið tekur til:</sen>
-          <letart nr="a">
+          <numart nr="1" type="alphabet">
             <nr-title>a.</nr-title>
             <sen>vöktunar sem leiðir, á að leiða eða getur leitt til vinnslu persónuupplýsinga, og</sen>
-          </letart>
-          <letart nr="b">
+          </numart>
+          <numart nr="2" type="alphabet">
             <nr-title>b.</nr-title>
             <sen>sjónvarpsvöktunar sem fer fram með notkun sjónvarpsmyndavéla, vefmyndavéla eða annars samsvarandi búnaðar, án þess að fram fari söfnun myndefnis eða aðrar aðgerðir sem jafngilda vinnslu persónuupplýsinga.</sen>
-          </letart>
+          </numart>
         </numart>
         <numart nr="7">
           <nr-title>7.</nr-title>
@@ -67,26 +67,26 @@
         <numart nr="8">
           <nr-title>8.</nr-title>
           <name>Viðkvæmar persónuupplýsingar:</name>
-          <letart nr="a">
+          <numart nr="1" type="alphabet">
             <nr-title>a.</nr-title>
             <sen>Upplýsingar um uppruna, litarhátt, kynþátt, stjórnmálaskoðanir, svo og trúar- eða aðrar lífsskoðanir.</sen>
-          </letart>
-          <letart nr="b">
+          </numart>
+          <numart nr="2" type="alphabet">
             <nr-title>b.</nr-title>
             <sen>Upplýsingar um hvort maður hafi verið grunaður, kærður, ákærður eða dæmdur fyrir refsiverðan verknað.</sen>
-          </letart>
-          <letart nr="c">
+          </numart>
+          <numart nr="3" type="alphabet">
             <nr-title>c.</nr-title>
             <sen>Upplýsingar um heilsuhagi, þar á meðal um erfðaeiginleika, lyfja-, áfengis- og vímuefnanotkun.</sen>
-          </letart>
-          <letart nr="d">
+          </numart>
+          <numart nr="4" type="alphabet">
             <nr-title>d.</nr-title>
             <sen>Upplýsingar um kynlíf manna og kynhegðan.</sen>
-          </letart>
-          <letart nr="e">
+          </numart>
+          <numart nr="5" type="alphabet">
             <nr-title>e.</nr-title>
             <sen>Upplýsingar um stéttarfélagsaðild.</sen>
-          </letart>
+          </numart>
         </numart>
         <numart nr="9">
           <nr-title>9.</nr-title>
