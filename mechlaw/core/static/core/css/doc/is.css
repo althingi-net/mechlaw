@@ -4,7 +4,7 @@
 .legal-document { font-family: "Droid Serif", serif; line-height: 1.5em; font-size: 16px; margin: 0px 20px; 0px 20px;}
 .legal-document sup { font-size: x-small; }
 
-.box { padding: 0px; margin: 0px 5px 0px 1px; height: 9px; width: 9px; }
+.box { padding: 0px; margin: 0px 1px 0px 1px; height: 9px; width: 9px; }
 
 /*** Common classes ***/
 

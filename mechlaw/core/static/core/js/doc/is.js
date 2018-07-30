@@ -363,11 +363,11 @@ var process_law = function() {
 
 
 var process_art = function() {
-    $(this).find('nr-title').first().prepend($('<img class="box" src="' + IMG_BOX_BLACK + '" />'));
+    $(this).prepend($('<img class="box" src="' + IMG_BOX_BLACK + '" />'));
 }
 
 var process_subart = function() {
-    $(this).children().first().prepend($('<img class="box" src="' + IMG_BOX_WHITE + '" />'));
+    $(this).prepend($('<img class="box" src="' + IMG_BOX_WHITE + '" />'));
 }
 
 $(document).ready(function() {
