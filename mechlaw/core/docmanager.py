@@ -1,13 +1,13 @@
 import os
 
 from django.conf import settings
+from doctypes.framework_is.law import Law
 
 class DocManager():
 
     @staticmethod
     def _objectify(filename):
         if settings.LEGAL_FRAMEWORK == 'is':
-            from doctypes.framework_is.law import Law
             year, nr, parliament, ending = filename.split('.')
             return Law(nr, year, parliament)
         else:
