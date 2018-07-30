@@ -14,5 +14,5 @@ class Law():
         return '%s-%s-%s' % (self.nr, self.year, self.parliament)
 
     def __str__(self):
-        return '%s/%s' % (self.nr, self.year)
+        return '%s/%s (%s)' % (self.nr, self.year, self.parliament)
 

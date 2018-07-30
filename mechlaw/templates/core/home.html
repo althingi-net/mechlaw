@@ -2,8 +2,10 @@
 
 {% block content %}
 
+<ul>
 {% for law in laws %}
-    <a href="{% url 'show_doc' 'law' law.url_identifier %}">{{ law }}</a>
+    <li><a href="{% url 'show_doc' 'law' law.url_identifier %}">{{ law }}</a></li>
 {% endfor %}
+</ul>
 
 {% endblock %}
