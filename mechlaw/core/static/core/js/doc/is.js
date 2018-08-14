@@ -149,7 +149,7 @@ var process_footnote = function() {
 
         // Iterate through the <location> section to locate the text that we
         // want to show as changed.
-        $location.find('art,subart,numart,name,sen').each(function() {
+        $location.find('art,subart,numart,nr-title,name,sen').each(function() {
             var $location_step = $(this);
 
             // Sometimes unusual placements of markers are required. An
