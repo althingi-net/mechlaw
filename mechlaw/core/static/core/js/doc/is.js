@@ -288,7 +288,7 @@ var process_footnote = function() {
             ends_with_dot = $start_mark.html().substring(end_of_words, end_of_words + 1) == '.';
 
             if (location_type == 'range') {
-                replace_text = '[' + words + ']' + (ends_with_dot ? '.' : '') + ' <sup>' + footnote_num + ')</sup> ';
+                replace_text = '[' + words + ']' + (ends_with_dot ? '.' : '') + ' <sup>' + footnote_num + ')</sup>';
             }
             else if (location_type == 'point') {
                 replace_text = words + (ends_with_dot ? '.' : '') + ' <sup>' + footnote_num + ')</sup>'
