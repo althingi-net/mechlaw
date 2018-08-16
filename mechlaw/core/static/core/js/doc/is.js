@@ -270,19 +270,38 @@ var process_footnote = function() {
         var words = $start_mark.location_node.attr('words');
 
         if (words) {
-
-            // If specific words are specified, things get really simple and
+            // If specific words are specified, things get rather simple and
             // we can just replace the existing text with itself plus the
             // relevant symbols for denoting ranges and points.
+
+            var seek_text = words;
+            var replace_text = null;
+            var ends_with_dot = null;
+
+            // When a change is marked at the end of a sentence, the markers
+            // stay around the changed text itself, but the footnote number
+            // goes after the dot, so like: "[some text]. 2)" instead of
+            // "[some text] 2).".
+
+            // Figure out if the replaced text is at the end of a sentence.
+            var end_of_words = $start_mark.html().indexOf(words) + words.length;
+            ends_with_dot = $start_mark.html().substring(end_of_words, end_of_words + 1) == '.';
+
             if (location_type == 'range') {
-                replace_text = '[' + words + '] <sup>' + footnote_num + ')</sup> '
+                replace_text = '[' + words + ']' + (ends_with_dot ? '.' : '') + ' <sup>' + footnote_num + ')</sup> ';
             }
             else if (location_type == 'point') {
-                replace_text = words + ' <sup>' + footnote_num + ')</sup>'
+                replace_text = words + (ends_with_dot ? '.' : '') + ' <sup>' + footnote_num + ')</sup>'
+            }
+
+            // If the replaced text is at the end of a sentence, we wish to
+            // replace the words including the dot.
+            if (ends_with_dot) {
+                seek_text = words + '.';
             }
 
             $start_mark.html($start_mark.html().replace(
-                words,
+                seek_text,
                 replace_text
             ));
         }
