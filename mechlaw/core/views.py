@@ -14,7 +14,7 @@ def home(request):
 
 def show_doc(request, doc_type, doc_identifier):
 
-    doc = DocManager.get(doc_type, doc_identifier)
+    doc = DocManager.get_as_html(doc_type, doc_identifier)
 
     ctx = {
         'doc': doc,

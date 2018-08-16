@@ -1,4 +1,5 @@
 import os
+import re
 
 from django.conf import settings
 from doctypes.framework_is.law import Law
@@ -40,3 +41,13 @@ class DocManager():
                 content = f.read()
 
             return content
+
+    @staticmethod
+    def get_as_html(doc_type, doc_identifier):
+        doc = DocManager.get(doc_type, doc_identifier)
+
+        e = re.compile(r'<([a-z\-]+)( ?)([^>]*)\/>')
+        doc = e.sub(r'<\1\2\3></\1>', doc)
+        doc = doc.replace('<?xml version="1.0" ?>', '')
+
+        return doc
