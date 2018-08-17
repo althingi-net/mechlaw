@@ -2,7 +2,6 @@
 
 /*** Basics ***/
 .legal-document { font-family: "Droid Serif", serif; line-height: 1.5em; font-size: 16px; margin: 0px 20px; 0px 20px;}
-.legal-document sup { font-size: x-small; }
 
 .box { padding: 0px; margin: 0px 1px 0px 1px; height: 9px; width: 9px; }
 
@@ -35,13 +34,11 @@ art > name { font-style: italic; }
 
 /* subarticle */
 subart { display: block; }
+subart sup { font-size: 60% !important; vertical-align: top; top: 0.885em !important; }
 
 /* numerical article */
 numart { display: block; text-indent: 1em; }
 numart > name { font-style: italic; }
-
-/* sentence (almost all actual content) */
-sen sup { font-size: 60% !important; vertical-align: top; top: 0.885em !important; }
 
 /* footnotes */
 footnotes { display: none; margin-left: 16px; margin-bottom: 0.03em; }

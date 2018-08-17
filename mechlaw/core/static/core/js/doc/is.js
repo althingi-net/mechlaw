@@ -269,6 +269,13 @@ var process_footnote = function() {
         var location_type = $location.attr('type');
         var words = $start_mark.location_node.attr('words');
 
+        // A space occurs before the closing mark if it's inside a
+        // 'nr-title'tag. We don't know why this is.
+        var pre_close_space = false;
+        if ($end_mark.prop('tagName').toLowerCase() == 'nr-title') {
+            pre_close_space = true;
+        }
+
         if (words) {
             // If specific words are specified, things get rather simple and
             // we can just replace the existing text with itself plus the
@@ -288,7 +295,7 @@ var process_footnote = function() {
             ends_with_dot = $start_mark.html().substring(end_of_words, end_of_words + 1) == '.';
 
             if (location_type == 'range') {
-                replace_text = '[' + words + ']' + (ends_with_dot ? '.' : '') + ' <sup>' + footnote_num + ')</sup>';
+                replace_text = '[' + words + (pre_close_space ? ' ' : '') + ']' + (ends_with_dot ? '.' : '') + ' <sup>' + footnote_num + ')</sup>';
             }
             else if (location_type == 'point') {
                 replace_text = words + (ends_with_dot ? '.' : '') + ' <sup>' + footnote_num + ')</sup>'
@@ -330,7 +337,7 @@ var process_footnote = function() {
                     $opening_node.prepend('[');
                 }
 
-                append_closing_text = '] <sup>' + footnote_num + ')</sup> ';
+                append_closing_text = (pre_close_space ? ' ' : '') + '] <sup>' + footnote_num + ')</sup> ';
             }
             else if (location_type == 'point') {
                 append_closing_text = ' <sup>' + footnote_num + ')</sup>'
