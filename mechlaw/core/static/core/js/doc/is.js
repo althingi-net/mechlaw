@@ -149,7 +149,7 @@ var process_footnote = function() {
 
         // Iterate through the <location> section to locate the text that we
         // want to show as changed.
-        $location.find('art,subart,numart,nr-title,name,sen').each(function() {
+        $location.find('chapter,art,subart,numart,nr-title,name,sen').each(function() {
             var $location_step = $(this);
 
             // Sometimes unusual placements of markers are required. An
@@ -283,29 +283,35 @@ var process_footnote = function() {
 
             var seek_text = words;
             var replace_text = null;
-            var ends_with_dot = null;
 
-            // When a change is marked at the end of a sentence, the markers
-            // stay around the changed text itself, but the footnote number
-            // goes after the dot, so like: "[some text]. 2)" instead of
-            // "[some text] 2).".
+            // When a change is marked immediately before certain symbols such
+            // as a period or a comma, the symbol should appear between the
+            // closing marker and the footnote number. For example, it should
+            // be "[some text]. 2)" instead of "[some text] 2).". To achieve
+            // this, we check for the special symbols and account or them
+            // accordingly by using a variable named "ender", which contains
+            // the special symbol when appropriate. Otherwise it remains
+            // empty, which means we can safely append it wherever it
+            // **might** be needed, if it contained a dot, comma or other
+            // special symbol.
+            ender = '';
 
-            // Figure out if the replaced text is at the end of a sentence.
             var end_of_words = $start_mark.html().indexOf(words) + words.length;
-            ends_with_dot = $start_mark.html().substring(end_of_words, end_of_words + 1) == '.';
+            var trailing_letter = $start_mark.html().substring(end_of_words, end_of_words + 1);
+            if (trailing_letter == '.' || trailing_letter == ',') {
+                ender = trailing_letter;
+            }
 
             if (location_type == 'range') {
-                replace_text = '[' + words + (pre_close_space ? ' ' : '') + ']' + (ends_with_dot ? '.' : '') + ' <sup>' + footnote_num + ')</sup>';
+                replace_text = '[' + words + (pre_close_space ? ' ' : '') + ']' + ender + ' <sup>' + footnote_num + ')</sup>';
             }
             else if (location_type == 'point') {
-                replace_text = words + (ends_with_dot ? '.' : '') + ' <sup>' + footnote_num + ')</sup>'
+                replace_text = words + ender + ' <sup>' + footnote_num + ')</sup>'
             }
 
-            // If the replaced text is at the end of a sentence, we wish to
-            // replace the words including the dot.
-            if (ends_with_dot) {
-                seek_text = words + '.';
-            }
+            // If there is a special character at the end, such as a dot or a
+            // comma, we need to including that in our replacement.
+            seek_text = words + ender;
 
             $start_mark.html($start_mark.html().replace(
                 seek_text,

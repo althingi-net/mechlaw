@@ -23,7 +23,7 @@ law num-and-date { display: block; font-weight: bold; font-size: 16px; line-heig
 law minister-clause { display: none; }
 
 /* chapter */
-chapter { display: block; margin-top: 25px; }
+chapter { display: block; margin-top: 1.5em; }
 chapter > nr-title { font-weight: bold; }
 chapter > name { font-weight: bold; }
 
@@ -41,7 +41,7 @@ numart { display: block; text-indent: 1em; }
 numart > name { font-style: italic; }
 
 /* footnotes */
-footnotes { display: none; text-indent: 1em; margin-top: 0.03em; }
+footnotes { display: none; text-indent: 1em;  }
 footnote { margin-right: -1px; line-height: 1.5em; }
 footnote a { color: #1c79c2; }
 footnote sup { display: inline; font-size: 7.68333px !important; font-style: italic; vertical-align: top; top: 1.25em; }
