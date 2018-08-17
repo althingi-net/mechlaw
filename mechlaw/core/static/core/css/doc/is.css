@@ -41,8 +41,10 @@ numart { display: block; text-indent: 1em; }
 numart > name { font-style: italic; }
 
 /* footnotes */
-footnotes { display: none; margin-left: 16px; margin-bottom: 0.03em; }
-footnote sup { display: inline; font-size: 45% !important; font-style: italic; vertical-align: top; top: 10px; }
-footnote-sen { display: inline; font-style: italic; font-size: small; text-indent: 1em; }
+footnotes { display: none; text-indent: 1em; margin-top: 0.03em; }
+footnote { margin-right: -1px; line-height: 1.5em; }
+footnote a { color: #1c79c2; }
+footnote sup { display: inline; font-size: 7.68333px !important; font-style: italic; vertical-align: top; top: 1.25em; }
+footnote-sen { display: inline; font-style: italic; font-size: 12.8px; }
 location { display: none; }
 
