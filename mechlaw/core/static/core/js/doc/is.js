@@ -276,6 +276,13 @@ var process_footnote = function() {
             pre_close_space = true;
         }
 
+        // The space between the closing mark and the footnote number is
+        // skipped in chapter names. We don't know why this is.
+        var post_close_space = true;
+        if ($end_mark.prop('tagName').toLowerCase() == 'name') {
+            post_close_space = false;
+        }
+
         if (words) {
             // If specific words are specified, things get rather simple and
             // we can just replace the existing text with itself plus the
@@ -303,7 +310,7 @@ var process_footnote = function() {
             }
 
             if (location_type == 'range') {
-                replace_text = '[' + words + (pre_close_space ? ' ' : '') + ']' + ender + ' <sup>' + footnote_num + ')</sup>';
+                replace_text = '[' + words + (pre_close_space ? ' ' : '') + ']' + ender + (post_close_space ? ' ' : '') + '<sup>' + footnote_num + ')</sup>';
             }
             else if (location_type == 'point') {
                 replace_text = words + ender + ' <sup>' + footnote_num + ')</sup>'
@@ -343,7 +350,7 @@ var process_footnote = function() {
                     $opening_node.prepend('[');
                 }
 
-                append_closing_text = (pre_close_space ? ' ' : '') + '] <sup>' + footnote_num + ')</sup> ';
+                append_closing_text = (pre_close_space ? ' ' : '') + ']' + (post_close_space ? ' ' : '') + '<sup>' + footnote_num + ')</sup> ';
             }
             else if (location_type == 'point') {
                 append_closing_text = ' <sup>' + footnote_num + ')</sup>'

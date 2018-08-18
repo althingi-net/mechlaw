@@ -26,6 +26,7 @@ law minister-clause { display: none; }
 chapter { display: block; margin-top: 1.5em; }
 chapter > nr-title { font-weight: bold; }
 chapter > name { font-weight: bold; }
+chapter > name sup { font-size: 60% !important; vertical-align: top; top: 0.885em !important; }
 
 /* article */
 art { display: block; margin-top: 0px; }
