@@ -291,39 +291,42 @@ var process_footnote = function() {
             var seek_text = words;
             var replace_text = null;
 
+            if (location_type == 'range') {
+                replace_text = '[' + words + (pre_close_space ? ' ' : '') + ']' + (post_close_space ? ' ' : '') + '<sup>' + footnote_num + ')</sup>';
+            }
+            else if (location_type == 'point') {
+                replace_text = words + ' <sup>' + footnote_num + ')</sup>'
+            }
+
+            // If the XML indicates that this is a change that happens
+            // repeatedly in the text, then we need to replace all instances
+            // of the words.
+            if ($start_mark.location_node.attr('repeat') == 'true') {
+                $start_mark.html(replaceAll(
+                    $start_mark.html(),
+                    seek_text,
+                    replace_text
+                ))
+            }
+            else {
+                $start_mark.html($start_mark.html().replace(
+                    seek_text,
+                    replace_text
+                ));
+            }
+
             // When a change is marked immediately before certain symbols such
             // as a period or a comma, the symbol should appear between the
             // closing marker and the footnote number. For example, it should
-            // be "[some text]. 2)" instead of "[some text] 2).". To achieve
-            // this, we check for the special symbols and account or them
-            // accordingly by using a variable named "ender", which contains
-            // the special symbol when appropriate. Otherwise it remains
-            // empty, which means we can safely append it wherever it
-            // **might** be needed, if it contained a dot, comma or other
-            // special symbol.
-            ender = '';
-
-            var end_of_words = $start_mark.html().indexOf(words) + words.length;
-            var trailing_letter = $start_mark.html().substring(end_of_words, end_of_words + 1);
-            if (trailing_letter == '.' || trailing_letter == ',') {
-                ender = trailing_letter;
+            // be "[some text]. 2)" instead of "[some text] 2).".
+            end_symbols = [',', '.'];
+            for (i in end_symbols) {
+                end_symbol = end_symbols[i];
+                $start_mark.html($start_mark.html().replace(
+                    ' <sup>' + footnote_num + ')</sup>' + end_symbol,
+                    end_symbol + ' <sup>' + footnote_num + ')</sup>'
+                ));
             }
-
-            if (location_type == 'range') {
-                replace_text = '[' + words + (pre_close_space ? ' ' : '') + ']' + ender + (post_close_space ? ' ' : '') + '<sup>' + footnote_num + ')</sup>';
-            }
-            else if (location_type == 'point') {
-                replace_text = words + ender + ' <sup>' + footnote_num + ')</sup>'
-            }
-
-            // If there is a special character at the end, such as a dot or a
-            // comma, we need to including that in our replacement.
-            seek_text = words + ender;
-
-            $start_mark.html($start_mark.html().replace(
-                seek_text,
-                replace_text
-            ));
         }
         else {
             if (location_type == 'range') {
