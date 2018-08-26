@@ -353,7 +353,7 @@ var process_footnote = function() {
                     $opening_node.prepend('[');
                 }
 
-                append_closing_text = pre_close_space + ']' + post_close_space + '<sup>' + footnote_num + ')</sup> ';
+                append_closing_text = pre_close_space + ']' + post_close_space + '<sup>' + footnote_num + ')</sup>';
             }
             else if (location_type == 'point') {
                 append_closing_text = ' <sup>' + footnote_num + ')</sup>'
