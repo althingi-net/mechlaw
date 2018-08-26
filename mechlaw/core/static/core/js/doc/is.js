@@ -271,16 +271,16 @@ var process_footnote = function() {
 
         // A space occurs before the closing mark if it's inside a
         // 'nr-title'tag. We don't know why this is.
-        var pre_close_space = false;
+        var pre_close_space = '';
         if ($end_mark.prop('tagName').toLowerCase() == 'nr-title') {
-            pre_close_space = true;
+            pre_close_space = ' ';
         }
 
         // The space between the closing mark and the footnote number is
         // skipped in chapter names. We don't know why this is.
-        var post_close_space = true;
+        var post_close_space = ' ';
         if ($end_mark.prop('tagName').toLowerCase() == 'name') {
-            post_close_space = false;
+            post_close_space = '';
         }
 
         if (words) {
@@ -292,7 +292,7 @@ var process_footnote = function() {
             var replace_text = null;
 
             if (location_type == 'range') {
-                replace_text = '[' + words + (pre_close_space ? ' ' : '') + ']' + (post_close_space ? ' ' : '') + '<sup>' + footnote_num + ')</sup>';
+                replace_text = '[' + words + pre_close_space + ']' + post_close_space + '<sup>' + footnote_num + ')</sup>';
             }
             else if (location_type == 'point') {
                 replace_text = words + ' <sup>' + footnote_num + ')</sup>'
@@ -353,7 +353,7 @@ var process_footnote = function() {
                     $opening_node.prepend('[');
                 }
 
-                append_closing_text = (pre_close_space ? ' ' : '') + ']' + (post_close_space ? ' ' : '') + '<sup>' + footnote_num + ')</sup> ';
+                append_closing_text = pre_close_space + ']' + post_close_space + '<sup>' + footnote_num + ')</sup> ';
             }
             else if (location_type == 'point') {
                 append_closing_text = ' <sup>' + footnote_num + ')</sup>'
