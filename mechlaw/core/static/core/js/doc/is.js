@@ -2,8 +2,6 @@
 var IMG_BOX_WHITE = '/static/core/img/box-white.png';
 var IMG_BOX_BLACK = '/static/core/img/box-black.png';
 
-var footnote_nr = 0;
-
 // Entry function for references, merely for code organizational reasons.
 var follow_refer = function() {
     var $refer = $(this);
@@ -118,12 +116,10 @@ var process_refer_external = function($refer) {
 
 var process_footnote = function() {
 
-    // Increase the number of the footnote associated with the current
-    // article. First footnote is number 1, second is number 2 and so forth.
-    footnote_nr++;
-
     var $footnote = $(this);
     var $footnote_sen = $footnote.find('footnote-sen');
+
+    var footnote_nr = $footnote.attr('nr');
 
     // Show which portion of the law being displayed was changed.
     $footnote.find('location').each(function() {
@@ -416,10 +412,7 @@ $(document).ready(function() {
 
     $('footnotes').show();
 
-    $('footnotes').each(function() {
-        footnote_nr = 0;
-        $(this).find('footnote').each(process_footnote);
-    });
+    $('footnotes > footnote').each(process_footnote);
 
     $('law').each(process_law);
     $('law > chapter > art').each(process_art);
