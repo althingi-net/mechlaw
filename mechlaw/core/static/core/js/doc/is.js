@@ -408,11 +408,56 @@ var process_subart = function() {
     $(this).prepend($('<img class="box" src="' + IMG_BOX_WHITE + '" />'));
 }
 
+
+/*
+ * The order in which we process footnotes matters. Opening/closing markers
+ * that are inside other opening/closing markers should be processed after the
+ * outer ones. This is because the content between the outer ones will change
+ * when the inner ones are processed, thereby making replacement of text
+ * impossible since it all of a sudden contains markers that don't match the
+ * text that should be replaced. Markers that specify a region instead of
+ * specific words (via the "words" attribute in the XML) should be processed
+ * first because they are always the mots outermost. In short; the wider the
+ * marked text, the earlier it should be put in.
+ *
+ * The way we go about ensuring that opening/closing markers outside others
+ * get processed first, is by first processing the words-clauses that are the
+ * longest. By necessity, a marked clause inside another one will be shorter.
+ */
+var get_ordered_footnotes = function() {
+    // The resulting, ordered list of footnotes.
+    var $footnotes = [];
+
+    $('footnotes > footnote').each(function() {
+        var $footnote = $(this);
+        var $words = $footnote.find('[words]');
+        if ($words.length == 0) {
+            // This is essentially an arbitrarily high number. It just needs
+            // to be higher than the length of any plausibly marked text.
+            $footnote.attr('processing-order', '1000000');
+        }
+        else {
+            // The longer the marked text, the earlier it should be processed.
+            $footnote.attr('processing-order', $words.attr('words').length);
+        }
+        $footnotes.push($footnote);
+    });
+
+    // Sort the footnotes according to the 'processing-order' attribute that
+    // we filled earlier. A higher number means higher priority.
+    $footnotes.sort(function($a, $b) {
+        return parseInt($b.attr('processing-order')) - parseInt($a.attr('processing-order'));
+    });
+
+    return $footnotes;
+}
+
+
 $(document).ready(function() {
 
     $('footnotes').show();
 
-    $('footnotes > footnote').each(process_footnote);
+    $.each(get_ordered_footnotes(), process_footnote);
 
     $('law').each(process_law);
     $('law > chapter > art').each(process_art);
