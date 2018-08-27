@@ -2,7 +2,7 @@
 var IMG_BOX_WHITE = '/static/core/img/box-white.png';
 var IMG_BOX_BLACK = '/static/core/img/box-black.png';
 
-var footnote_num = 0;
+var footnote_nr = 0;
 
 // Entry function for references, merely for code organizational reasons.
 var follow_refer = function() {
@@ -120,7 +120,7 @@ var process_footnote = function() {
 
     // Increase the number of the footnote associated with the current
     // article. First footnote is number 1, second is number 2 and so forth.
-    footnote_num++;
+    footnote_nr++;
 
     var $footnote = $(this);
     var $footnote_sen = $footnote.find('footnote-sen');
@@ -255,8 +255,8 @@ var process_footnote = function() {
 
         // Let's be nice to XML writers and tell them what's wrong.
         if (!$start_mark.prop('tagName')) {
-            var art_num = $location.closest('art').attr('nr');
-            console.error('Invalid location in footnote nr. ' + footnote_num + ' in article nr. ' + art_num);
+            var art_nr = $location.closest('art').attr('nr');
+            console.error('Invalid location in footnote nr. ' + footnote_nr + ' in article nr. ' + art_nr);
             return;
         }
 
@@ -292,10 +292,10 @@ var process_footnote = function() {
             var replace_text = null;
 
             if (location_type == 'range') {
-                replace_text = '[' + words + pre_close_space + ']' + post_close_space + '<sup>' + footnote_num + ')</sup>';
+                replace_text = '[' + words + pre_close_space + ']' + post_close_space + '<sup>' + footnote_nr + ')</sup>';
             }
             else if (location_type == 'point') {
-                replace_text = words + ' <sup>' + footnote_num + ')</sup>'
+                replace_text = words + ' <sup>' + footnote_nr + ')</sup>'
             }
 
             // If the XML indicates that this is a change that happens
@@ -323,8 +323,8 @@ var process_footnote = function() {
             for (i in end_symbols) {
                 end_symbol = end_symbols[i];
                 $start_mark.html($start_mark.html().replace(
-                    ' <sup>' + footnote_num + ')</sup>' + end_symbol,
-                    end_symbol + ' <sup>' + footnote_num + ')</sup>'
+                    ' <sup>' + footnote_nr + ')</sup>' + end_symbol,
+                    end_symbol + ' <sup>' + footnote_nr + ')</sup>'
                 ));
             }
         }
@@ -353,10 +353,10 @@ var process_footnote = function() {
                     $opening_node.prepend('[');
                 }
 
-                append_closing_text = pre_close_space + ']' + post_close_space + '<sup>' + footnote_num + ')</sup>';
+                append_closing_text = pre_close_space + ']' + post_close_space + '<sup>' + footnote_nr + ')</sup>';
             }
             else if (location_type == 'point') {
-                append_closing_text = ' <sup>' + footnote_num + ')</sup>'
+                append_closing_text = ' <sup>' + footnote_nr + ')</sup>'
             }
 
             // Like with the opening node, we'll need to check if the
@@ -372,7 +372,7 @@ var process_footnote = function() {
     });
 
     // Add the superscripted iterator to the displayed label.
-    $footnote_sen.before('<sup>' + footnote_num + ')</sup>');
+    $footnote_sen.before('<sup>' + footnote_nr + ')</sup>');
 
     // Activate internal HTML inside the footnote, which is escaped for XML
     // compatibility reasons. It's not possible to use <![CDATA[]]> in HTML,
@@ -417,7 +417,7 @@ $(document).ready(function() {
     $('footnotes').show();
 
     $('footnotes').each(function() {
-        footnote_num = 0;
+        footnote_nr = 0;
         $(this).find('footnote').each(process_footnote);
     });
 
