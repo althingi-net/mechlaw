@@ -263,7 +263,6 @@ var process_footnote = function() {
         // Short-hands.
         var tag_name = $start_mark.prop('tagName').toLowerCase(); // $start_mark arbitrarily chosen.
         var location_type = $location.attr('type');
-        var words = $start_mark.location_node.attr('words');
 
         // A space occurs before the closing mark if it's inside a
         // 'nr-title'tag. We don't know why this is.
@@ -279,19 +278,32 @@ var process_footnote = function() {
             post_close_space = '';
         }
 
-        if (words) {
-            // If specific words are specified, things get rather simple and
-            // we can just replace the existing text with itself plus the
-            // relevant symbols for denoting ranges and points.
+        if ($start_mark.location_node.attr('words')) {
+            // If specific words are specified, we can just replace the
+            // existing text with itself plus the relevant symbols for
+            // denoting ranges and points.
+            //
+            // Note though, that we actually perform two replacements, one for
+            // the start marker and another for the end marker. In the
+            // overwhelming majority of cases, the seek_text will be the same
+            // so the same string is being replaced, but every once in a
+            // while, a replacement should occur over the span of more than
+            // one sentence. In thos cases, the seek texts will differ and the
+            // start marker will be placed before the value of the "words"
+            // attribute in the start location, and after the value of the
+            // "words" attribute in the end location.
 
-            var seek_text = words;
-            var replace_text = null;
+            var seek_text_start = $start_mark.location_node.attr('words');
+            var seek_text_end = $end_mark.location_node.attr('words');
+            var replace_text_start = null;
+            var replace_text_end = null;
 
             if (location_type == 'range') {
-                replace_text = '[' + words + pre_close_space + ']' + post_close_space + '<sup>' + footnote_nr + ')</sup>';
+                replace_text_start = '[' + seek_text_start;
+                replace_text_end = seek_text_end + pre_close_space + ']' + post_close_space + '<sup>' + footnote_nr + ')</sup>';
             }
             else if (location_type == 'point') {
-                replace_text = words + ' <sup>' + footnote_nr + ')</sup>'
+                replace_text_start = seek_text_start + ' <sup>' + footnote_nr + ')</sup>'
             }
 
             // If the XML indicates that this is a change that happens
@@ -300,14 +312,23 @@ var process_footnote = function() {
             if ($start_mark.location_node.attr('repeat') == 'true') {
                 $start_mark.html(replaceAll(
                     $start_mark.html(),
-                    seek_text,
-                    replace_text
-                ))
+                    seek_text_start,
+                    replace_text_start
+                ));
+                $end_mark.html(replaceAll(
+                    $end_mark.html(),
+                    seek_text_end,
+                    replace_text_end
+                ));
             }
             else {
                 $start_mark.html($start_mark.html().replace(
-                    seek_text,
-                    replace_text
+                    seek_text_start,
+                    replace_text_start
+                ));
+                $end_mark.html($end_mark.html().replace(
+                    seek_text_end,
+                    replace_text_end
                 ));
             }
 
@@ -318,7 +339,7 @@ var process_footnote = function() {
             end_symbols = [',', '.'];
             for (i in end_symbols) {
                 end_symbol = end_symbols[i];
-                $start_mark.html($start_mark.html().replace(
+                $end_mark.html($end_mark.html().replace(
                     ' <sup>' + footnote_nr + ')</sup>' + end_symbol,
                     end_symbol + ' <sup>' + footnote_nr + ')</sup>'
                 ));
