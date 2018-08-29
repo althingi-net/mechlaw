@@ -261,20 +261,19 @@ var process_footnote = function() {
         /***********************************************/
 
         // Short-hands.
-        var tag_name = $start_mark.prop('tagName').toLowerCase(); // $start_mark arbitrarily chosen.
+        var end_tag_name = $end_mark.prop('tagName').toLowerCase();
+        var end_tag_parent_name = $end_mark.parent().prop('tagName').toLowerCase();
         var location_type = $location.attr('type');
 
-        // A space occurs before the closing mark if it's inside a
-        // 'nr-title'tag. We don't know why this is.
+        // Adjust spaces immediately before and after the closing marker
+        // according to design choices. (We don't know the logic behind those
+        // design choices, we just imitate them the official website.)
         var pre_close_space = '';
-        if ($end_mark.prop('tagName').toLowerCase() == 'nr-title') {
+        if (end_tag_name == 'nr-title' && end_tag_parent_name == 'numart') {
             pre_close_space = ' ';
         }
-
-        // The space between the closing mark and the footnote number is
-        // skipped in chapter names. We don't know why this is.
         var post_close_space = ' ';
-        if ($end_mark.prop('tagName').toLowerCase() == 'name') {
+        if (end_tag_name == 'name' || (end_tag_name == 'nr-title' && end_tag_parent_name == 'art')) {
             post_close_space = '';
         }
 
