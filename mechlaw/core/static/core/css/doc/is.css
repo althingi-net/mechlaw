@@ -48,5 +48,6 @@ footnote { margin-right: -1px; line-height: 1.5em; }
 footnote a { color: #1c79c2; }
 footnote sup { display: inline; font-size: 7.68333px !important; font-style: italic; vertical-align: top; top: 1.25em; }
 footnote-sen { display: inline; font-style: italic; font-size: 12.8px; }
+footnote-sen:nth-child(3) { margin-left: -1px; }
 location { display: none; }
 

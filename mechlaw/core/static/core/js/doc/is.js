@@ -117,7 +117,6 @@ var process_refer_external = function($refer) {
 var process_footnote = function() {
 
     var $footnote = $(this);
-    var $footnote_sen = $footnote.find('footnote-sen');
 
     var footnote_nr = $footnote.attr('nr');
 
@@ -387,20 +386,26 @@ var process_footnote = function() {
         }
     });
 
-    // Add the superscripted iterator to the displayed label.
-    $footnote_sen.before('<sup>' + footnote_nr + ')</sup>');
+    // Note that there may be more than one sentence.
+    var $footnote_sen = $footnote.find('footnote-sen');
+
+    // Add the superscripted iterator to the first footnote sentence.
+    $footnote_sen.first().before('<sup>' + footnote_nr + ')</sup>');
 
     // Activate internal HTML inside the footnote, which is escaped for XML
     // compatibility reasons. It's not possible to use <![CDATA[]]> in HTML,
     // and we don't want HTML inside XML elements, because then validators
     // would understand it as a part of the XML's structure, when in fact it's
     // just content intended for a browser.
-    $footnote_sen.html($footnote_sen.html().replace(/\&lt\;/g, '<').replace(/\&gt\;/g, '>'));
+    $footnote_sen.each(function() {
+        $(this).html($(this).html().replace(/\&lt\;/g, '<').replace(/\&gt\;/g, '>'));
+    });
 
-    // Turn the displayed label into a link.
+    // Turn the displayed label of the first footnote into a link, if one is
+    // specified in the 'href' attribute.
     var href = $footnote.attr('href');
     if (href) {
-        $footnote_sen.html('<a href="' + href + '" target="_blank">' + $footnote_sen.html() + '</a>');
+        $footnote_sen.first().html('<a href="' + href + '" target="_blank">' + $footnote_sen.first().html() + '</a>');
     }
 
 }
