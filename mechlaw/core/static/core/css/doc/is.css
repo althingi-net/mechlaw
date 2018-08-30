@@ -41,6 +41,7 @@ subart sup { font-size: 60% !important; vertical-align: top; top: 0.885em !impor
 /* numerical article */
 numart { display: block; text-indent: 1em; }
 numart > name { font-style: italic; }
+numart[style-note="inline-with-parent"] { display: inline; }
 
 /* footnotes */
 footnotes { display: none; text-indent: 1em;  }
