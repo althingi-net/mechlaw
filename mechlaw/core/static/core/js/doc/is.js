@@ -447,15 +447,25 @@ var process_footnote = function() {
         // behind these design choices, we just imitate them.
         var pre_deletion_space = ' ';
         var post_deletion_space = ' ';
+        var post_sup_space = ' ';
         if (tag_name == 'name' && tag_parent_name == 'chapter') {
             post_deletion_space = '';
         }
         if ($mark.html() == '[' || $mark.html() == '') {
             pre_deletion_space = '';
         }
+        if (after_mark_content == '') {
+            post_sup_space = '';
+        }
 
         // Configure the deletion symbol that we'll drop into the content.
-        var deletion_symbol = pre_deletion_space + '…' + post_deletion_space + '<sup>' + footnote_nr + ')</sup> ';
+        var deletion_symbol = pre_deletion_space
+                + '…'
+                + post_deletion_space
+                + '<sup>'
+                + footnote_nr
+                + ')</sup>'
+                + post_sup_space;
         if (tag_name == 'nr-title' && tag_parent_name == 'art' && after_mark_content == '') {
             // When a deletion symbol appears at the end of an article's
             // nr-title segment, it means that the article's content in its
