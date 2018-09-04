@@ -272,9 +272,9 @@ var process_footnote = function() {
         if (end_tag_name == 'nr-title' && end_tag_parent_name == 'numart') {
             pre_close_space = ' ';
         }
-        var post_close_space = ' ';
+        var post_deletion_space = ' ';
         if (end_tag_name == 'name' || (end_tag_name == 'nr-title' && end_tag_parent_name == 'art')) {
-            post_close_space = '';
+            post_deletion_space = '';
         }
 
         if ($start_mark.location_node.attr('words')) {
@@ -299,7 +299,7 @@ var process_footnote = function() {
 
             if (location_type == 'range') {
                 replace_text_start = '[' + seek_text_start;
-                replace_text_end = seek_text_end + pre_close_space + ']' + post_close_space + '<sup>' + footnote_nr + ')</sup>';
+                replace_text_end = seek_text_end + pre_close_space + ']' + post_deletion_space + '<sup>' + footnote_nr + ')</sup>';
             }
 
             // If the XML indicates that this is a change that happens
@@ -365,7 +365,7 @@ var process_footnote = function() {
                 $opening_node.prepend('[');
             }
 
-            append_closing_text = pre_close_space + ']' + post_close_space + '<sup>' + footnote_nr + ')</sup>';
+            append_closing_text = pre_close_space + ']' + post_deletion_space + '<sup>' + footnote_nr + ')</sup>';
 
             // Like with the opening node, we'll need to check if the
             // $end_mark has <sen> children to which the closing bracket
@@ -424,21 +424,41 @@ var process_footnote = function() {
         // Get the regular expressions for how the text should look before and
         // after the deletion mark. These regular expressions match the text
         // with and without other deletion or replacement markers.
-        var before_mark_re = new RegExp($step.attr('before-mark').trim());
-        var after_mark_re = new RegExp($step.attr('after-mark').trim());
+        var before_mark_content = '';
+        var after_mark_content = '';
+        if ($step.attr('before-mark')) {
+            var before_mark_re = new RegExp($step.attr('before-mark').trim());
+            before_mark_content = before_mark_re.exec($mark.html())[0];
+        }
+        if ($step.attr('after-mark')) {
+            var after_mark_re = new RegExp($step.attr('after-mark').trim());
+            after_mark_content = after_mark_re.exec($mark.html())[0];
+        }
 
-        // Execute the regular expressions.
-        before_mark_content = before_mark_re.exec($mark.html());
-        after_mark_content = after_mark_re.exec($mark.html());
+        // Sometimes the space between the deletion symbol and the supertext
+        // is absent. This is a design choice on the official website. We
+        // don't know what's behind such choices, we just imitate them.
+        var tag_name = $mark.prop('tagName').toLowerCase();
+        var tag_parent_name = $mark.parent().prop('tagName').toLowerCase();
+        var post_deletion_space = ' ';
+        if (tag_name == 'name' && tag_parent_name == 'chapter') {
+            post_deletion_space = '';
+        }
 
-        // These will be lists, and we're only interested in the first match.
-        before_mark_content = before_mark_content[0];
-        after_mark_content = after_mark_content[0];
+        // Configure the deletion symbol that we'll drop into the content.
+        var deletion_symbol = ' …' + post_deletion_space + '<sup>' + footnote_nr + ')</sup> ';
+        if (tag_name == 'nr-title' && tag_parent_name == 'art' && after_mark_content == '') {
+            // When a deletion symbol appears at the end of an article's
+            // nr-title segment, it means that the article's content in its
+            // entirety has been deleted. The official design is for the
+            // symbol and superscript to have normal weight (i.e. be non-bold)
+            // instead of being bold weight.
+            deletion_symbol = '<span class="art-deletion">' + deletion_symbol + '</span>';
+        }
 
         // Replace the content with what was found before the deletion mark,
         // then the deletion mark itself and finally whatever came after the
         // deletion mark.
-        var deletion_symbol = ' … <sup> ' + footnote_nr + ') </sup> ';
         $mark.html(before_mark_content + deletion_symbol + after_mark_content);
     });
 
