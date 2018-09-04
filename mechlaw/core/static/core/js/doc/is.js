@@ -458,9 +458,20 @@ var process_footnote = function() {
             post_sup_space = '';
         }
 
+        // Sometimes the XML will indicate that some punctuation should be
+        // immediately following the deletion symbol but before the
+        // superscript. Example: "bla bla …, 2) yada yada" instead of "bla
+        // bla, … 2)". For these purposes, we will check if such a punctuation
+        // mark is defined in the XML and add it accordingly.
+        var middle_punctuation = '';
+        if ($step.attr('middle-punctuation')) {
+            middle_punctuation = $step.attr('middle-punctuation');
+        }
+
         // Configure the deletion symbol that we'll drop into the content.
         var deletion_symbol = pre_deletion_space
                 + '…'
+                + middle_punctuation
                 + post_deletion_space
                 + '<sup>'
                 + footnote_nr
