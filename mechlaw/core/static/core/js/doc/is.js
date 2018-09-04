@@ -120,8 +120,9 @@ var process_footnote = function() {
 
     var footnote_nr = $footnote.attr('nr');
 
-    // Show which portion of the law being displayed was changed.
-    $footnote.find('location').each(function() {
+    // Go through footnotes and place opening/closing markers where text has
+    // been updated.
+    $footnote.find('location[type="range"]').each(function() {
         var $location = $(this);
 
         // Start with the entire law and narrow it down later. The variables
@@ -279,7 +280,7 @@ var process_footnote = function() {
         if ($start_mark.location_node.attr('words')) {
             // If specific words are specified, we can just replace the
             // existing text with itself plus the relevant symbols for
-            // denoting ranges and points.
+            // denoting ranges.
             //
             // Note though, that we actually perform two replacements, one for
             // the start marker and another for the end marker. In the
@@ -299,9 +300,6 @@ var process_footnote = function() {
             if (location_type == 'range') {
                 replace_text_start = '[' + seek_text_start;
                 replace_text_end = seek_text_end + pre_close_space + ']' + post_close_space + '<sup>' + footnote_nr + ')</sup>';
-            }
-            else if (location_type == 'point') {
-                replace_text_start = seek_text_start + ' <sup>' + footnote_nr + ')</sup>'
             }
 
             // If the XML indicates that this is a change that happens
@@ -344,35 +342,30 @@ var process_footnote = function() {
             }
         }
         else {
-            if (location_type == 'range') {
-                // If there is a <nr-title> tag, we'll want to skip that, so
-                // that the opening bracket is placed right after it.
-                var $nr_title = $start_mark.find('> nr-title');
-                if ($nr_title.length > 0) {
-                    $start_mark.find('nr-title').next().first().prepend('[');
+            // If there is a <nr-title> tag, we'll want to skip that, so
+            // that the opening bracket is placed right after it.
+            var $nr_title = $start_mark.find('> nr-title');
+            if ($nr_title.length > 0) {
+                $start_mark.find('nr-title').next().first().prepend('[');
+            }
+            else {
+                // Most entities, like articles, subarticles, numeric
+                // articles and such have children <sen> nodes which
+                // contain the content. An occasional node does not, for
+                // example <name> and of course <sen> itself. We therefore
+                // check if the node has any <sen> children nodes, and if
+                // so, we will call the first one an opening node and
+                // append the opening bracket, but otherwise we'll use the
+                // $start_mark itself as the opening node, since it must
+                // then be one of the special nodes like <name> or <sen>.
+                var $opening_node = $start_mark.find('sen').first();
+                if (!$opening_node.prop('tagName')) {
+                    $opening_node = $start_mark;
                 }
-                else {
-                    // Most entities, like articles, subarticles, numeric
-                    // articles and such have children <sen> nodes which
-                    // contain the content. An occasional node does not, for
-                    // example <name> and of course <sen> itself. We therefore
-                    // check if the node has any <sen> children nodes, and if
-                    // so, we will call the first one an opening node and
-                    // append the opening bracket, but otherwise we'll use the
-                    // $start_mark itself as the opening node, since it must
-                    // then be one of the special nodes like <name> or <sen>.
-                    var $opening_node = $start_mark.find('sen').first();
-                    if (!$opening_node.prop('tagName')) {
-                        $opening_node = $start_mark;
-                    }
-                    $opening_node.prepend('[');
-                }
+                $opening_node.prepend('[');
+            }
 
-                append_closing_text = pre_close_space + ']' + post_close_space + '<sup>' + footnote_nr + ')</sup>';
-            }
-            else if (location_type == 'point') {
-                append_closing_text = ' <sup>' + footnote_nr + ')</sup>'
-            }
+            append_closing_text = pre_close_space + ']' + post_close_space + '<sup>' + footnote_nr + ')</sup>';
 
             // Like with the opening node, we'll need to check if the
             // $end_mark has <sen> children to which the closing bracket
@@ -384,6 +377,69 @@ var process_footnote = function() {
             }
             $closing_node.append(append_closing_text);
         }
+    });
+
+    // Go through footnotes and place deletion markers where text has been
+    // removed from law.
+    //
+    // This section approaches things very similarly to how type="range"
+    // locations are dealt with above. Please see the comments for the section
+    // above for a thorough understanding of what's going on here.
+    $footnote.find('location[type="deletion"]').each(function() {
+        var $location = $(this);
+
+        // Will contain the final location step once the iteration is done.
+        var $step = null;
+
+        // Start with the entire law and then narrow it down.
+        var $mark = $location.parent().parent().closest('law');
+
+        // Iterate through the location steps.
+        $location.find('chapter,art,subart,numart,nr-title,name,sen').each(function() {
+            $step = $(this);
+
+            var tag_name = $step.prop('tagName').toLowerCase();
+            var nr = $step.text().trim();
+
+            // If no number is defined, we assume that it's the first (and
+            // presumably only) tag.
+            if (!nr) {
+                nr = '1';
+            }
+
+            // Narrow the mark according to the location step.
+            var $check = $mark.find(tag_name + '[nr="' + nr + '"]');
+
+            // If no location step was found, it is presumably because it's a
+            // tag that does not explicitly define a "nr" attribute (such as
+            // <sen>), so we'll have to infer the correct tag by its order.
+            if ($check.prop('tagName')) {
+                $mark = $check;
+            }
+            else {
+                $mark = $mark.find(tag_name + ':eq(' + String(parseInt(nr) - 1) + ')');
+            }
+        });
+
+        // Get the regular expressions for how the text should look before and
+        // after the deletion mark. These regular expressions match the text
+        // with and without other deletion or replacement markers.
+        var before_mark_re = new RegExp($step.attr('before-mark').trim());
+        var after_mark_re = new RegExp($step.attr('after-mark').trim());
+
+        // Execute the regular expressions.
+        before_mark_content = before_mark_re.exec($mark.html());
+        after_mark_content = after_mark_re.exec($mark.html());
+
+        // These will be lists, and we're only interested in the first match.
+        before_mark_content = before_mark_content[0];
+        after_mark_content = after_mark_content[0];
+
+        // Replace the content with what was found before the deletion mark,
+        // then the deletion mark itself and finally whatever came after the
+        // deletion mark.
+        var deletion_symbol = ' … <sup> ' + footnote_nr + ') </sup> ';
+        $mark.html(before_mark_content + deletion_symbol + after_mark_content);
     });
 
     // Note that there may be more than one sentence.
