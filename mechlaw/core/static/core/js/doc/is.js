@@ -332,7 +332,7 @@ var process_footnote = function() {
             // as a period or a comma, the symbol should appear between the
             // closing marker and the footnote number. For example, it should
             // be "[some text]. 2)" instead of "[some text] 2).".
-            end_symbols = [',', '.'];
+            end_symbols = [',', '.', ':'];
             for (i in end_symbols) {
                 end_symbol = end_symbols[i];
                 $end_mark.html($end_mark.html().replace(
