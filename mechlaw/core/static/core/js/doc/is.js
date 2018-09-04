@@ -454,7 +454,7 @@ var process_footnote = function() {
         if ($mark.html() == '[' || $mark.html() == '') {
             pre_deletion_space = '';
         }
-        if (after_mark_content == '') {
+        if (after_mark_content == '' || after_mark_content.substring(0, 1) == ']') {
             post_sup_space = '';
         }
 
