@@ -435,18 +435,27 @@ var process_footnote = function() {
             after_mark_content = after_mark_re.exec($mark.html())[0];
         }
 
-        // Sometimes the space between the deletion symbol and the supertext
-        // is absent. This is a design choice on the official website. We
-        // don't know what's behind such choices, we just imitate them.
+        // Get the tag names of the mark and its parent, so that we can figure
+        // out the context that we're dealing with when determining how to
+        // present the deletion symbol.
         var tag_name = $mark.prop('tagName').toLowerCase();
         var tag_parent_name = $mark.parent().prop('tagName').toLowerCase();
+
+        // Whether there is a space before or after the deletion symbol is
+        // determined by various factors according to the design choices of
+        // the official documents online. We are unaware of the reasoning
+        // behind these design choices, we just imitate them.
+        var pre_deletion_space = ' ';
         var post_deletion_space = ' ';
         if (tag_name == 'name' && tag_parent_name == 'chapter') {
             post_deletion_space = '';
         }
+        if ($mark.html() == '[' || $mark.html() == '') {
+            pre_deletion_space = '';
+        }
 
         // Configure the deletion symbol that we'll drop into the content.
-        var deletion_symbol = ' …' + post_deletion_space + '<sup>' + footnote_nr + ')</sup> ';
+        var deletion_symbol = pre_deletion_space + '…' + post_deletion_space + '<sup>' + footnote_nr + ')</sup> ';
         if (tag_name == 'nr-title' && tag_parent_name == 'art' && after_mark_content == '') {
             // When a deletion symbol appears at the end of an article's
             // nr-title segment, it means that the article's content in its
