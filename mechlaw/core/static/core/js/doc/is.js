@@ -492,6 +492,70 @@ var process_footnote = function() {
         $mark.html(before_mark_content + deletion_symbol + after_mark_content);
     });
 
+    // Go through the pointers and place them in the text. Pointers are really
+    // just superscripted numbers corresponding to footnotes which do not
+    // indicate a modification to the text.
+    //
+    // This section is very similar to the type="deletion" section above, but
+    // simpler, because it only needs to add one bit of superscripted text.
+    $footnote.find('location[type="pointer"]').each(function() {
+        var $location = $(this);
+
+        // Will contain the final location step once the iteration is done.
+        var $step = null;
+
+        // Start with the entire law and then narrow it down.
+        var $mark = $location.parent().parent().closest('law');
+
+        // Iterate through the location steps.
+        $location.find('chapter,art,subart,numart,nr-title,name,sen').each(function() {
+            $step = $(this);
+
+            var tag_name = $step.prop('tagName').toLowerCase();
+            var nr = $step.text().trim();
+
+            // If no number is defined, we assume that it's the first (and
+            // presumably only) tag.
+            if (!nr) {
+                nr = '1';
+            }
+
+            // Narrow the mark according to the location step.
+            var $check = $mark.find(tag_name + '[nr="' + nr + '"]');
+
+            // If no location step was found, it is presumably because it's a
+            // tag that does not explicitly define a "nr" attribute (such as
+            // <sen>), so we'll have to infer the correct tag by its order.
+            if ($check.prop('tagName')) {
+                $mark = $check;
+            }
+            else {
+                $mark = $mark.find(tag_name + ':eq(' + String(parseInt(nr) - 1) + ')');
+            }
+        });
+
+        // Get the regular expressions for how the text should look before and
+        // after the pointer. These regular expressions match the text with
+        // and without other deletion or replacement markers.
+        var before_mark_content = '';
+        var after_mark_content = '';
+        if ($step.attr('before-mark')) {
+            var before_mark_re = new RegExp($step.attr('before-mark').trim());
+            before_mark_content = before_mark_re.exec($mark.html())[0];
+        }
+        if ($step.attr('after-mark')) {
+            var after_mark_re = new RegExp($step.attr('after-mark').trim());
+            after_mark_content = after_mark_re.exec($mark.html())[0];
+        }
+
+        pointer_symbol = ' <sup>' + footnote_nr + ')</sup> ';
+
+        // Replace the content with what was found before the deletion mark,
+        // then the deletion mark itself and finally whatever came after the
+        // deletion mark.
+        $mark.html(before_mark_content + pointer_symbol + after_mark_content);
+    });
+
     // Note that there may be more than one sentence.
     var $footnote_sen = $footnote.find('footnote-sen');
 
