@@ -612,7 +612,7 @@ var process_subart = function() {
  * impossible since it all of a sudden contains markers that don't match the
  * text that should be replaced. Markers that specify a region instead of
  * specific words (via the "words" attribute in the XML) should be processed
- * first because they are always the mots outermost. In short; the wider the
+ * first because they are always the most outermost. In short; the wider the
  * marked text, the earlier it should be put in.
  *
  * The way we go about ensuring that opening/closing markers outside others
