@@ -46,6 +46,12 @@ numart[style-note="inline-with-parent"] { display: inline; }
 /* sentence */
 sen sup { font-size: 60% !important; vertical-align: top; top: 0.885em !important; }
 
+/* table */
+sen table { width: 100%; border-collapse: collapse; border-spacing: 0; color: #000000; }
+sen table tr:hover { background: #f3f2ed; }
+sen table th, sen table td { padding: .625em 20px .25em 20px; border-right: 1px solid #dad7cc; border-bottom: 1px solid #dad7cc; }
+sen table td:last-child, sen table th:last-child { border-right-width: 0px; }
+
 /* footnotes */
 footnotes { display: none; text-indent: 1em;  }
 footnote { margin-right: -1px; line-height: 1.5em; }
