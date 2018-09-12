@@ -265,6 +265,20 @@ var process_footnote = function() {
         var end_tag_parent_name = $end_mark.parent().prop('tagName').toLowerCase();
         var location_type = $location.attr('type');
 
+        // If the end mark ontains a table, we'll actually want to append the
+        // closing marker to the very last cell in the last row of the table.
+        // This is a design choice from the official website which we imitate
+        // without concerning ourselves with the reasoning behind it. At any
+        // rate, we will simply designate that last cell as the $end_mark.
+        //
+        // NOTE: This does not support the "words"-mechanism and is assumed to
+        // be mutually exclusive with it. If specificity is needed in the
+        // table structure, support for specifying table cells in the XML
+        // should be added.
+        if ($end_mark.find('table').length) {
+            $end_mark = $end_mark.find('table').find('tbody > tr').last().find('td').last();
+        }
+
         // Adjust spaces immediately before and after the closing marker
         // according to design choices. (We don't know the logic behind those
         // design choices, we just imitate them the official website.)
@@ -273,7 +287,11 @@ var process_footnote = function() {
             pre_close_space = ' ';
         }
         var post_deletion_space = ' ';
-        if (end_tag_name == 'name' || (end_tag_name == 'nr-title' && end_tag_parent_name == 'art')) {
+        if (
+            end_tag_name == 'name'
+            || (end_tag_name == 'nr-title' && end_tag_parent_name == 'art')
+            || $end_mark.prop('tagName').toLowerCase() == 'td'
+        ) {
             post_deletion_space = '';
         }
 
