@@ -349,33 +349,15 @@ var process_footnote = function() {
                 $start_mark.find('nr-title').next().first().prepend('[');
             }
             else {
-                // Most entities, like articles, subarticles, numeric
-                // articles and such have children <sen> nodes which
-                // contain the content. An occasional node does not, for
-                // example <name> and of course <sen> itself. We therefore
-                // check if the node has any <sen> children nodes, and if
-                // so, we will call the first one an opening node and
-                // append the opening bracket, but otherwise we'll use the
-                // $start_mark itself as the opening node, since it must
-                // then be one of the special nodes like <name> or <sen>.
-                var $opening_node = $start_mark.find('sen').first();
-                if (!$opening_node.prop('tagName')) {
-                    $opening_node = $start_mark;
-                }
-                $opening_node.prepend('[');
+                $start_mark.prepend('[');
             }
 
+            // Figure out what the closing marker should look like, depending
+            // on things we've figured out before.
             append_closing_text = pre_close_space + ']' + post_deletion_space + '<sup>' + footnote_nr + ')</sup>';
 
-            // Like with the opening node, we'll need to check if the
-            // $end_mark has <sen> children to which the closing bracket
-            // should be appended. If not, we'll append the closing bracket to
-            // $end_node itself, just like we did with $start_node.
-            var $closing_node = $end_mark.find('sen').last();
-            if (!$closing_node.prop('tagName')) {
-                $closing_node = $end_mark;
-            }
-            $closing_node.append(append_closing_text);
+            // Actually append the closing marker.
+            $end_mark.append(append_closing_text);
         }
     });
 
