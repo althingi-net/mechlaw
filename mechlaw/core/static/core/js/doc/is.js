@@ -413,11 +413,26 @@ var process_footnote = function() {
             // If no location step was found, it is presumably because it's a
             // tag that does not explicitly define a "nr" attribute (such as
             // <sen>), so we'll have to infer the correct tag by its order.
+            //
+            // But before we get to that, let's check if it was found.
             if ($check.prop('tagName')) {
                 $mark = $check;
             }
             else {
-                $mark = $mark.find(tag_name + ':eq(' + String(parseInt(nr) - 1) + ')');
+                // Create a selector that finds the tag by its order.
+                var selector = tag_name + ':eq(' + String(parseInt(nr) - 1) + ')';
+
+                if ($mark.find(selector).length == 0) {
+                    // The tag does not exist. We'll have to create it
+                    // ourselves. This occurs when a change or deletion marker
+                    // should be placed in a tag that is otherwise empty, and
+                    // therefore is not in the XML. It's no problem, we can
+                    // just make it on the fly.
+                    $mark.append($('<' + tag_name + '></' + tag_name + '>'));
+                }
+
+                // Okay, now it should definitely exist.
+                $mark = $mark.find(selector);
             }
         });
 
