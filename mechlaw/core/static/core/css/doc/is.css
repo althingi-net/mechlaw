@@ -45,6 +45,7 @@ numart[style-note="inline-with-parent"] { display: inline; }
 
 /* sentence */
 sen sup { font-size: 60% !important; vertical-align: top; top: 0.885em !important; }
+sen span.fraction-denominator { font-size: 60%; line-height: 23px; }
 
 /* table */
 sen table { width: 100%; border-collapse: collapse; border-spacing: 0; color: #000000; margin-bottom: 20px; }

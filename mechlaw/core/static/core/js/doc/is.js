@@ -619,6 +619,17 @@ var process_subart = function() {
 }
 
 
+var process_sentence = function() {
+    var $sen = $(this);
+
+    // Style fractions in text.
+    $sen.html($sen.html().replace(
+        /(\d+)\/(\d+)/g,
+        '<sup class="fraction-numerator">$1</sup>/ <span class="fraction-denominator">$2</span>'
+    ));
+}
+
+
 /*
  * The order in which we process footnotes matters. Opening/closing markers
  * that are inside other opening/closing markers should be processed after the
@@ -672,6 +683,7 @@ $(document).ready(function() {
     $('law').each(process_law);
     $('law > chapter > art').each(process_art);
     $('law > chapter > art > subart').each(process_subart);
+    $('law > chapter > art sen').each(process_sentence);
 
     // Make references show what they're referring to on moues-over.
     $('refer').on('mouseenter', follow_refer);
