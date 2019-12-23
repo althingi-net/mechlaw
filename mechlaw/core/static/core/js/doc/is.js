@@ -281,7 +281,7 @@ var process_footnote = function() {
 
         // Adjust spaces immediately before and after the closing marker
         // according to design choices. (We don't know the logic behind those
-        // design choices, we just imitate them the official website.)
+        // design choices, we just imitate them from the official website.)
         var pre_close_space = '';
         if (end_tag_name == 'nr-title' && end_tag_parent_name == 'numart') {
             pre_close_space = ' ';
