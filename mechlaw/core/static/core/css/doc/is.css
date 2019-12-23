@@ -4,6 +4,9 @@
 /*** Basics ***/
 .legal-document { font-family: "Droid Serif", serif; color: #242424; line-height: 1.5em; font-size: 16px; margin: 0px 20px; 0px 20px;}
 
+/* For scrolling consistency with Althingi.is */
+.legal-document { margin-top: 314px; }
+
 .box { padding: 0px; margin: 0px 1px 0px 1px; height: 9px; width: 9px; }
 
 content-setup { display: none; }
@@ -17,11 +20,11 @@ refer[type="missing"] { color: #606060; }
 /*** Section classes ***/
 
 /* law name */
-law > name { display: block; font-size: 1.875em; line-height: 1.25em; color: #2d5382; border-top: 1px solid #dddddd; padding-top: 30px; padding-bottom: 6px; }
+law > name { display: block; font-size: 1.875em; line-height: 1.25em; color: #2d5382; border-top: 1px solid #dddddd; padding-top: 30px; padding-bottom: 9px; }
 
 /* law num-and-date */
 law num-and-date * { display: none; }
-law num-and-date original { display: block; font-weight: bold; font-size: 16px; line-height: 1.6; text-align: center; border-bottom: 1px solid #dddddd; padding-bottom: 22px; margin-bottom: 40px; }
+law num-and-date original { display: block; font-weight: bold; font-size: 16px; line-height: 1.6; text-align: center; border-bottom: 1px solid #dddddd; padding-bottom: 20px; margin-bottom: 40px; }
 
 /* ministerial clause */
 law minister-clause { display: none; }
