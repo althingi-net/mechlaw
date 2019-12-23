@@ -6,6 +6,8 @@
 
 .box { padding: 0px; margin: 0px 1px 0px 1px; height: 9px; width: 9px; }
 
+content-setup { display: none; }
+
 /*** Common classes ***/
 
 /* refer */
