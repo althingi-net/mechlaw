@@ -685,6 +685,14 @@ $(document).ready(function() {
     $('law > chapter > art > subart').each(process_subart);
     $('law > chapter > art sen').each(process_sentence);
 
+    // The minister-clause is included in the XML only as HTML, but displayed
+    // as text by default. Here we read it, and write it again, forcing the
+    // HTML to be rendered.
+    let $minister_clause = $('law > minister-clause');
+    let new_text = $minister_clause.text();
+    $minister_clause.html(new_text);
+    $minister_clause.show();
+
     // Make references show what they're referring to on moues-over.
     $('refer').on('mouseenter', follow_refer);
 

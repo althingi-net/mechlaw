@@ -5,7 +5,7 @@
 .legal-document { font-family: "Droid Serif", serif; color: #242424; line-height: 1.5em; font-size: 16px; margin: 0px 20px 0px 20px; }
 
 /* For scrolling consistency with Althingi.is */
-.legal-document { margin-top: 314px; }
+.legal-document { margin-top: 354px; }
 
 .box { padding: 0px; margin: 0px 1px 0px 1px; height: 9px; width: 9px; }
 
@@ -24,10 +24,12 @@ law > name { display: block; font-size: 1.875em; line-height: 1.25em; color: #2d
 
 /* law num-and-date */
 law num-and-date * { display: none; }
-law num-and-date original { display: block; font-weight: bold; font-size: 16px; line-height: 1.6; text-align: center; border-bottom: 1px solid #dddddd; padding-bottom: 20px; margin-bottom: 40px; }
+law num-and-date original { display: block; font-weight: bold; font-size: 16px; line-height: 1.6; text-align: center; border-bottom: 1px solid #dddddd; padding-bottom: 20px; margin-bottom: 20px; }
 
 /* ministerial clause */
-law minister-clause { display: none; }
+minister-clause { display: none; border-bottom: 1px solid #dddddd; padding-bottom: 20px; margin-bottom: 44px; }
+minister-clause > a { margin-right: 0.7777em; }
+minister-clause > small { font-size: 80%; line-height: 1.88em; }
 
 /* chapter */
 chapter { display: block; margin-top: 1.5em; }
