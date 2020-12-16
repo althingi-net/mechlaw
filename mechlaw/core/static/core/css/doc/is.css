@@ -35,7 +35,7 @@ minister-clause > small { font-size: 80%; line-height: 1.88em; }
 chapter { display: block; margin-top: 1.5em; }
 chapter > nr-title { font-weight: bold; }
 chapter > name { font-weight: bold; }
-name sup, nr-title sup { font-size: 60% !important; vertical-align: top; top: 0.885em !important; }
+name sup, nr-title sup { font-size: 60% !important; vertical-align: top; top: 0.89em !important; }
 
 /* article */
 art { display: block; margin-top: 0px; }
@@ -52,7 +52,7 @@ numart > name { font-style: italic; }
 numart[style-note="inline-with-parent"] { display: inline; }
 
 /* sentence */
-sen sup { font-size: 60% !important; vertical-align: top; top: 0.885em !important; }
+sen sup { font-size: 60% !important; vertical-align: top; top: 0.89em !important; }
 sen span.fraction-denominator { font-size: 60%; line-height: 23px; }
 
 /* table */
