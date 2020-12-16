@@ -47,7 +47,7 @@ art > name { font-style: italic; }
 subart { display: block; }
 
 /* numerical article */
-numart { display: block; text-indent: 1em; }
+numart { display: block; text-indent: 1.04em; }
 numart > name { font-style: italic; }
 numart[style-note="inline-with-parent"] { display: inline; }
 
@@ -62,11 +62,10 @@ sen table th, sen table td { padding: .625em 20px .25em 20px; border-right: 1px 
 sen table td:last-child, sen table th:last-child { border-right-width: 0px; }
 
 /* footnotes */
-footnotes { display: none; text-indent: 1em;  }
+footnotes { display: none; text-indent: 1.04em;  }
 footnote { margin-right: -1px; line-height: 1.5em; }
 footnote a { color: #1c79c2; }
-footnote sup { display: inline; font-size: 7.68333px !important; font-style: italic; vertical-align: top; top: 1.25em; }
+footnote sup { display: inline; font-size: 7.69px !important; font-style: italic; vertical-align: top; top: 1.20em; }
 footnote-sen { display: inline; font-style: italic; font-size: 12.8px; }
 footnote-sen:nth-child(3) { margin-left: -1px; }
 location { display: none; }
-
