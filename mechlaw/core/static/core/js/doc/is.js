@@ -469,7 +469,8 @@ var process_footnote = function() {
         if ($mark.html() == '[' || $mark.html() == '') {
             pre_deletion_space = '';
         }
-        if (after_mark_content == '' || after_mark_content.substring(0, 1) == ']') {
+        var after_mark_char = after_mark_content.substring(0, 1);
+        if (after_mark_content == '' || after_mark_char == ']' || after_mark_char == '.') {
             post_sup_space = '';
         }
 
