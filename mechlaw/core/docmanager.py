@@ -9,8 +9,8 @@ class DocManager():
     @staticmethod
     def _objectify(filename):
         if settings.LEGAL_FRAMEWORK == 'is':
-            year, nr, parliament, ending = filename.split('.')
-            return Law(nr, year, parliament)
+            year, nr, ending = filename.split('.')
+            return Law(nr, year)
         else:
             return filename
 
@@ -35,8 +35,8 @@ class DocManager():
     @staticmethod
     def get(doc_type, doc_identifier):
         if settings.LEGAL_FRAMEWORK == 'is':
-            nr, year, parliament = doc_identifier.split('-')
-            path = os.path.join(DocManager._doc_dir(doc_type), '%s.%s.%s.xml' % (year, nr, parliament))
+            nr, year = doc_identifier.split('-')
+            path = os.path.join(DocManager._doc_dir(doc_type), '%s.%s.xml' % (year, nr))
             with open(path) as f:
                 content = f.read()
 

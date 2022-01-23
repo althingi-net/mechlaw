@@ -3,16 +3,14 @@ class Law():
 
     nr = ''
     year = ''
-    parliament = ''
 
-    def __init__(self, nr, year, parliament):
+    def __init__(self, nr, year):
         self.nr = nr
         self.year = year
-        self.parliament = parliament
 
     def url_identifier(self):
-        return '%s-%s-%s' % (self.nr, self.year, self.parliament)
+        return '%s-%s' % (self.nr, self.year)
 
     def __str__(self):
-        return '%s/%s (%s)' % (self.nr, self.year, self.parliament)
+        return '%s/%s' % (self.nr, self.year)
 
