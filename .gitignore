@@ -4,6 +4,7 @@
 /local
 /share
 /pip-selfcheck.json
+/pyvenv.cfg
 
 *.swp
 *.pyc
