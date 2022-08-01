@@ -15,18 +15,11 @@ class DocManager():
             return filename
 
     @staticmethod
-    def _doc_dir(doc_type):
-        lf = settings.LEGAL_FRAMEWORK
-        return os.path.join(settings.DATA_DIR, lf, doc_type)
-
-    @staticmethod
     def list(doc_type):
 
         selections = []
 
-        path = DocManager._doc_dir(doc_type)
-
-        for filename in os.listdir(path):
+        for filename in os.listdir(settings.DATA_DIR):
             if filename[-4:] == '.xml':
                 selections.append(DocManager._objectify(filename))
 
@@ -36,7 +29,7 @@ class DocManager():
     def get(doc_type, doc_identifier):
         if settings.LEGAL_FRAMEWORK == 'is':
             nr, year = doc_identifier.split('-')
-            path = os.path.join(DocManager._doc_dir(doc_type), '%s.%s.xml' % (year, nr))
+            path = os.path.join(settings.DATA_DIR, '%s.%s.xml' % (year, nr))
             with open(path) as f:
                 content = f.read()
 
