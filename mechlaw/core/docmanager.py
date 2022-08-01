@@ -17,7 +17,7 @@ class DocManager():
     @staticmethod
     def _doc_dir(doc_type):
         lf = settings.LEGAL_FRAMEWORK
-        return os.path.join(settings.BASE_DIR, 'data', lf, doc_type)
+        return os.path.join(settings.DATA_DIR, lf, doc_type)
 
     @staticmethod
     def list(doc_type):
