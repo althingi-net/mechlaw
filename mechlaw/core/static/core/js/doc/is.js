@@ -626,7 +626,7 @@ var process_sentence = function() {
     // Style fractions in text.
     $sen.html($sen.html().replace(
         /(\d+)\/(\d{1,2})[^0-9]/g,
-        '<sup class="fraction-numerator">$1</sup>/ <span class="fraction-denominator">$2</span>'
+        '<sup class="fraction-numerator">$1</sup>/ <span class="fraction-denominator">$2</span> '
     ));
 }
 
