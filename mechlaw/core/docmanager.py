@@ -20,7 +20,9 @@ class DocManager():
         selections = []
 
         for filename in os.listdir(settings.DATA_DIR):
-            if filename[-4:] == '.xml':
+            # Make sure that the filename corresponds to our expectations.
+            dot_count = sum(map(lambda x : 1 if x == '.' else 0, filename))
+            if filename[-4:] == '.xml' and dot_count == 2:
                 selections.append(DocManager._objectify(filename))
 
         return selections
