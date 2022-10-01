@@ -48,8 +48,15 @@ subart { display: block; }
 
 /* numerical article */
 numart { display: block; text-indent: 1.04em; }
-numart > name { font-style: italic; }
+numart > paragraph > name { font-style: italic; }
 numart[style-note="inline-with-parent"] { display: inline; }
+
+/* paragraph */
+paragraph { display: block; text-indent: 1.04em; }
+paragraph:first-of-type { display: inline; text-indent: 0; }
+
+/* sentence title */
+sen-title { font-style: italic; }
 
 /* sentence */
 sen sup { font-size: 60% !important; vertical-align: top; top: 0.89em !important; }
