@@ -32,6 +32,14 @@ var quick_see = function(content, $anchor) {
     $dialog.show();
 }
 
+// Functions for scrolling up/down by only one pixel. Used from console.
+var down = function() {
+    $(window).scrollTop($(window).scrollTop()+1);
+}
+var up = function() {
+    $(window).scrollTop($(window).scrollTop()-1);
+}
+
 $(document).ready(function() {
     $('.quick-dialog').on('mouseleave', function() { $(this).hide(); });
 });
