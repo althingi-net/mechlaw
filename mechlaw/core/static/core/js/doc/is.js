@@ -145,7 +145,7 @@ var process_footnote = function() {
 
         // Iterate through the <location> section to locate the text that we
         // want to show as changed.
-        $location.find('chapter,art,subart,numart,nr-title,name,sen').each(function() {
+        $location.find('chapter,art,subart,numart,paragraph,nr-title,name,sen-title,sen').each(function() {
             var $location_step = $(this);
 
             // Sometimes unusual placements of markers are required. An
@@ -200,8 +200,8 @@ var process_footnote = function() {
                 //
                 // Note that our iterators, start_i and end_i, actually start
                 // at 1 instead of 0.
-                $start_check = $current_start_mark.find(tag_name + '[nr="' + start_i + '"]');
-                $end_check = $current_end_mark.find(tag_name + '[nr="' + end_i + '"]');
+                $start_check = $current_start_mark.children(tag_name + '[nr="' + start_i + '"]');
+                $end_check = $current_end_mark.children(tag_name + '[nr="' + end_i + '"]');
 
                 // If the attempt did not result in a valid node, it means
                 // that there is none explicitly ordered as the one requested.
@@ -223,8 +223,8 @@ var process_footnote = function() {
             else {
                 // If no number is requested (f.e. article 3 or subarticle 5),
                 // we will assume the first node with the given tag name.
-                $current_start_mark = $current_start_mark.find(tag_name).first();
-                $current_end_mark = $current_end_mark.find(tag_name).first();
+                $current_start_mark = $current_start_mark.children(tag_name).first();
+                $current_end_mark = $current_end_mark.children(tag_name).first();
             }
 
             // We may need to access the $location_step node from $start_mark
@@ -362,9 +362,9 @@ var process_footnote = function() {
         else {
             // If there is a <nr-title> tag, we'll want to skip that, so
             // that the opening bracket is placed right after it.
-            var $nr_title = $start_mark.find('> nr-title');
+            var $nr_title = $start_mark.children('nr-title');
             if ($nr_title.length > 0) {
-                $start_mark.find('nr-title').next().first().prepend('[');
+                $start_mark.children('nr-title').next().first().prepend('[');
             }
             else {
                 $start_mark.prepend('[');
@@ -395,7 +395,7 @@ var process_footnote = function() {
         var $mark = $location.parent().parent().closest('law');
 
         // Iterate through the location steps.
-        $location.find('chapter,art,subart,numart,nr-title,name,sen').each(function() {
+        $location.find('chapter,art,subart,numart,paragraph,nr-title,name,sen-title,sen').each(function() {
             $step = $(this);
 
             var tag_name = $step.prop('tagName').toLowerCase();
@@ -408,7 +408,7 @@ var process_footnote = function() {
             }
 
             // Narrow the mark according to the location step.
-            var $check = $mark.find(tag_name + '[nr="' + nr + '"]');
+            var $check = $mark.children(tag_name + '[nr="' + nr + '"]');
 
             // If no location step was found, it is presumably because it's a
             // tag that does not explicitly define a "nr" attribute (such as
@@ -422,7 +422,16 @@ var process_footnote = function() {
                 // Create a selector that finds the tag by its order.
                 var selector = tag_name + ':eq(' + String(parseInt(nr) - 1) + ')';
 
-                if ($mark.find(selector).length == 0) {
+                // I was here. 2022-09-11 14:00:18. Replacement mania in 140/2018,
+                // resulting in the string "einstaklingar í [stjórnum] 1) stjórnmálaflokka"
+                // showing up in multiple places. Styling mistakes in 140/2018 also (CSS),
+                // namely missing italics in numart names and indenting is wrong in some
+                // extra-sentences (probably un-fun to figure out with CSS alone).
+                //
+                // I was here. 2022-09-06 18:20:07. It appears that I've fixed 55/2003. There is a missing deletion marker in 3. gr., but it's missing from the XML.
+                // Now I need to tidy up this thing and check if the changes have messed up others like 19/1940 og 33/1944 or whatever.
+
+                if ($mark.children(selector).length == 0) {
                     // The tag does not exist. We'll have to create it
                     // ourselves. This occurs when a change or deletion marker
                     // should be placed in a tag that is otherwise empty, and
@@ -432,7 +441,7 @@ var process_footnote = function() {
                 }
 
                 // Okay, now it should definitely exist.
-                $mark = $mark.find(selector);
+                $mark = $mark.children(selector);
             }
         });
 
@@ -524,7 +533,7 @@ var process_footnote = function() {
         var $mark = $location.parent().parent().closest('law');
 
         // Iterate through the location steps.
-        $location.find('chapter,art,subart,numart,nr-title,name,sen').each(function() {
+        $location.find('chapter,art,subart,numart,paragraph,nr-title,name,sen-title,sen').each(function() {
             $step = $(this);
 
             var tag_name = $step.prop('tagName').toLowerCase();
@@ -537,7 +546,7 @@ var process_footnote = function() {
             }
 
             // Narrow the mark according to the location step.
-            var $check = $mark.find(tag_name + '[nr="' + nr + '"]');
+            var $check = $mark.children(tag_name + '[nr="' + nr + '"]');
 
             // If no location step was found, it is presumably because it's a
             // tag that does not explicitly define a "nr" attribute (such as
@@ -546,7 +555,7 @@ var process_footnote = function() {
                 $mark = $check;
             }
             else {
-                $mark = $mark.find(tag_name + ':eq(' + String(parseInt(nr) - 1) + ')');
+                $mark = $mark.children(tag_name + ':eq(' + String(parseInt(nr) - 1) + ')');
             }
         });
 
