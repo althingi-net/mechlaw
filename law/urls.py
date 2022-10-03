@@ -4,5 +4,5 @@ from law import views
 
 urlpatterns = [
     path('list/', views.law_list, name='law_list'),
-    path('show/<str:doc_identifier>/', views.law_show, name='law_show'),
+    path('show/<path:identifier>/', views.law_show, name='law_show'),
 ]

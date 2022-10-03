@@ -11,12 +11,12 @@ def law_list(request):
     return render(request, 'law/list.html', ctx)
 
 
-def law_show(request, doc_identifier):
+def law_show(request, identifier):
 
-    doc = Law.get_as_html(doc_identifier)
+    law = Law(identifier)
 
     ctx = {
-        'doc': doc,
+        'law': law,
     }
 
     return render(request, 'law/show.html', ctx)

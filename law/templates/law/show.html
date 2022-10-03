@@ -5,7 +5,7 @@
 {% include 'law/dialog/quick_dialog.html' %}
 
 <div class="legal-document">
-    {{ doc|safe }}
+    {{ law.get_html_content|safe }}
 </div>
 
 {% endblock %}

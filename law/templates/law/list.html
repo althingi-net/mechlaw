@@ -4,7 +4,7 @@
 
 <ul>
 {% for law in laws %}
-    <li><a href="{% url 'law_show' law.url_identifier %}">{{ law }}</a></li>
+    <li><a href="{% url 'law_show' law.identifier %}">{{ law }}</a></li>
 {% endfor %}
 </ul>
 
