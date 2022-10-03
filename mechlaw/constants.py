@@ -1,4 +1,4 @@
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 PROJECT_NAME = _('MechLaw')
 PROJECT_VERSION = '0.1'
