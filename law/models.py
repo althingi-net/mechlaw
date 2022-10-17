@@ -12,7 +12,9 @@ class LawManager():
         laws = []
 
         index = etree.parse(os.path.join(settings.DATA_DIR, 'index.xml')).getroot()
-        for node_law_entry in index.findall('law'):
+        for node_law_entry in index.findall('law-entries/law-entry'):
+            if node_law_entry.attrib['is-empty'] == '0':
+                continue
 
             law = Law(node_law_entry.attrib['identifier'], node_law_entry)
 
