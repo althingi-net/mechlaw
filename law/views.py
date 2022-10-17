@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from law.models import Law
+from law.models import LawManager
 
 def law_list(request):
 
-    laws = Law.list()
+    laws = LawManager.list()
 
     ctx = {
         'laws': laws,
