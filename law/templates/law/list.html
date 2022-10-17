@@ -2,10 +2,17 @@
 
 {% block content %}
 
-<ul>
+<table>
 {% for law in laws %}
-    <li><a href="{% url 'law_show' law.identifier %}">{{ law }}</a></li>
+    <tr class="law-list-row">
+        <td class="law-list-nr">
+            <a href="{% url 'law_show' law.identifier %}">{{ law }}</a>
+        </td>
+        <td class="law-list-name">
+            {{ law.name }}
+        </td>
+    </tr>
 {% endfor %}
-</ul>
+</table>
 
 {% endblock %}

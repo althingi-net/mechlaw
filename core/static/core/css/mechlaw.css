@@ -1,3 +1,9 @@
 body { padding-top: 70px; }
 .quick-dialog { display: none; position: absolute; max-width: 700px; z-index: 100; }
 .quick-dialog .quick-dialog-content { font-size: small; }
+
+/* FIXME: This would be more appropriate handled by a framework's design
+decisions. Done so now due to lack of access to documentation (internet). */
+.law-list-row { border-bottom: 1px solid #f0f0f0; }
+.law-list-row td { padding: 2px 6px 2px 6px; }
+.law-list-nr { text-align: right; vertical-align: top; }
