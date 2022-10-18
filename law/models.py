@@ -1,3 +1,9 @@
+'''
+The purpose of these models is to return the XML data in a form that is
+suitable for JSON output or for use in a template. In essence, to alleviate
+XML work from other parts of this system, or any other system communicating
+with this one.
+'''
 import os
 import re
 from django.conf import settings
@@ -13,46 +19,38 @@ class LawManager():
 
         index = etree.parse(os.path.join(settings.DATA_DIR, 'index.xml')).getroot()
         for node_law_entry in index.findall('law-entries/law-entry'):
-            if node_law_entry.attrib['is-empty'] == '1':
+            if node_law_entry.find('meta/is-empty').text == 'true':
                 continue
 
-            law = Law(node_law_entry.find('identifier').text, node_law_entry)
-
-            laws.append(law)
+            laws.append(LawEntry(node_law_entry))
 
         return laws
 
 
+class LawEntry():
+    '''
+    Intermediary model for a legal entry in the index.
+    '''
+    def __init__(self, node_law_entry):
+        self.identifier = node_law_entry.find('identifier').text
+        self.name = node_law_entry.find('name').text
+
+    def __str__(self):
+        return self.identifier
+
+
 class Law():
 
-    def __init__(self, identifier, node_law_entry=None):
-        # FIXME: Sanitize the input and require `identifier` to make sense.
+    def __init__(self, identifier):
+        self.identifier = identifier
 
-        # I was here. Working on making the index awesomer. Also check `lagasafn-xml`.
-
-        self._identifier = identifier
-        self._name = ''
-
+        # Private containers, essentially for caching.
         self._xml_content = ''
         self._html_content = ''
 
-        self.nr, self.year = self._identifier.split('/')
-
-        if node_law_entry is not None:
-            self._name = node_law_entry.find('name').text
+        self.nr, self.year = self.identifier.split('/')
 
 
-    @property
-    def identifier(self):
-        return self._identifier
-
-
-    @property
-    def name(self):
-        return self._name
-
-
-    @property
     def xml_content(self):
         '''
         Loads and returns the XML of the law.
@@ -82,7 +80,7 @@ class Law():
             return self._html_content
 
         # Make sure we have the XML.
-        xml_content = self.xml_content
+        xml_content = self.xml_content()
 
         # Turn the XML into HTML.
         # FIXME: This could use some explaining. There is a difference between
