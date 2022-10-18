@@ -4,6 +4,24 @@ body { padding-top: 70px; }
 
 /* FIXME: This would be more appropriate handled by a framework's design
 decisions. Done so now due to lack of access to documentation (internet). */
-.law-list-row { border-bottom: 1px solid #f0f0f0; }
-.law-list-row td { padding: 2px 6px 2px 6px; }
-.law-list-nr { text-align: right; vertical-align: top; }
+.law-list-row {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.law-list-row td,
+.law-list-row th {
+    padding: 2px 6px 2px 6px;
+}
+
+.law-list-nr {
+    text-align: right;
+    vertical-align: top;
+}
+
+.law-list-ch {
+    text-align: right;
+}
+
+.law-list-art {
+    text-align: right;
+}
