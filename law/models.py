@@ -13,10 +13,10 @@ class LawManager():
 
         index = etree.parse(os.path.join(settings.DATA_DIR, 'index.xml')).getroot()
         for node_law_entry in index.findall('law-entries/law-entry'):
-            if node_law_entry.attrib['is-empty'] == '0':
+            if node_law_entry.attrib['is-empty'] == '1':
                 continue
 
-            law = Law(node_law_entry.attrib['identifier'], node_law_entry)
+            law = Law(node_law_entry.find('identifier').text, node_law_entry)
 
             laws.append(law)
 
@@ -39,7 +39,7 @@ class Law():
         self.nr, self.year = self._identifier.split('/')
 
         if node_law_entry is not None:
-            self._name = node_law_entry.attrib['name']
+            self._name = node_law_entry.find('name').text
 
 
     @property
