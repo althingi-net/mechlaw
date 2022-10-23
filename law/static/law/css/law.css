@@ -37,6 +37,8 @@ chapter > nr-title { font-weight: bold; }
 chapter > name { font-weight: bold; }
 name sup, nr-title sup { font-size: 60% !important; vertical-align: top; top: 0.89em !important; }
 
+ambiguous-section { font-style: italic; }
+
 /* article */
 art { display: block; margin-top: 0px; }
 art > nr-title { display: inline; font-weight: bold; }
