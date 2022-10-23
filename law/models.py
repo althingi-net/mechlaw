@@ -47,55 +47,80 @@ class Law():
         self.identifier = identifier
 
         # Private containers, essentially for caching.
-        self._xml_content = ''
-        self._html_content = ''
+        self._xml = None
+        self._name = ''
+        self._xml_text = ''
+        self._html_text = ''
 
         self.nr, self.year = self.identifier.split('/')
 
 
-    def xml_content(self):
+    def name(self):
+        if len(self._name):
+            return self._name
+
+        # Has its own cache mechanism, so this is fast.
+        xml = self.xml()
+
+        self._name = xml.find('name').text
+
+        return self._name
+
+
+    def path(self):
+        return os.path.join(settings.DATA_DIR, f'{self.year}.{self.nr}.xml')
+
+
+    def xml(self):
         '''
-        Loads and returns the XML of the law.
+        Returns the law in XML object form.
+        '''
+        if self._xml is None:
+            self._xml = etree.parse(self.path())
+
+        return self._xml
+
+
+    def xml_text(self):
+        '''
+        Returns the law in XML text form.
         '''
 
         # Just return the content if we already have it.
-        if len(self._xml_content) > 0:
-            return self._xml_content
-
-        # Construct full path to XML file.
-        path = os.path.join(settings.DATA_DIR, f'{self.year}.{self.nr}.xml')
+        if len(self._xml_text) > 0:
+            return self._xml_text
 
         # Open and load the XML content.
-        with open(path) as f:
-            self._xml_content = f.read()
+        with open(self.path()) as f:
+            self._xml_text = f.read()
 
-        return self._xml_content
+        return self._xml_text
 
 
-    def html_content(self):
+    def html_text(self):
         '''
-        Loads and returns the HTML of the law.
+        Returns the law in HTML text form.
         '''
 
         # Just return the content if we already have it.
-        if len(self._html_content) > 0:
-            return self._html_content
+        if len(self._html_text) > 0:
+            return self._html_text
 
         # Make sure we have the XML.
-        xml_content = self.xml_content()
+        xml_text = self.xml_text()
 
         # Turn the XML into HTML.
         # FIXME: This could use some explaining. There is a difference between
         # XML and HTML, but it's not obvious from reading this.
         e = re.compile(r'<([a-z\-]+)( ?)([^>]*)\/>')
-        html_content = e.sub(r'<\1\2\3></\1>', self._xml_content)
-        html_content = html_content.replace('<?xml version="1.0" encoding="utf-8"?>', '').strip()
+        result = e.sub(r'<\1\2\3></\1>', xml_text)
+        result = result.replace('<?xml version="1.0" encoding="utf-8"?>', '').strip()
 
         # Assigned separately so that we never have half-completed conversion
         # stored. More principle than practice.
-        self._html_content = html_content
+        self._html_text = result
 
-        return self._html_content
+        return self._html_text
 
 
     def __str__(self):
