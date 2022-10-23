@@ -147,7 +147,7 @@ var process_footnote = function() {
 
         // Iterate through the <location> section to locate the text that we
         // want to show as changed.
-        $location.find('chapter,art,subart,numart,paragraph,nr-title,name,sen-title,sen').each(function() {
+        $location.find('chapter,ambiguous-section,art,art-chapter,subart,numart,paragraph,nr-title,name,sen-title,sen').each(function() {
             var $location_step = $(this);
 
             // Sometimes unusual placements of markers are required. An
@@ -397,7 +397,7 @@ var process_footnote = function() {
         var $mark = $location.parent().parent().closest('law');
 
         // Iterate through the location steps.
-        $location.find('chapter,art,subart,numart,paragraph,nr-title,name,sen-title,sen').each(function() {
+        $location.find('chapter,ambiguous-section,art,art-chapter,subart,numart,paragraph,nr-title,name,sen-title,sen').each(function() {
             $step = $(this);
 
             var tag_name = $step.prop('tagName').toLowerCase();
@@ -535,7 +535,7 @@ var process_footnote = function() {
         var $mark = $location.parent().parent().closest('law');
 
         // Iterate through the location steps.
-        $location.find('chapter,art,subart,numart,paragraph,nr-title,name,sen-title,sen').each(function() {
+        $location.find('chapter,ambiguous-section,art,art-chapter,subart,numart,paragraph,nr-title,name,sen-title,sen').each(function() {
             $step = $(this);
 
             var tag_name = $step.prop('tagName').toLowerCase();
