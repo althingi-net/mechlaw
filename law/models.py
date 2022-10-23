@@ -13,18 +13,43 @@ from lxml import etree
 class LawManager():
 
     @staticmethod
-    def list():
+    def index():
 
+        # FIXME: This XML should be automatically converted to JSON using
+        # some 3rd party library, instead of being converted from one ad-hoc
+        # format to another ad-hoc format here.
+
+        # Return variables.
+        stats = {}
         laws = []
 
+        # Read and parse the index file.
         index = etree.parse(os.path.join(settings.DATA_DIR, 'index.xml')).getroot()
+
+        # Gather statistics.
+        for node_stat in index.findall('stats/'):
+
+            # Dashes are preferred in XML but underscores are needed in
+            # templates.
+            var_name = node_stat.tag.replace('-', '_')
+
+            try:
+                # Convert the value to integer if it's an integer.
+                var_value = int(node_stat.text)
+            except ValueError:
+                # Whatever. It's something else.
+                var_value = node_stat.text
+
+            stats[var_name] = var_value
+
+        # Gather the laws in the index.
         for node_law_entry in index.findall('law-entries/law-entry'):
             if node_law_entry.find('meta/is-empty').text == 'true':
                 continue
 
             laws.append(LawEntry(node_law_entry))
 
-        return laws
+        return stats, laws
 
 
 class LawEntry():

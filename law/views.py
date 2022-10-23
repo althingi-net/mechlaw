@@ -4,9 +4,10 @@ from law.models import LawManager
 
 def law_list(request):
 
-    laws = LawManager.list()
+    stats, laws = LawManager.index()
 
     ctx = {
+        'stats': stats,
         'laws': laws,
     }
     return render(request, 'law/list.html', ctx)

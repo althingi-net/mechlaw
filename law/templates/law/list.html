@@ -2,6 +2,17 @@
 
 {% block content %}
 
+<table class="law-stats">
+    <tr>
+        <th>Total law count:</th>
+        <td>{{ stats.total_count }}</td>
+        <th>Empty law count:</th>
+        <td>{{ stats.empty_count }}</td>
+        <th>Non-empty law count:</th>
+        <td>{{ stats.non_empty_count }}</td>
+    </tr>
+</table>
+
 <table>
     <tr class="law-list-row">
         <th class="law-list-nr">Nr.</th>
