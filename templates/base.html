@@ -14,7 +14,7 @@
         <title>{% block title %}{% trans PROJECT_NAME %}{% endblock %}</title>
 
         <!-- Legal document styling -->
-        <link href="/static/core/css/doc/{{ LEGAL_FRAMEWORK }}.css" rel="stylesheet" />
+        <link href="{% static 'law/css/law.css' %}" rel="stylesheet" />
 
         <!-- Bootstrap core CSS -->
         <link href="{% static 'core/js/bootstrap-3.3.7/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -70,7 +70,7 @@
         <script src="{% static 'core/js/mechlaw.js' %}"></script>
 
         <!-- Legal document JavaScript -->
-        <script src="/static/core/js/doc/{{ LEGAL_FRAMEWORK }}.js"></script>
+        <script src="{% static 'law/js/law.js' %}"></script>
 
 
     </body>

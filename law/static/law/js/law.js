@@ -1,6 +1,8 @@
 
-var IMG_BOX_WHITE = '/static/core/img/box-white.png';
-var IMG_BOX_BLACK = '/static/core/img/box-black.png';
+// We have the choice between hard-coding these paths or leaving them in a
+// template decoupled from this file. We'll hard-code, for now at least.
+var IMG_BOX_WHITE = '/static/law/img/box-white.png';
+var IMG_BOX_BLACK = '/static/law/img/box-black.png';
 
 // Entry function for references, merely for code organizational reasons.
 var follow_refer = function() {
