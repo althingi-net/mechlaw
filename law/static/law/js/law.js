@@ -689,17 +689,15 @@ var get_ordered_footnotes = function() {
 
 
 var make_togglable = function() {
-    // I was here.
-    // Using [Lög um aðild starfsmanna við samruna félaga með takmarkaðri ábyrgð yfir landamæri](http://localhost:8000/law/show/86/2009/) as example.
-    // This works, but it looks rather ugly in the browser.
-    // 1. Make toggle button look great and toggle visually. Might even just use the nr-title/name and gray them out or something.
-    // 2. Make sure that `<refer>` works even though text is hidden.
-    //    Maybe er should place info in the XML about what's visible and what isn't.
-    //    And maybe that's just creating a new problem.
-
     var $chapter = $(this);
 
+    // Find a handle to control toggling. If chapter has no name, try nr-title.
     var $toggle_button = $chapter.children('name');
+    console.log($toggle_button.length);
+    if ($toggle_button.length == 0) {
+        $toggle_button = $chapter.children('nr-title');
+    }
+
     $toggle_button.addClass('toggle-button');
     $toggle_button.attr('data-state', "open");
     $toggle_button.attr('data-chapter-nr', $chapter.attr('nr'));
@@ -721,7 +719,7 @@ var make_togglable = function() {
 
     if ($chapter.prop('tagName') == 'CHAPTER') {
         // If articles in this chapter have names.
-        if ($chapter.find('art > name').length) {
+        if ($chapter.find('art > name, art > nr-title').length) {
             $chapter.children('art').each(make_togglable);
         }
     }
