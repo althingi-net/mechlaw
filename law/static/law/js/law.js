@@ -89,19 +89,21 @@ var process_refer_legal_clause = function($refer) {
     }
     search_string = search_string.trim();
 
-    var targets = $law.find(search_string);
-    if (!targets.prop('tagName')) {
+    var $targets = $law.find(search_string);
+    if (!$targets.prop('tagName')) {
         quick_see(ERROR + ': ' + ERROR_CLAUSE_NOT_FOUND + ': ' + $refer.html(), $refer);
         return;
     }
 
-    var content = '';
-    for (var i = 0; i < targets.length; i++) {
-        var target = targets[i];
-        content += target.innerHTML + '<br />';
-    }
+    // Construct copy of referred content.
+    var $content = $targets.clone();
 
-    quick_see(content, $refer);
+    // Remove classes that might make content invisible.
+    $content.children().removeClass('toggle-button');
+    $content.removeClass('toggle-hidden');
+    $content.children().removeClass('toggle-hidden');
+
+    quick_see($content, $refer);
 }
 
 
@@ -686,6 +688,46 @@ var get_ordered_footnotes = function() {
 }
 
 
+var make_togglable = function() {
+    // I was here.
+    // Using [Lög um aðild starfsmanna við samruna félaga með takmarkaðri ábyrgð yfir landamæri](http://localhost:8000/law/show/86/2009/) as example.
+    // This works, but it looks rather ugly in the browser.
+    // 1. Make toggle button look great and toggle visually. Might even just use the nr-title/name and gray them out or something.
+    // 2. Make sure that `<refer>` works even though text is hidden.
+    //    Maybe er should place info in the XML about what's visible and what isn't.
+    //    And maybe that's just creating a new problem.
+
+    var $chapter = $(this);
+
+    var $toggle_button = $chapter.children('name');
+    $toggle_button.addClass('toggle-button');
+    $toggle_button.attr('data-state', "open");
+    $toggle_button.attr('data-chapter-nr', $chapter.attr('nr'));
+    $toggle_button.on('click', function() {
+        var $subject = $(this).parent();
+
+        if ($toggle_button.attr('data-state') == "closed") {
+            $subject.children().removeClass('toggle-hidden');
+        }
+        else {
+            $subject.children().addClass('toggle-hidden');
+        }
+
+        // But show nr-titles and names.
+        $subject.children('.toggle-button,img,nr-title,name').show();
+
+        $toggle_button.attr('data-state', $toggle_button.attr('data-state') == "closed" ? "open" : "closed");
+    });
+
+    if ($chapter.prop('tagName') == 'CHAPTER') {
+        // If articles in this chapter have names.
+        if ($chapter.find('art > name').length) {
+            $chapter.children('art').each(make_togglable);
+        }
+    }
+}
+
+
 $(document).ready(function() {
 
     $('footnotes').show();
@@ -708,4 +750,7 @@ $(document).ready(function() {
     // Make references show what they're referring to on moues-over.
     $('refer').on('mouseenter', follow_refer);
 
+    // Make chapters togglable and close them all;
+    $('law > chapter').each(make_togglable);
+    //$('.toggle-button').click();
 });
