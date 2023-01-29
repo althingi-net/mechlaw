@@ -716,13 +716,6 @@ var make_togglable = function() {
 
         $toggle_button.attr('data-state', $toggle_button.attr('data-state') == "closed" ? "open" : "closed");
     });
-
-    if ($chapter.prop('tagName') == 'CHAPTER') {
-        // If articles in this chapter have names.
-        if ($chapter.find('art > name, art > nr-title').length) {
-            $chapter.children('art').each(make_togglable);
-        }
-    }
 }
 
 
@@ -749,6 +742,7 @@ $(document).ready(function() {
     $('refer').on('mouseenter', follow_refer);
 
     // Make chapters togglable and close them all;
-    $('law > chapter').each(make_togglable);
+    $('law chapter').each(make_togglable);
+    $('law art').each(make_togglable);
     //$('.toggle-button').click();
 });
