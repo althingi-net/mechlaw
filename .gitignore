@@ -11,5 +11,6 @@
 *.sqlite
 *.sqlite3
 *.mo
+Session.vim
 
 local_settings.py
