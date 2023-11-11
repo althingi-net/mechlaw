@@ -426,15 +426,6 @@ var process_footnote = function() {
                 // Create a selector that finds the tag by its order.
                 var selector = tag_name + ':eq(' + String(parseInt(nr) - 1) + ')';
 
-                // I was here. 2022-09-11 14:00:18. Replacement mania in 140/2018,
-                // resulting in the string "einstaklingar í [stjórnum] 1) stjórnmálaflokka"
-                // showing up in multiple places. Styling mistakes in 140/2018 also (CSS),
-                // namely missing italics in numart names and indenting is wrong in some
-                // extra-sentences (probably un-fun to figure out with CSS alone).
-                //
-                // I was here. 2022-09-06 18:20:07. It appears that I've fixed 55/2003. There is a missing deletion marker in 3. gr., but it's missing from the XML.
-                // Now I need to tidy up this thing and check if the changes have messed up others like 19/1940 og 33/1944 or whatever.
-
                 if ($mark.children(selector).length == 0) {
                     // The tag does not exist. We'll have to create it
                     // ourselves. This occurs when a change or deletion marker
@@ -693,7 +684,6 @@ var make_togglable = function() {
 
     // Find a handle to control toggling. If chapter has no name, try nr-title.
     var $toggle_button = $chapter.children('name');
-    console.log($toggle_button.length);
     if ($toggle_button.length == 0) {
         $toggle_button = $chapter.children('nr-title');
     }
