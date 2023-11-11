@@ -4,6 +4,12 @@
 /*** Basics ***/
 .legal-document { font-family: "Droid Serif", serif; color: #242424; line-height: 1.5em; font-size: 16px; margin: 0px 20px 0px 20px; }
 
+.legal-document.menu { position: fixed; border-right: 1px solid #dddddd; margin: 0px; margin-top: -70px; padding: 60px 10px; 0px 0px; width: 500px; height: 100vh; font-size: 13px; overflow: scroll; }
+.legal-document.menu a { cursor: pointer; }
+
+/*** Basics ***/
+.legal-document.content { padding-left: 560px; max-width: 1730px; }
+
 /* For scrolling consistency with Althingi.is */
 /*.legal-document { margin-top: 354px; }*/
 

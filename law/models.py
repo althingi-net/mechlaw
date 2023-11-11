@@ -76,6 +76,7 @@ class Law():
         self._name = ''
         self._xml_text = ''
         self._html_text = ''
+        self._chapters = []
 
         self.nr, self.year = self.identifier.split('/')
 
@@ -91,6 +92,45 @@ class Law():
 
         return self._name
 
+    def chapters(self):
+        if len(self._chapters):
+            return self._chapters
+
+        xml = self.xml()
+
+        for chapter in xml.findall("chapter"):
+            _chapter = {
+                "nr": chapter.attrib["nr"],
+                "articles": [],
+            }
+
+            # Add nr-title if it exists.
+            nr_title = chapter.find("nr-title")
+            if nr_title is not None:
+                _chapter["nr_title"] = nr_title.text
+
+            # Add name if it exists.
+            name = chapter.find("name")
+            if name is not None:
+                _chapter["name"] = name.text
+
+            # Add articles.name
+            for art in chapter.findall("art"):
+                _art = {
+                    "nr": art.attrib["nr"],
+                    "nr_title": art.find("nr-title").text,
+                }
+
+                # Add name if it exists.
+                art_name = art.find("name")
+                if art_name is not None:
+                    _art["name"] = art_name.text
+
+                _chapter["articles"].append(_art)
+
+            self._chapters.append(_chapter)
+
+        return self._chapters
 
     def path(self):
         return os.path.join(settings.DATA_DIR, f'{self.year}.{self.nr}.xml')
