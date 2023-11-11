@@ -213,7 +213,7 @@ var process_footnote = function() {
                     $current_start_mark = $start_check;
                 }
                 else {
-                    $current_start_mark = $current_start_mark.find(tag_name + ':eq(' + String(parseInt(start_i) - 1) + ')');
+                    $current_start_mark = $current_start_mark.children(tag_name + ':eq(' + String(parseInt(start_i) - 1) + ')');
                 }
 
                 // Same story as with $current_start_mark above.
@@ -221,7 +221,7 @@ var process_footnote = function() {
                     $current_end_mark = $end_check;
                 }
                 else {
-                    $current_end_mark = $current_end_mark.find(tag_name + ':eq(' + String(parseInt(end_i) - 1) + ')');
+                    $current_end_mark = $current_end_mark.children(tag_name + ':eq(' + String(parseInt(end_i) - 1) + ')');
                 }
             }
             else {
