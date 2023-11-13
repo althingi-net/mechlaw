@@ -6,7 +6,7 @@ var quick_see = function(content, $anchor) {
 
     // Calculate positioning. The dialog's surface should always be contained
     // within the container.
-    var $container = $anchor.closest('div.container');
+    var $container = $anchor.closest('law');
     var min_left = $container.offset().left;
     var max_left = $container.width() + min_left - $dialog.width();
     var max_top = document.documentElement.scrollHeight - $dialog.height();
