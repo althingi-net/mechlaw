@@ -96,7 +96,12 @@ var process_refer_legal_clause = function($refer) {
         return response.json();
     }).then((data) => {
         if (data.xml_result) {
-            let $content = $(data.xml_result);
+
+            let $content = "";
+            data.xml_result.map((clause) => {
+                $content += clause;
+            });
+
             quick_see($content, $refer);
             return;
         }
