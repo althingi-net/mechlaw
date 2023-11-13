@@ -32,15 +32,11 @@ var follow_refer = function() {
 // Process a reference that refers to a legal clause in Icelandic law.
 var process_refer_legal_clause = function($refer) {
 
-    if ($refer.attr('law-nr')) {
-        quick_see(ERROR + ': ' + ERROR_NOT_IMPLEMENTED_YET, $refer);
-        return;
-    }
-
     $law = $refer.closest('law');
 
     var supported_tags = ['art', 'subart', 'numart'];
 
+    // Construct search string as CSS selector.
     var search_string = '';
     for (i in supported_tags) {
         var tag = supported_tags[i]
@@ -89,21 +85,39 @@ var process_refer_legal_clause = function($refer) {
     }
     search_string = search_string.trim();
 
-    var $targets = $law.find(search_string);
-    if (!$targets.prop('tagName')) {
-        quick_see(ERROR + ': ' + ERROR_CLAUSE_NOT_FOUND + ': ' + $refer.html(), $refer);
-        return;
-    }
+    // Construct URL.
+    let url = "/api/law/segment/";
+    url += "?law_nr=" + $refer.attr("law-nr");
+    url += "&law_year=" + $refer.attr("law-year");
+    url += "&css_selector=" + encodeURI(search_string);
 
-    // Construct copy of referred content.
-    var $content = $targets.clone();
+    // Get data.
+    fetch(url).then((response) => {
+        return response.json();
+    }).then((data) => {
+        if (data.xml_result) {
+            let $content = $(data.xml_result);
+            quick_see($content, $refer);
+            return;
+        }
 
-    // Remove classes that might make content invisible.
-    $content.children().removeClass('toggle-button');
-    $content.removeClass('toggle-hidden');
-    $content.children().removeClass('toggle-hidden');
+        // Something went wrong at this point.
+        let error_msg = "Unknown error";  // Default.
+        if (data.detail) {
+            // Yay! We might know what's wrong!
+            error_msg = data.detail;
+        }
 
-    quick_see($content, $refer);
+        // Log error for developer.
+        console.error("Remote error:", error_msg);
+
+        // Display error to user.
+        let $error = $('<p class="alert alert-danger">' + error_msg + '</p>');
+        quick_see($error, $refer);
+
+    }).catch((error) => {
+        console.error(error);
+    });
 }
 
 
