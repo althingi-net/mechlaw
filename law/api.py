@@ -1,3 +1,4 @@
+from law.exceptions import LawException
 from law.models import Law
 from lxml import etree
 from lxml.etree import Element
@@ -24,7 +25,10 @@ def convert_to_text(element: Element):
 
 @api.get("segment/")
 def segment(request, law_nr: int, law_year: int, css_selector: str):
-    law = Law("%s/%s" % (law_nr, law_year))
+    try:
+        law = Law("%s/%s" % (law_nr, law_year))
+    except LawException as ex:
+        raise HttpError(400, ex.args[0])
 
     selector = CSSSelector(css_selector)
     elements = selector(law.xml())

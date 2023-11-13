@@ -7,6 +7,7 @@ with this one.
 import os
 import re
 from django.conf import settings
+from law.exceptions import LawException
 from lxml import etree
 
 
@@ -76,6 +77,9 @@ class Law:
         self._chapters = []
 
         self.nr, self.year = self.identifier.split("/")
+
+        if not os.path.isfile(self.path()):
+            raise LawException("Could not find law '%s'" % self.identifier)
 
     def name(self):
         if len(self._name):
