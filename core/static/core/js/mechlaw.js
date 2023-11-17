@@ -30,6 +30,9 @@ var quick_see = function(content, $anchor) {
 
     // Show the dialog.
     $dialog.show();
+
+    // Activate refer-events on content in dialog.
+    $dialog.find('refer').on('mouseenter', follow_refer);
 }
 
 // Functions for scrolling up/down by only one pixel. Used from console.
