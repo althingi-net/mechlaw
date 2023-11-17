@@ -16,6 +16,9 @@ var follow_refer = function() {
     if (refer_type == 'legal-clause') {
         process_refer_legal_clause($refer);
     }
+    else if (refer_type == 'legal-clause-from-text') {
+        process_refer_legal_clause_from_text($refer);
+    }
     else if (refer_type == 'law') {
         // Temporarily using process_refer_external, as opposed to its own
         // process_refer_law function. Processing will almost certainly been
@@ -29,10 +32,47 @@ var follow_refer = function() {
     }
 }
 
+var process_refer_legal_clause_from_text = function($refer) {
+    // Construct URL.
+    let url = "/api/law/parse-reference/";
+    url += "?reference=" + encodeURI($refer.text());
+
+    // Get data.
+    fetch(url).then((response) => {
+        return response.json();
+    }).then((data) => {
+        if (data.segment) {
+
+            let $content = "";
+            data.segment.xml_result.map((clause) => {
+                $content += clause;
+            });
+
+            quick_see($content, $refer);
+            return;
+        }
+
+        // Something went wrong at this point.
+        let error_msg = "Unknown error";  // Default.
+        if (data.detail) {
+            // Yay! We might know what's wrong!
+            error_msg = data.detail;
+        }
+
+        // Log error for developer.
+        console.error("Remote error:", error_msg);
+
+        // Display error to user.
+        let $error = $('<p class="alert alert-danger">' + error_msg + '</p>');
+        quick_see($error, $refer);
+
+    }).catch((error) => {
+        console.error(error);
+    });
+}
+
 // Process a reference that refers to a legal clause in Icelandic law.
 var process_refer_legal_clause = function($refer) {
-
-    $law = $refer.closest('law');
 
     var supported_tags = ['art', 'subart', 'numart'];
 
@@ -95,10 +135,10 @@ var process_refer_legal_clause = function($refer) {
     fetch(url).then((response) => {
         return response.json();
     }).then((data) => {
-        if (data.xml_result) {
+        if (data.segment) {
 
             let $content = "";
-            data.xml_result.map((clause) => {
+            data.segment.xml_result.map((clause) => {
                 $content += clause;
             });
 
