@@ -2,3 +2,4 @@ django
 lxml
 django-ninja
 cssselect
+whitenoise
