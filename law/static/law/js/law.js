@@ -787,7 +787,7 @@ $(document).ready(function() {
     $minister_clause.html(new_text);
     $minister_clause.show();
 
-    // Make references show what they're referring to on moues-over.
+    // Make references show what they're referring to on mouse-over.
     $('refer').on('mouseenter', follow_refer);
 
     // Make chapters togglable and close them all;
