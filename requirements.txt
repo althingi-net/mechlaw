@@ -3,3 +3,4 @@ lxml
 django-ninja
 cssselect
 whitenoise
+daphne
