@@ -17,7 +17,8 @@ def convert_to_text(elements: List[Element]):
     # Cluck together all text in all descendant nodes.
     for element in elements:
         for child in element.iterdescendants():
-            result += child.text.strip() + " "
+            if child.text is not None:
+                result += child.text.strip() + " "
         result = result.strip() + "\n"
 
     # Remove double spaces that may result from concatenation above.
