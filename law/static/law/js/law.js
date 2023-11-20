@@ -17,7 +17,7 @@ var follow_refer = function() {
         process_refer_legal_clause($refer);
     }
     else if (refer_type == 'legal-clause-from-text') {
-        process_refer_legal_clause_from_text($refer);
+        process_refer_legal_clause_from_text($refer.text(), $refer);
     }
     else if (refer_type == 'law') {
         // Temporarily using process_refer_external, as opposed to its own
@@ -32,10 +32,10 @@ var follow_refer = function() {
     }
 }
 
-var process_refer_legal_clause_from_text = function($refer) {
+var process_refer_legal_clause_from_text = function(text, $refer) {
     // Construct URL.
     let url = "/api/law/parse-reference/";
-    url += "?reference=" + encodeURI($refer.text());
+    url += "?reference=" + encodeURI(text);
 
     // Get data.
     fetch(url).then((response) => {
@@ -794,4 +794,43 @@ $(document).ready(function() {
     $('law chapter').each(make_togglable);
     $('law art').each(make_togglable);
     //$('.toggle-button').click();
+
+    $('law').on('mouseup', function(event) {
+        let selectedText = window.getSelection().toString();
+
+        // We should see at leats one of these in the string to bother looking it up.
+        known_parts = [
+            " gr.",
+            " mgr.",
+            " tölul.",
+            "-lið",
+        ]
+        let possibly_legit = false;
+        known_parts.map((part) => {
+            if (selectedText.indexOf(part) > -1) {
+                possibly_legit = true;
+            }
+        });
+
+        if (possibly_legit) {
+
+            // An incomplete experiment that needs finishing before it's safe to use.
+            // It adds the law identifier to the selected text if it's missing.
+            // The dangerous thing about it is that it assumes that the
+            // reference refers to the open law, and not some other. The user
+            // may make a mistake by not including the law identifier, or the
+            // identifier may not in fact be available, like in "3. gr. sömu
+            // laga", referring to some other law that was mentioned previously.
+            /*
+            const pattern = /^\d{1,3}\/\d{4}$/;
+            const contains_law = pattern.test(selectedText);
+            if (!contains_law) {
+                selectedText += " laga nr. " + LAW_IDENTIFIER;
+            }
+            */
+
+            const $anchor = $(document.elementFromPoint(event.clientX, event.clientY));
+            process_refer_legal_clause_from_text(selectedText, $anchor);
+        }
+    });
 });

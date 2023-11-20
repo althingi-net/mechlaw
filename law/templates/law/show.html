@@ -2,6 +2,10 @@
 
 {% block javascript %}
 <script language="javascript" type="text/javascript">
+    // Constants available to JavaScript.
+    const LAW_IDENTIFIER = "{{ law.identifier }}";
+
+    // Activate menu items.
     var elements = document.querySelectorAll(".menu-item");
     elements.forEach(function(element) {
         element.addEventListener('click', function(event) {
