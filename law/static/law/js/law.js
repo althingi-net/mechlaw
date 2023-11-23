@@ -795,6 +795,14 @@ $(document).ready(function() {
     $('law art').each(make_togglable);
     //$('.toggle-button').click();
 
+    // Hook up open-all and close-all buttons for togglables.
+    $("#btn-close-all").click(function() {
+        $(".toggle-button[data-state='open']").click();
+    });
+    $("#btn-open-all").click(function() {
+        $(".toggle-button[data-state='closed']").click();
+    });
+
     $('law').on('mouseup', function(event) {
         let selectedText = window.getSelection().toString();
 

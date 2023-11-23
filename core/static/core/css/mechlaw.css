@@ -7,6 +7,10 @@ body { padding-top: 70px; }
 .toggle-button[data-state="closed"] { color: #808080; cursor: pointer; }
 .toggle-hidden { display: none; }
 
+.navbar-buttons {
+    margin-top: 8px;
+}
+
 /* FIXME: This would be more appropriate handled by a framework's design
 decisions. Done so now due to lack of access to documentation (internet). */
 
