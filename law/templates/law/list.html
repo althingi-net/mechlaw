@@ -1,25 +1,26 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block content %}
 
 <div class="container">
 <table class="law-stats">
     <tr>
-        <th>Total law count:</th>
+        <th>{% trans 'Total law count' %}:</th>
         <td>{{ stats.total_count }}</td>
-        <th>Empty law count:</th>
+        <th>{% trans 'Empty law count' %}:</th>
         <td>{{ stats.empty_count }}</td>
-        <th>Non-empty law count:</th>
+        <th>{% trans 'Non-empty law count' %}:</th>
         <td>{{ stats.non_empty_count }}</td>
     </tr>
 </table>
 
 <table>
     <tr class="law-list-row">
-        <th class="law-list-nr">Nr.</th>
-        <th class="law-list-name">Name</th>
-        <th class="law-list-ch">Ch.</th>
-        <th class="law-list-art">Art.</th>
+        <th class="law-list-nr">{% trans 'Nr.' %}</th>
+        <th class="law-list-name">{% trans 'Name' %}</th>
+        <th class="law-list-ch">{% trans 'Ch.' %}</th>
+        <th class="law-list-art">{% trans 'Art.' %}</th>
     </tr>
     {% for law in laws %}
         <tr class="law-list-row">
