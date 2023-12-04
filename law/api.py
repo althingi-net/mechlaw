@@ -1,11 +1,14 @@
 from copy import deepcopy
+from django.http import HttpResponse
 from law.exceptions import LawException
 from law.models import Law
 from lxml import etree
 from lxml.etree import Element
 from lxml.cssselect import CSSSelector
+from ninja import File
 from ninja import NinjaAPI
 from ninja.errors import HttpError
+from ninja.files import UploadedFile
 from typing import List
 
 api = NinjaAPI()
@@ -149,3 +152,47 @@ def get_segment(request, law_nr: int, law_year: int, css_selector: str):
             "xml_result": xml_result,
         }
     }
+
+
+@api.post("normalize/")
+def normalize(request, input_file: UploadedFile = File(...)):
+    input_data = input_file.read()
+
+    xml_doc = etree.fromstring(input_data)
+
+    # Strip all elements in document.
+    for element in xml_doc.iter():
+        # If the element has text, strip leading and trailing whitespace
+        if element.text:
+            element.text = element.text.strip()
+
+        # If the element has tail, strip leading and trailing whitespace
+        if element.tail:
+            element.tail = element.tail.strip()
+
+    # Re-encode `minister-clause` because it's actually HTML with some
+    # exporting quirks (from the original HTML-exporting software) that we
+    # also imitate.
+    minister_clause = xml_doc.find("minister-clause")
+    encoded_clause = ''
+    for child in minister_clause:
+        encoded_clause += etree.tostring(child, encoding='unicode')
+    encoded_clause = encoded_clause.replace(">", "> ")
+    encoded_clause = encoded_clause.replace("<", " <")
+    encoded_clause = encoded_clause.replace("  ", " ").strip()
+    for child in list(minister_clause):
+        minister_clause.remove(child)
+    minister_clause.text = encoded_clause
+
+    # For details, see comparable section in `lagasafn-xml` project.
+    import xml.dom.minidom
+    xml = xml.dom.minidom.parseString(
+        etree.tostring(
+            xml_doc, pretty_print=True, xml_declaration=True, encoding="utf-8"
+        ).decode("utf-8")
+    )
+    normalized_file = xml.toprettyxml(
+        indent="  ", encoding="utf-8"
+    ).decode("utf-8")
+
+    return HttpResponse(normalized_file, content_type="text/xml")
