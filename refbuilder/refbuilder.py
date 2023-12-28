@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
-import os
-import dotenv
-import openai
-from openai import OpenAI
 import click
-from lxml import etree
-import time
+import dotenv
 import json
+import openai
 import os
+import time
+from openai import OpenAI
+from lxml import etree
 
 PROMPT_PATH = "prompts/"
 
@@ -22,10 +21,12 @@ most_recent_prompt = ""
 
 def find_most_recent_prompt():
     """
-    Prompt files have version numbers in their names. This function finds the most recent one.
+    Prompt files have version numbers in their names. This function finds the
+    most recent one.
     Example: "v0.02.txt" is more recent than "v0.01.txt".
     """
     global most_recent_prompt
+
     def find_highest_version_filename(folder_path):
         highest_version = -1
         highest_version_filename = ""
@@ -33,7 +34,7 @@ def find_most_recent_prompt():
         for filename in os.listdir(folder_path):
             if filename.startswith("v") and filename.endswith(".txt"):
                 # Converting this to float is dumb but good enough for now.
-                version = float(filename[1:-4]) # Remove "v" and ".txt"
+                version = float(filename[1:-4])  # Remove "v" and ".txt"
                 if version > highest_version:
                     highest_version = version
                     highest_version_filename = filename
@@ -43,7 +44,7 @@ def find_most_recent_prompt():
     most_recent_prompt = find_highest_version_filename(PROMPT_PATH)
 
 
-def check_status(run_id,thread_id):
+def check_status(run_id, thread_id):
     run = client.beta.threads.runs.retrieve(
         thread_id=thread_id,
         run_id=run_id,
@@ -57,14 +58,19 @@ def wait_on_run(run, thread, article=None):
     status = ""
     while status != "completed":
         status = check_status(run.id, thread.id)
-        print("\r[%0.2lf][%s] Waiting (article %s)         " % (total, status, article), end='');
+        print(
+            "\r[%0.2lf][%s] Waiting (article %s)         " % (total, status, article),
+            end="",
+        )
         total += SLEEP_TIME
         time.sleep(SLEEP_TIME)
-    print("\r[%0.2lf][%s] Done                  " % (total, status), end='\n')
+    print("\r[%0.2lf][%s] Done                  " % (total, status), end="\n")
 
 
 def get_references_from_article(xml_struct):
-    obj_xml = etree.tostring(xml_struct, pretty_print=False, xml_declaration=False, encoding='utf-8').decode('utf-8')
+    obj_xml = etree.tostring(
+        xml_struct, pretty_print=False, xml_declaration=False, encoding="utf-8"
+    ).decode("utf-8")
     obj_xml = str(obj_xml)
 
     thread = client.beta.threads.create()
@@ -96,12 +102,13 @@ def get_references_from_article(xml_struct):
 
     return obj_xml, refs
 
+
 def process_xml(tree, output):
     for item in tree:
-        if item.tag == 'chapter':
+        if item.tag == "chapter":
             process_xml(item, output)
 
-        if item.tag == 'art':
+        if item.tag == "art":
             for a in item.findall("footnote"):
                 print(f"Removed footnote '{a}'")
                 item.remove(a)
@@ -118,23 +125,31 @@ def process_xml(tree, output):
 def cli():
     pass
 
+
 @cli.command()
-@click.argument('input', type=click.File('rb'))
-@click.option('--output', type=click.Path(), default='output.json', help="The output file to write to.") 
+@click.argument("input", type=click.File("rb"))
+@click.option(
+    "--output",
+    type=click.Path(),
+    default="output.json",
+    help="The output file to write to.",
+)
 def process(input, output):
     inxml = input.read()
     tree = etree.fromstring(inxml)
 
-    output = open(output, 'w+')
+    output = open(output, "w+")
 
     if len(tree) == 0:
         print("No items found in XML. Exiting.")
         return
 
     if assistant == "":
-        print("You don't have an assistant set up in .env. Fix this before trying to process anything!")
+        print(
+            "You don't have an assistant set up in .env. Fix this before trying to process anything!"
+        )
         return
-    
+
     try:
         client.beta.assistants.retrieve(assistant_id=assistant)
     except openai.NotFoundError:
@@ -145,20 +160,31 @@ def process(input, output):
 
 
 @cli.command()
-@click.option('--model', default="gpt-3.5-turbo", help="The model to use for the assistant. Check available models on OpenAI Documentation.")
-@click.option('--prompt-file', type=click.Path(), default='', help="The prompt file to use. Check the prompts/ folder for available prompts or make your own.")
-@click.option('--name', default="Reference Builder", help="The name of the assistant.")
+@click.option(
+    "--model",
+    default="gpt-3.5-turbo",
+    help="The model to use for the assistant. Check available models on OpenAI Documentation.",
+)
+@click.option(
+    "--prompt-file",
+    type=click.Path(),
+    default="",
+    help="The prompt file to use. Check the prompts/ folder for available prompts or make your own.",
+)
+@click.option("--name", default="Reference Builder", help="The name of the assistant.")
 def make_assistant(prompt_file, model, name):
     global assistant
     if assistant != "":
-        print("You already have an assistant set up. Unset the value in .env if you want to make a new one.")
+        print(
+            "You already have an assistant set up. Unset the value in .env if you want to make a new one."
+        )
         return
 
-    if prompt_file == '':
+    if prompt_file == "":
         prompt_file = PROMPT_PATH + most_recent_prompt
         print("No prompt file supplied. Using most recent prompt file: " + prompt_file)
-    prompt = open(prompt_file, 'r').read()
-    
+    prompt = open(prompt_file, "r").read()
+
     print(f"Creating assistant.\nModel: {model}\nPrompt: '''\n{prompt}\n'''")
     new_assistant = client.beta.assistants.create(
         name=name,
@@ -169,19 +195,30 @@ def make_assistant(prompt_file, model, name):
 
 
 @cli.command()
-@click.option('--model', default="gpt-3.5-turbo", help="The model to use for the assistant. Check available models on OpenAI Documentation.")
-@click.option('--prompt-file', type=click.Path(), default='', help="The prompt file to use. Check the prompts/ folder for available prompts or make your own.")
-@click.option('--name', default="Reference Builder", help="The name of the assistant.")
+@click.option(
+    "--model",
+    default="gpt-3.5-turbo",
+    help="The model to use for the assistant. Check available models on OpenAI Documentation.",
+)
+@click.option(
+    "--prompt-file",
+    type=click.Path(),
+    default="",
+    help="The prompt file to use. Check the prompts/ folder for available prompts or make your own.",
+)
+@click.option("--name", default="Reference Builder", help="The name of the assistant.")
 def update_assistant(prompt_file, model, name):
     global assistant
     if assistant == "":
-        print("You don't have an assistant set up in .env. Fix this before trying to update anything!")
+        print(
+            "You don't have an assistant set up in .env. Fix this before trying to update anything!"
+        )
 
-    if prompt_file == '':
+    if prompt_file == "":
         prompt_file = PROMPT_PATH + most_recent_prompt
         print("No prompt file supplied. Using most recent prompt file: " + prompt_file)
 
-    prompt = open(prompt_file, 'r').read()
+    prompt = open(prompt_file, "r").read()
 
     print(f"Updating assistant.\nModel: {model}\nPrompt: '''\n{prompt}\n'''")
     updated_assistant = client.beta.assistants.update(
@@ -191,7 +228,6 @@ def update_assistant(prompt_file, model, name):
         model=model,
     )
     print("Assistant updated.")
-
 
 
 if __name__ == "__main__":
