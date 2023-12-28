@@ -1,5 +1,6 @@
 import os
 import dotenv
+import openai
 from openai import OpenAI
 import click
 from lxml import etree
@@ -85,24 +86,19 @@ def get_references_from_article(xml_struct):
     refs = []
     for m in messages:
         for t in m.content:
-            newrefs = json.loads(t.text.value)
+            try:
+                newrefs = json.loads(t.text.value)
+            except json.decoder.JSONDecodeError:
+                print(f"JSON decode error. Input was: '{t.text.value}'")
+                continue
             refs += newrefs
 
     return obj_xml, refs
 
-def process(tree):
-    # TODO:
-    # - [ ] Add a check to see if the assistant is ready
-    # - [ ] Add check to see if the item is too long for the assistant
-    # - [ ] Add check to see if the assistant is out of credits
-
-    if assistant == "":
-        print("You don't have an assistant set up in .env. Fix this before trying to process anything!")
-        return
-
+def process_xml(tree, output):
     for item in tree:
         if item.tag == 'chapter':
-            process(item)
+            process_xml(item, output)
 
         if item.tag == 'art':
             for a in item.findall("footnote"):
@@ -112,7 +108,10 @@ def process(tree):
             all_references.append((xml, references))
 
         # Do this after each item has been processed, so that we don't lose any data if the script crashes
-        json.dump(all_references, open("references.json", "w"), indent=2)
+        output.truncate(0)
+        output.seek(0)
+        json.dump(all_references, output, indent=2)
+
 
 @click.group()
 def cli():
@@ -120,12 +119,28 @@ def cli():
 
 @cli.command()
 @click.argument('input', type=click.File('rb'))
-def process(input):
+@click.option('--output', type=click.Path(), default='output.json', help="The output file to write to.") 
+def process(input, output):
     inxml = input.read()
     tree = etree.fromstring(inxml)
 
-    print("XML loaded.")
-    process(tree)
+    output = open(output, 'w+')
+
+    if len(tree) == 0:
+        print("No items found in XML. Exiting.")
+        return
+
+    if assistant == "":
+        print("You don't have an assistant set up in .env. Fix this before trying to process anything!")
+        return
+    
+    try:
+        client.beta.assistants.retrieve(assistant_id=assistant)
+    except openai.NotFoundError:
+        print("Assistant not found. Update it with 'update_assistant' command.")
+        return
+
+    process_xml(tree, output)
 
 
 @cli.command()
