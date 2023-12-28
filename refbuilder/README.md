@@ -41,3 +41,9 @@ command:
 python refbuilder.py update_assistant
 ```
 with the parameters it offers.
+
+
+# TODO
+
+ * [ ] Have prompt files include info to define which model they prefer and such.
+ * [ ] Handle automatic partitioning of inputs into smaller units if the law is too big for the model.
