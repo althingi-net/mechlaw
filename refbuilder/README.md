@@ -27,7 +27,7 @@ using this will incur API costs.
 
 If you don't have an Assistant set up already, the following command will help you get set up:
 ```
-python refbuilder.py make_assistant
+python refbuilder.py make-assistant
 ```
 It will output an ID that you can put in your `.env` file.
 
@@ -38,7 +38,7 @@ If you want to update the assistant, you can do so via the OpenAI assistants edi
 command:
 
 ```
-python refbuilder.py update_assistant
+python refbuilder.py update-assistant
 ```
 with the parameters it offers.
 
