@@ -803,6 +803,18 @@ $(document).ready(function() {
         $(".toggle-button[data-state='closed']").click();
     });
 
+    // Hook up the showing and hiding of subart numbers.
+    $("#btn-show-subart-nrs").click(function() {
+        $("subart").each(function() {
+            let $this = $(this);
+            let $target = $this.find("sen").first();
+            $target.prepend('<span class="mgr">' + $this.attr("nr") + ' mgr.</span> ');
+        });
+    });
+    $("#btn-hide-subart-nrs").click(function() {
+        $("subart .mgr").remove();
+    });
+
     $('law').on('mouseup', function(event) {
         let selectedText = window.getSelection().toString();
 

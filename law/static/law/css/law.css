@@ -53,6 +53,7 @@ art > name { font-style: italic; }
 
 /* subarticle */
 subart { display: block; }
+subart .mgr { font-weight: bold; }
 
 /* numerical article */
 numart { display: block; text-indent: 1.04em; }
