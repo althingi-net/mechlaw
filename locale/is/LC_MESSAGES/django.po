@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-23 16:23+0000\n"
+"POT-Creation-Date: 2024-01-29 22:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,10 +47,18 @@ msgid "Art."
 msgstr "Gr."
 
 #: law/templates/law/show.html:27
+msgid "Hide subart numbers"
+msgstr "Fela númer málsgreina"
+
+#: law/templates/law/show.html:28
+msgid "Show subart numbers"
+msgstr "Sýna númer málsgreina"
+
+#: law/templates/law/show.html:30
 msgid "Close all"
 msgstr "Loka öllu"
 
-#: law/templates/law/show.html:28
+#: law/templates/law/show.html:31
 msgid "Open all"
 msgstr "Opna allt"
 
