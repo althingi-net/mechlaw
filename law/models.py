@@ -184,5 +184,8 @@ class Law:
 
         return self._html_text
 
+    def editor_url(self):
+        return settings.EDITOR_URL % (self.year, self.nr)
+
     def __str__(self):
         return self.identifier

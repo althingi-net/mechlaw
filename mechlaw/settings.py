@@ -104,5 +104,9 @@ STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 
+# External URLs.
+EDITOR_URL = "https://frumvarp.althingi.net/law/%s.%s"
+
+
 from mechlaw.local_settings import *
 from mechlaw.constants import *
