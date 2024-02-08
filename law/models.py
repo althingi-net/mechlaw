@@ -4,6 +4,7 @@ suitable for JSON output or for use in a template. In essence, to alleviate
 XML work from other parts of this system, or any other system communicating
 with this one.
 """
+
 import os
 import re
 from django.conf import settings
