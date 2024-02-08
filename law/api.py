@@ -1,4 +1,5 @@
-from copy import deepcopy
+from core.exceptions import ReferenceParsingException
+from core.utils import make_css_selector
 from django.http import HttpResponse
 from law.exceptions import LawException
 from law.models import Law
@@ -35,20 +36,6 @@ def convert_to_text(elements: List[Element]):
 def parse_reference(request, reference):
     # TODO: Sanity check on reference to prevent garbage input.
     # ...
-
-    def fetch_nr(word):
-        """
-        Utility function to return the number or letter of a reference part.
-        Examples:
-            "3. gr." should return "3"
-            "B-lið" should return "B"
-        """
-        if word[-4:] == "-lið":
-            nr = word[:word.find('-')]
-        else:
-            nr = word.strip(".")
-
-        return nr
 
     law_nr = None
     law_year = None
@@ -89,49 +76,11 @@ def parse_reference(request, reference):
     # At this point the remaining words should begin with something we can
     # process into a location inside a document.
 
-    # This gets converted into the CSS selector later. The reason for these
-    # being separate variables is specific to CSS due to how `or` in CSS is
-    # only possible using multiple selectors.
-    trails = []
-    current_trail = []
-
-    while len(words) > 0:
-        next_word = words.pop(0)
-        step = None
-        if next_word == "gr.":
-            step = {"tag": "art", "nr": fetch_nr(words[0])}
-            current_trail.append(step)
-            words.pop(0)
-        elif next_word == "mgr.":
-            step = {"tag": "subart", "nr": fetch_nr(words[0])}
-            current_trail.append(step)
-            words.pop(0)
-        elif next_word == "tölul.":
-            step = {"tag": "numart", "nr": fetch_nr(words[0])}
-            current_trail.append(step)
-            words.pop(0)
-        elif next_word[-4:] == "-lið":
-            step = {"tag": "numart", "nr": fetch_nr(next_word)}
-            current_trail.append(step)
-        elif next_word == "eða":
-            # Dump what we have and move on with the second trail.
-            trails.append(deepcopy(current_trail))
-            current_trail[-1]["nr"] = fetch_nr(words[0])
-            words.pop(0)
-        else:
-            raise HttpError(500, "Confused by: %s" % next_word)
-
-    # Add the last trail worked on, which will typically be the only one.
-    trails.append(current_trail)
-
-    # Turn the trails into a CSS selector.
-    selector = ""
-    for trail in trails:
-        sub_selector = ""
-        for step in trail:
-            sub_selector += ' %s[nr="%s"]' % (step["tag"], step["nr"])
-        selector += "," + sub_selector
-    selector = selector.strip(",").strip()
+    try:
+        selector = make_css_selector(words)
+    except ReferenceParsingException as ex:
+        next_word = ex.args[0]
+        raise HttpError(500, "Confused by: %s" % next_word)
 
     # Also return the segment, since now we have the selector.
     segment = get_segment(request, law_nr, law_year, selector)["segment"]
@@ -196,9 +145,9 @@ def normalize(request, input_file: UploadedFile = File(...)):
     # exporting quirks (from the original HTML-exporting software) that we
     # also imitate.
     minister_clause = xml_doc.find("minister-clause")
-    encoded_clause = ''
+    encoded_clause = ""
     for child in minister_clause:
-        encoded_clause += etree.tostring(child, encoding='unicode')
+        encoded_clause += etree.tostring(child, encoding="unicode")
     encoded_clause = encoded_clause.replace(">", "> ")
     encoded_clause = encoded_clause.replace("<", " <")
     encoded_clause = encoded_clause.replace("  ", " ").strip()
@@ -208,13 +157,12 @@ def normalize(request, input_file: UploadedFile = File(...)):
 
     # For details, see comparable section in `lagasafn-xml` project.
     import xml.dom.minidom
+
     xml = xml.dom.minidom.parseString(
         etree.tostring(
             xml_doc, pretty_print=True, xml_declaration=True, encoding="utf-8"
         ).decode("utf-8")
     )
-    normalized_file = xml.toprettyxml(
-        indent="  ", encoding="utf-8"
-    ).decode("utf-8")
+    normalized_file = xml.toprettyxml(indent="  ", encoding="utf-8").decode("utf-8")
 
     return HttpResponse(normalized_file, content_type="text/xml")
