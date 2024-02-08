@@ -36,15 +36,28 @@ def parse_reference(request, reference):
     # TODO: Sanity check on reference to prevent garbage input.
     # ...
 
-    def fetch_nr(words):
+    def fetch_nr(word):
         """
-        Utility function expected to get more complicated later.
+        Utility function to return the number or letter of a reference part.
+        Examples:
+            "3. gr." should return "3"
+            "B-lið" should return "B"
         """
-        nr = words.pop(0).strip(".")
+        if word[-4:] == "-lið":
+            nr = word[:word.find('-')]
+        else:
+            nr = word.strip(".")
+
         return nr
 
     law_nr = None
     law_year = None
+
+    # Make sure there are no stray spaces in reference. They often appear when
+    # copying from PDF documents.
+    reference = reference.strip()
+    while reference.find("  ") > -1:
+        reference = reference.replace("  ", " ")
 
     # Turn reference into words that we will parse one by one, but backwards,
     # because human-readable addressing has the most precision in the
@@ -57,7 +70,7 @@ def parse_reference(request, reference):
     if "/" in words[0] and words[1] == "nr.":
         law_nr, law_year = words[0].split("/")
         words.pop(0)
-        words.pop(1)
+        words.pop(0)
 
     # Map of known human-readable separators and their mappings into elements.
     known_seps = {
@@ -65,7 +78,7 @@ def parse_reference(request, reference):
     }
 
     # Look for a known separator, forwarding over the possible name of the law
-    # and removing it, since it's not useful.
+    # and removing it, since it's not useful. This disregards the law's name.
     known_sep_found = False
     while not known_sep_found:
         if words[0] in known_seps:
@@ -76,28 +89,37 @@ def parse_reference(request, reference):
     # At this point the remaining words should begin with something we can
     # process into a location inside a document.
 
-    # This gets converted into the CSS selector later.
+    # This gets converted into the CSS selector later. The reason for these
+    # being separate variables is specific to CSS due to how `or` in CSS is
+    # only possible using multiple selectors.
     trails = []
     current_trail = []
 
     while len(words) > 0:
-        word = words.pop(0)
+        next_word = words.pop(0)
         step = None
-        if word == "gr.":
-            step = {"tag": "art", "nr": fetch_nr(words)}
+        if next_word == "gr.":
+            step = {"tag": "art", "nr": fetch_nr(words[0])}
             current_trail.append(step)
-        elif word == "mgr.":
-            step = {"tag": "subart", "nr": fetch_nr(words)}
+            words.pop(0)
+        elif next_word == "mgr.":
+            step = {"tag": "subart", "nr": fetch_nr(words[0])}
             current_trail.append(step)
-        elif word == "tölul.":
-            step = {"tag": "numart", "nr": fetch_nr(words)}
+            words.pop(0)
+        elif next_word == "tölul.":
+            step = {"tag": "numart", "nr": fetch_nr(words[0])}
             current_trail.append(step)
-        elif word == "eða":
+            words.pop(0)
+        elif next_word[-4:] == "-lið":
+            step = {"tag": "numart", "nr": fetch_nr(next_word)}
+            current_trail.append(step)
+        elif next_word == "eða":
             # Dump what we have and move on with the second trail.
             trails.append(deepcopy(current_trail))
-            current_trail[-1]["nr"] = fetch_nr(words)
+            current_trail[-1]["nr"] = fetch_nr(words[0])
+            words.pop(0)
         else:
-            raise HttpError(500, "Confused by: %s" % word)
+            raise HttpError(500, "Confused by: %s" % next_word)
 
     # Add the last trail worked on, which will typically be the only one.
     trails.append(current_trail)
@@ -109,7 +131,7 @@ def parse_reference(request, reference):
         for step in trail:
             sub_selector += ' %s[nr="%s"]' % (step["tag"], step["nr"])
         selector += "," + sub_selector
-    selector = selector.strip(",")
+    selector = selector.strip(",").strip()
 
     # Also return the segment, since now we have the selector.
     segment = get_segment(request, law_nr, law_year, selector)["segment"]
