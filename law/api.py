@@ -83,7 +83,7 @@ def parse_reference(request, reference):
         raise HttpError(500, "Confused by: %s" % next_word)
 
     # Also return the segment, since now we have the selector.
-    segment = get_segment(request, law_nr, law_year, selector)["segment"]
+    segment = select_by_css(request, law_nr, law_year, selector)
 
     return {
         "selector": selector,
@@ -96,8 +96,8 @@ def parse_reference(request, reference):
     }
 
 
-@api.get("segment/")
-def get_segment(request, law_nr: int, law_year: int, css_selector: str):
+@api.get("select-by-css/")
+def select_by_css(request, law_nr: int, law_year: int, css_selector: str):
     try:
         law = Law("%s/%s" % (law_nr, law_year))
     except LawException as ex:
@@ -118,15 +118,18 @@ def get_segment(request, law_nr: int, law_year: int, css_selector: str):
     ]
 
     return {
-        "segment": {
-            "text_result": text_result,
-            "xml_result": xml_result,
-        }
+        "text_result": text_result,
+        "xml_result": xml_result,
     }
 
 
 @api.post("normalize/")
 def normalize(request, input_file: UploadedFile = File(...)):
+    """
+    Takes an uploaded XML law and makes sure that it is formatted in the same
+    way as the codex. Useful for comparison.
+    """
+
     input_data = input_file.read()
 
     xml_doc = etree.fromstring(input_data)
