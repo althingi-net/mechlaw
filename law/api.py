@@ -76,6 +76,10 @@ def parse_reference(request, reference):
     # At this point the remaining words should begin with something we can
     # process into a location inside a document.
 
+    # Remove trailing dots from the remaining words, since they'll only get in
+    # the way from now on, but may end up a law's name above.
+    words = [w.strip(".") for w in words]
+
     try:
         selector = make_css_selector(words)
     except ReferenceParsingException as ex:

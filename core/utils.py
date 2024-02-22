@@ -27,15 +27,15 @@ def make_css_selector(words: str):
     while len(words) > 0:
         next_word = words.pop(0)
         step = None
-        if next_word == "gr.":
+        if next_word == "gr":
             step = {"tag": "art", "nr": fetch_nr(words[0])}
             current_trail.append(step)
             words.pop(0)
-        elif next_word == "mgr.":
+        elif next_word == "mgr":
             step = {"tag": "subart", "nr": fetch_nr(words[0])}
             current_trail.append(step)
             words.pop(0)
-        elif next_word == "tölul.":
+        elif next_word == "tölul":
             step = {"tag": "numart", "nr": fetch_nr(words[0])}
             current_trail.append(step)
             words.pop(0)
