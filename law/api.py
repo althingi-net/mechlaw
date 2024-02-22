@@ -1,11 +1,10 @@
 from core.exceptions import ReferenceParsingException
-from core.utils import make_css_selector
+from core.utils import make_xpath
 from django.http import HttpResponse
 from law.exceptions import LawException
 from law.models import Law
 from lxml import etree
 from lxml.etree import Element
-from lxml.cssselect import CSSSelector
 from ninja import File
 from ninja import NinjaAPI
 from ninja.errors import HttpError
@@ -80,17 +79,17 @@ def parse_reference(request, reference):
     # the way from now on, but may end up a law's name above.
     words = [w.strip(".") for w in words]
 
+    # Create selector.
     try:
-        selector = make_css_selector(words)
+        xpath = make_xpath(words)
     except ReferenceParsingException as ex:
-        next_word = ex.args[0]
-        raise HttpError(500, "Confused by: %s" % next_word)
+        raise HttpError(500, "Confused by: %s" % ex.args[0])
 
-    # Also return the segment, since now we have the selector.
-    segment = select_by_css(request, law_nr, law_year, selector)
+    # Also return the segment.
+    segment = get_segment(request, law_nr, law_year, xpath)
 
     return {
-        "selector": selector,
+        "xpath": xpath,
         "law_nr": law_nr,
         "law_year": law_year,
         "segment": segment,
@@ -100,15 +99,14 @@ def parse_reference(request, reference):
     }
 
 
-@api.get("select-by-css/")
-def select_by_css(request, law_nr: int, law_year: int, css_selector: str):
+@api.get("get-segment/")
+def get_segment(request, law_nr: int, law_year: int, xpath: str):
     try:
         law = Law("%s/%s" % (law_nr, law_year))
     except LawException as ex:
         raise HttpError(400, ex.args[0])
 
-    selector = CSSSelector(css_selector)
-    elements = selector(law.xml())
+    elements = law.xml().xpath(xpath)
 
     if len(elements) == 0:
         raise HttpError(404, "Could not find requested element.")
